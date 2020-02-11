@@ -1,9 +1,18 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>exercise 1</title>
+<title>exercise 4</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width">
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <link rel="stylesheet" href="css/leaflet.css"><link rel="stylesheet" href="css/L.Control.Locate.min.css">
+        <link rel="stylesheet" href="css/qgis2web.css"><link rel="stylesheet" href="css/fontawesome-all.min.css">
+        <link rel="stylesheet" href="css/leaflet-control-geocoder.Geocoder.css">
+        
 <style>
 body {
   font-family: Arial, Helvetica, sans-serif;
@@ -11,12 +20,12 @@ body {
 
 .navbar {
   overflow: hidden;
-  background-color:red;
+  background-color: #333;
 }
 
 .navbar a {
   float: right;
-  font-size: 18px;
+  font-size: 16px;
   color: white;
   text-align: center;
   padding: 14px 16px;
@@ -24,7 +33,7 @@ body {
 }
 
 .dropdown {
-  float: left;
+  float:left;
   overflow: hidden;
 }
 
@@ -46,7 +55,7 @@ body {
 .dropdown-content {
   display: none;
   position: absolute;
-  background-color:blue;
+  background-color: #f9f9f9;
   min-width: 160px;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: 1;
@@ -54,7 +63,7 @@ body {
 
 .dropdown-content a {
   float: none;
-  color: White;
+  color: black;
   padding: 12px 16px;
   text-decoration: none;
   display: block;
@@ -69,22 +78,320 @@ body {
   display: block;
 }
 </style>
+    <style>
+ #map {
+            width: 1920px;
+            height: 874px;
+        }
+    </style>
 </head>
+   
 <body>
-
 <div class="navbar">
-  <a href="https://mkgadri.github.io/CRP558/">Homepage</a>
+  <a href="https://github.com/mkgadri/CRP558/">Homepage</a>
   <a href="https://github.com/mkgadri/CRP558/">CRP558</a>
   <div class="dropdown">
     <button class="dropbtn"><b>Exercise</b>
       <i class="fa fa-caret-down"></i>
     </button>
     <div class="dropdown-content">
-      <a href="https://mkgadri.github.io/CRP558/exercise1/">Exercise 1</a>
+      <a href="https://mkgadri.github.io/CRP558/Exercise4/">Exercise 4</a>
     </div>
   </div> 
 </div>
-  <h1>About me</h1>
-  <p>Hi Class! <br> My name is <b>Mandela Kwame Gadri</b> and I am a graduate student in Community and Regional Planning. I have a Bachelors' Degree in Planning from the University of Science and Technology, Kumasi, Ghana.  I have no experience with HTML and JavaScript but I have a background in GIS, most especially GIS Desktop, ArcGIS Pro and ArcGIS Online.  I have an Interest in Landuse and Transportation and it is my expectation that, by the end of this course, I would be able to develop a thorough knowledge and understanding of HTML and JavaScript and how to use that with GIS  to resolve land use and Transport related problems across the globe.</p>
+        <div id="map">
+        </div>
+        <script src="js/qgis2web_expressions.js"></script>
+        <script src="js/leaflet.js"></script><script src="js/L.Control.Locate.min.js"></script>
+        <script src="js/leaflet.rotatedMarker.js"></script>
+        <script src="js/leaflet.pattern.js"></script>
+        <script src="js/leaflet-hash.js"></script>
+        <script src="js/Autolinker.min.js"></script>
+        <script src="js/rbush.min.js"></script>
+        <script src="js/labelgun.min.js"></script>
+        <script src="js/labels.js"></script>
+        <script src="js/leaflet-control-geocoder.Geocoder.js"></script>
+        <script src="data/iowa_border_0.js"></script>
+        <script src="data/urban_boundaries_updated_1.js"></script>
+        <script src="data/major_water_source_streams_2.js"></script>
+        <script src="data/major_water_source_lakes_3.js"></script>
+        <script>
+        var highlightLayer;
+        function highlightFeature(e) {
+            highlightLayer = e.target;
+            highlightLayer.openPopup();
+        }
+        var map = L.map('map', {
+            zoomControl:true, maxZoom:28, minZoom:1
+        }).fitBounds([[40.23110692544557,-99.39700925427887],[43.84372181407733,-88.92956860976466]]);
+        var hash = new L.Hash(map);
+        map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
+        L.control.locate({locateOptions: {maxZoom: 19}}).addTo(map);
+        var bounds_group = new L.featureGroup([]);
+        function setBounds() {
+        }
+        function pop_iowa_border_0(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    if (typeof layer.closePopup == 'function') {
+                        layer.closePopup();
+                    } else {
+                        layer.eachLayer(function(feature){
+                            feature.closePopup()
+                        });
+                    }
+                },
+                mouseover: highlightFeature,
+            });
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Id'] !== null ? Autolinker.link(feature.properties['Id'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_iowa_border_0_0() {
+            return {
+                pane: 'pane_iowa_border_0',
+                opacity: 1,
+                color: 'rgba(228,113,26,1.0)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 4.0,
+                fillOpacity: 0,
+                interactive: true,
+            }
+        }
+        map.createPane('pane_iowa_border_0');
+        map.getPane('pane_iowa_border_0').style.zIndex = 400;
+        map.getPane('pane_iowa_border_0').style['mix-blend-mode'] = 'normal';
+        var layer_iowa_border_0 = new L.geoJson(json_iowa_border_0, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_iowa_border_0',
+            layerName: 'layer_iowa_border_0',
+            pane: 'pane_iowa_border_0',
+            onEachFeature: pop_iowa_border_0,
+            style: style_iowa_border_0_0,
+        });
+        bounds_group.addLayer(layer_iowa_border_0);
+        map.addLayer(layer_iowa_border_0);
+        function pop_urban_boundaries_updated_1(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    if (typeof layer.closePopup == 'function') {
+                        layer.closePopup();
+                    } else {
+                        layer.eachLayer(function(feature){
+                            feature.closePopup()
+                        });
+                    }
+                },
+                mouseover: highlightFeature,
+            });
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2"><strong>OBJECTID</strong><br />' + (feature.properties['OBJECTID'] !== null ? Autolinker.link(feature.properties['OBJECTID'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>DATA_YEAR</strong><br />' + (feature.properties['DATA_YEAR'] !== null ? Autolinker.link(feature.properties['DATA_YEAR'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['URBAN_AREA'] !== null ? Autolinker.link(feature.properties['URBAN_AREA'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>URBAN_NAME</strong><br />' + (feature.properties['URBAN_NAME'] !== null ? Autolinker.link(feature.properties['URBAN_NAME'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>REST_UPDAT</strong><br />' + (feature.properties['REST_UPDAT'] !== null ? Autolinker.link(feature.properties['REST_UPDAT'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>UTC_OFFSET</strong><br />' + (feature.properties['UTC_OFFSET'] !== null ? Autolinker.link(feature.properties['UTC_OFFSET'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">POP</th>\
+                        <td>' + (feature.properties['POP'] !== null ? Autolinker.link(feature.properties['POP'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_urban_boundaries_updated_1_0() {
+            return {
+                pane: 'pane_urban_boundaries_updated_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(255,127,0,1.0)',
+                interactive: true,
+            }
+        }
+        map.createPane('pane_urban_boundaries_updated_1');
+        map.getPane('pane_urban_boundaries_updated_1').style.zIndex = 401;
+        map.getPane('pane_urban_boundaries_updated_1').style['mix-blend-mode'] = 'normal';
+        var layer_urban_boundaries_updated_1 = new L.geoJson(json_urban_boundaries_updated_1, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_urban_boundaries_updated_1',
+            layerName: 'layer_urban_boundaries_updated_1',
+            pane: 'pane_urban_boundaries_updated_1',
+            onEachFeature: pop_urban_boundaries_updated_1,
+            style: style_urban_boundaries_updated_1_0,
+        });
+        bounds_group.addLayer(layer_urban_boundaries_updated_1);
+        map.addLayer(layer_urban_boundaries_updated_1);
+        function pop_major_water_source_streams_2(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    if (typeof layer.closePopup == 'function') {
+                        layer.closePopup();
+                    } else {
+                        layer.eachLayer(function(feature){
+                            feature.closePopup()
+                        });
+                    }
+                },
+                mouseover: highlightFeature,
+            });
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2"><strong>LENGTH</strong><br />' + (feature.properties['LENGTH'] !== null ? Autolinker.link(feature.properties['LENGTH'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>CU</strong><br />' + (feature.properties['CU'] !== null ? Autolinker.link(feature.properties['CU'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>PNAME</strong><br />' + (feature.properties['PNAME'] !== null ? Autolinker.link(feature.properties['PNAME'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>PNMCD</strong><br />' + (feature.properties['PNMCD'] !== null ? Autolinker.link(feature.properties['PNMCD'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_major_water_source_streams_2_0() {
+            return {
+                pane: 'pane_major_water_source_streams_2',
+                opacity: 1,
+                color: 'rgba(8,132,157,1.0)',
+                dashArray: '',
+                lineCap: 'square',
+                lineJoin: 'bevel',
+                weight: 1.0,
+                fillOpacity: 0,
+                interactive: true,
+            }
+        }
+        map.createPane('pane_major_water_source_streams_2');
+        map.getPane('pane_major_water_source_streams_2').style.zIndex = 402;
+        map.getPane('pane_major_water_source_streams_2').style['mix-blend-mode'] = 'normal';
+        var layer_major_water_source_streams_2 = new L.geoJson(json_major_water_source_streams_2, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_major_water_source_streams_2',
+            layerName: 'layer_major_water_source_streams_2',
+            pane: 'pane_major_water_source_streams_2',
+            onEachFeature: pop_major_water_source_streams_2,
+            style: style_major_water_source_streams_2_0,
+        });
+        bounds_group.addLayer(layer_major_water_source_streams_2);
+        map.addLayer(layer_major_water_source_streams_2);
+        function pop_major_water_source_lakes_3(feature, layer) {
+            layer.on({
+                mouseout: function(e) {
+                    if (typeof layer.closePopup == 'function') {
+                        layer.closePopup();
+                    } else {
+                        layer.eachLayer(function(feature){
+                            feature.closePopup()
+                        });
+                    }
+                },
+                mouseover: highlightFeature,
+            });
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2"><strong>Lake_Name</strong><br />' + (feature.properties['Lake_Name'] !== null ? Autolinker.link(feature.properties['Lake_Name'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Alt_Name</strong><br />' + (feature.properties['Alt_Name'] !== null ? Autolinker.link(feature.properties['Alt_Name'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>County</strong><br />' + (feature.properties['County'] !== null ? Autolinker.link(feature.properties['County'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Owner'] !== null ? Autolinker.link(feature.properties['Owner'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Type'] !== null ? Autolinker.link(feature.properties['Type'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['WBID'] !== null ? Autolinker.link(feature.properties['WBID'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Easting'] !== null ? Autolinker.link(feature.properties['Easting'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>Northing</strong><br />' + (feature.properties['Northing'] !== null ? Autolinker.link(feature.properties['Northing'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2">' + (feature.properties['Location'] !== null ? Autolinker.link(feature.properties['Location'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_major_water_source_lakes_3_0() {
+            return {
+                pane: 'pane_major_water_source_lakes_3',
+                opacity: 1,
+                color: 'rgba(56,128,54,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1.0, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(255,85,122,1.0)',
+                interactive: true,
+            }
+        }
+        map.createPane('pane_major_water_source_lakes_3');
+        map.getPane('pane_major_water_source_lakes_3').style.zIndex = 403;
+        map.getPane('pane_major_water_source_lakes_3').style['mix-blend-mode'] = 'normal';
+        var layer_major_water_source_lakes_3 = new L.geoJson(json_major_water_source_lakes_3, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_major_water_source_lakes_3',
+            layerName: 'layer_major_water_source_lakes_3',
+            pane: 'pane_major_water_source_lakes_3',
+            onEachFeature: pop_major_water_source_lakes_3,
+            style: style_major_water_source_lakes_3_0,
+        });
+        bounds_group.addLayer(layer_major_water_source_lakes_3);
+        map.addLayer(layer_major_water_source_lakes_3);
+        var osmGeocoder = new L.Control.Geocoder({
+            collapsed: true,
+            position: 'topleft',
+            text: 'Search',
+            title: 'Testing'
+        }).addTo(map);
+        document.getElementsByClassName('leaflet-control-geocoder-icon')[0]
+        .className += ' fa fa-search';
+        document.getElementsByClassName('leaflet-control-geocoder-icon')[0]
+        .title += 'Search for a place';
+        var baseMaps = {};
+        L.control.layers(baseMaps,{'<img src="legend/major_water_source_lakes_3.png" /> major_water_source_lakes': layer_major_water_source_lakes_3,'<img src="legend/major_water_source_streams_2.png" /> major_water_source_streams': layer_major_water_source_streams_2,'<img src="legend/urban_boundaries_updated_1.png" /> urban_boundaries_updated': layer_urban_boundaries_updated_1,'<img src="legend/iowa_border_0.png" /> iowa_border': layer_iowa_border_0,}).addTo(map);
+        setBounds();
+        </script>
+   
 </body>
 </html>
