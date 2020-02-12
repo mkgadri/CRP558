@@ -1,1 +1,82 @@
-testhgjhjh
+<!DOCTYPE html>
+<html>
+<body>
+<h1>Assignment 1</h1>
+
+<h2>Function</h2>
+<p>This example calls a function <b>(4*4)</b> which performs a calculation, and returns the result:</p>
+<p id="fun"></p>
+<script>
+function myFunction(p1, p2) {
+  return p1 * p2;}
+document.getElementById("fun").innerHTML = myFunction (4, 4);
+</script>
+
+<h2>Arrays</h2>
+<p>This example shows result of list of Africa Countries:</p>
+<p id="array"></p>
+<script>
+var countries = ["Ghana","Nigeria","Togo"];
+document.getElementById("array").innerHTML = countries;
+</script>
+
+<h2>Objects</h2>
+<p>This example shows result of list of Africa Countries and their demographics:</p>
+<p id="gh"></p>
+<script>
+var country = {firstName:"Ghana", population:"28.83 million",};
+document.getElementById("gh").innerHTML =
+country.firstName + " has a population of " + country.population;
+</script>
+
+<p id="nig"></p>
+<script>
+var country = {firstName:"Nigeria", population:"190.9 million",};
+document.getElementById("nig").innerHTML =
+country.firstName + " has a population of " + country.population;
+</script>
+
+<p id="tog"></p>
+<script>
+var country = {firstName:"Togo", population:"7.798 million",};
+document.getElementById("tog").innerHTML =
+country.firstName + " has a population of " + country.population;
+</script>
+
+<h2>Loop</h2>
+<p>This example shows result of list of Africa Countries:
+<p id="cou"></p>
+<script>
+var countries = ["Ghana", "Togo", "Nigeria", "Mali", "Senegal"];
+var text = "";
+var i;
+for (i = 0; i < countries.length; i++) {
+  text += countries[i] + "<br>";}
+document.getElementById("cou").innerHTML = text;
+</script>
+
+<h2>Buttons only</h2>
+<button type="button"
+onclick="document.getElementById('but').innerHTML = Date()">
+Click here to display todays's date and time.</button>
+<p id="but"></p>
+<h2>If else and buttons</h2>
+<p>Click the button to find out if you are qualified for the class:</p>
+<button onclick="myFunction()">Click here!</button>
+<p id="ife"></p>
+
+<script>
+function myFunction() {
+  var age = 15; 
+  if (age >18) {
+  age=  "you are qualified to be part of the class!";
+  } else {
+ age="you are not qualified to be part of the class";
+  }
+  document.getElementById("ife").innerHTML = age;
+}
+</script>
+</body>
+</html>
+</body>
+</html>
