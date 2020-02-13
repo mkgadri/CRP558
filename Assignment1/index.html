@@ -190,7 +190,8 @@ First name:
   <input type="text" id="firstname" value="Mandela"><br>
 Last  name:
   <input type="text" id="lastname" onchangeFunction(this.value)><br><br>
-<div id='hide'>
+  
+<div id='hiden'>
   <strong> What is your gender</strong><br>
    <input type="radio" name="gender" value="male" checked> Male<br>
   <input type="radio" name="gender" value="female"> Female<br>
@@ -199,5 +200,12 @@ Last  name:
   <br><em><strong> Click to update display</strong></em> <br>
   <button onclick="displayFunction()">Display</button>
 <p id="display"></p>
+<script>
+let firstname = document.getElementById("firstname").value;
+let  lastname = document.getElementById("lastname").value;
+document.getElementById("display").innerHTML = firstname;
+</script>
+
+</div>
 </body>
 </html>
