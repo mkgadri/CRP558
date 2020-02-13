@@ -85,7 +85,7 @@ body {
       <a href="https://github.com/mkgadri/CRP558/blob/master/Exercise3/Iowa_Airports.geojson">Exercise 3</a>
       <a href="https://mkgadri.github.io/CRP558/Exercise4/">Exercise 4</a>
       <a href="https://mkgadri.github.io/CRP558/Assignment1/">Assignment 1</a>
-  </div> 
+  </div>
 </div>
 </div>
 <h1>Assignment 1</h1>
@@ -183,6 +183,21 @@ Last name:
   <input type="radio" name="gender" value="other"> Other<br><br>
   <input type="submit">
   <input type="reset">
-</form> 
+</form>
+<h2>Output to Console</h2>
+<p><b>Please indicate your name</b></p>
+First name:
+  <input type="text" id="firstname" value="Mandela"><br>
+Last  name:
+  <input type="text" id="lastname" onchangeFunction(this.value)><br><br>
+<div id='hide'>
+  <strong> What is your gender</strong><br>
+   <input type="radio" name="gender" value="male" checked> Male<br>
+  <input type="radio" name="gender" value="female"> Female<br>
+  <input type="radio" name="gender" value="other"> Other<br><br>
+  </div>
+  <br><em><strong> Click to update display</strong></em> <br>
+  <button onclick="displayFunction()">Display</button>
+<p id="display"></p>
 </body>
 </html>
