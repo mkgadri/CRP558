@@ -15,8 +15,8 @@
 
     <style>
         #map {
-            width: 700px;
-            height: 500px;
+            width: 750px;
+            height: 550px;
         }
 
     </style>
@@ -30,7 +30,7 @@
 
     <a href="javascript:zoomOut()">Zoom out to level 8</a><br>
 
-    <button id="KNUST">UST</button>
+    <button id="Accra">Kotoka International Airport</button>
 
 
     <script>
@@ -67,12 +67,13 @@
         function zoomOut() {
             map.setZoom(8);
         };
-        document.getElementById("KNUST").addEventListener("click", KNUST);
+        document.getElementById("Accra").addEventListener("click", Accra);
 
-        function KNUST() {
-            map.setView(new L.LatLng(6.6764, -1.5717), 13);
+        function Accra() {
+            map.setView(new L.LatLng(5.6025, -0.168), 13);
         };
     </script>
 
 </body>
 </html>
+
