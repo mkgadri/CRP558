@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="description" content=" exercise5">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Getting Started with Leaflet</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
+        integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+        crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
+        integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
+        crossorigin=""></script>
+
+    <style>
+        #map {
+            width: 700px;
+            height: 500px;
+        }
+
+    </style>
+
+</head>
+
+<body>
+    <div id='map'></div>
+    
+    <br>Pan to <a href="javascript:kumasi()">Kumasi, Ghana</a><br>
+
+    <a href="javascript:zoomOut()">Zoom out to level 8</a><br>
+
+    <button id="KNUST">UST</button>
+
+
+    <script>
+        var map = L.map('map').setView([6.683333, -1.616667], 13);
+
+        L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
+            attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+            maxZoom: 18,
+            id: 'mapbox/streets-v11',
+            accessToken: 'pk.eyJ1IjoibWtnYWRyaSIsImEiOiJjazZzMG80ZngwOWJuM2Vxczc3Y3l5dWI1In0.Jgyb7Q-hriDlmi858EjIMg'
+        }).addTo(map);
+
+        L.marker([6.6979,-1.6182]).addTo(map)
+            .bindPopup(" Kumasi, Ghana")
+            .openPopup();
+ 
+        var towns = [
+           [6.6931, -1.6042, "Kumasi Technical Institute, Kuamsi, Ghana"],
+            [6.6764, -1.5717, "University of Science and Technogy, Kumasi, Ghana"],
+            [6.69718, -1.62966, "Komfo Anokye Teaching Hospital,Kumasi, Ghana"],
+           [6.7064, -1.573, "Kumasi Academy,Kumasi, Ghana"]
+        ];
+
+        for (var i = 0; i < towns.length; i++) {
+            marker = new L.marker([towns[i][0], towns[i][1]])
+                .bindPopup(towns[i][2])
+                .addTo(map);
+        }
+
+        function kumasi() {
+            map.panTo(new L.LatLng(6.7137, -1.5895));
+        }
+
+        function zoomOut() {
+            map.setZoom(8);
+        };
+        document.getElementById("KNUST").addEventListener("click", KNUST);
+
+        function KNUST() {
+            map.setView(new L.LatLng(6.6764, -1.5717), 13);
+        };
+    </script>
+
+</body>
+</html>
