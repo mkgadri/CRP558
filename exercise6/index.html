@@ -143,7 +143,7 @@ var marker2 = L.circle([5.6737, 0.0045], {
 	color: 'red', 
 	fillColor: 'purple',
 	fillOpacity: 0.8
- }).bindPopup("Tema Oil Refinery").addTo(map);
+ }).bindPopup ("Tema Oil Refinery").addTo(map);
     
     
  var exampleMarker = new L.circleMarker([5.6547, -0.0404], {
@@ -155,8 +155,18 @@ var marker2 = L.circle([5.6737, 0.0045], {
 	fillOpacity: 0.9           
     }).bindPopup("Ramsar Site, Tema").addTo(map);  
        
+var latlngs = [
+    [5.6857, -0.0148],
+    [5.6739, -0.0433],
+    [5.6587, -0.0767],
+    [5.6228, -0.1756]
+];
+var polyline = L.polyline(latlngs, {color: 'red'}).addTo(map);
+map.fitBounds(polyline.getBounds());
        
-       
+var latlngs = [[5.6749, -0.0292],[5.6785, -0.0233],[5.6732, -0.0211],[5.6698, -0.0253]];
+var polygon = L.polygon(latlngs, {color: 'red'}).addTo(map);
+map.fitBounds(polygon.getBounds());
        
        
        function zoomOut() {
