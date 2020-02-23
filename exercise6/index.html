@@ -110,14 +110,12 @@ body {
   </div> 
 </div>
          <div id='map'> </div>
-    <a href="javascript:zoomOut()">Zoom out to level 8</a><br>
-    
     <script>
         var map = L.map('map').setView([5.63, 0.0015], 13);
 
         L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
             attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
-            maxZoom: 18,
+            maxZoom: 14,
             id: 'mapbox/streets-v11',
             accessToken: 'pk.eyJ1IjoibWtnYWRyaSIsImEiOiJjazZzMG80ZngwOWJuM2Vxczc3Y3l5dWI1In0.Jgyb7Q-hriDlmi858EjIMg'
         }).addTo(map);
@@ -138,7 +136,7 @@ marker1.openPopup();
 
 
 var marker2 = L.circle([5.6737, 0.0045], {
-	radius: 1200,
+	radius: 1000,
 	fill: true, 
 	color: 'red', 
 	fillColor: 'purple',
@@ -147,7 +145,7 @@ var marker2 = L.circle([5.6737, 0.0045], {
     
     
  var exampleMarker = new L.circleMarker([5.6547, -0.0404], {
-    radius: 43,  
+    radius: 40,  
 	fillColor: 'orange',
 	color: "#000",  
 	weight: 2, 
@@ -165,18 +163,9 @@ var polyline = L.polyline(latlngs, {color: 'red'}).addTo(map);
 map.fitBounds(polyline.getBounds());
              
 var latlngs = [[5.6922, -0.0031],[5.6941, -0.0008],[5.6895, 0.001],[5.6882, -0.0016]];
-var polygon = L.polygon(latlngs, {color: 'red'}).addTo(map);
+var polygon = L.polygon(latlngs, {color: 'blue'}).addTo(map);
 map.fitBounds(polygon.getBounds());
- 
-       
-       function zoomOut() {
-            map.setZoom(8);
-        };
-        document.getElementById("Accra").addEventListener("click", Accra);
 
-        function Accra() {
-            map.setView(new L.LatLng(5.6025, -0.168), 13);
-        };
     </script>
 
 </body>
