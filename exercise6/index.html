@@ -2,7 +2,6 @@
 <html>
 
 <head>
-    
     <meta name="description" content=" exercise 6">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
@@ -84,7 +83,7 @@ body {
         #map {
             width: 750px;
             height: 550px;
-        }
+}
 
     </style>
 
@@ -107,19 +106,18 @@ body {
       <a href="https://mkgadri.github.io/CRP558/exercise5/">Exercise 5</a>
       <a href="https://mkgadri.github.io/CRP558/exercise6/">Exercise 6</a>
     </div>
-  </div> 
+  </div>
 </div>
          <div id='map'> </div>
     <script>
-        var map = L.map('map').setView([5.63, 0.0015], 13);
-
-        L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
-            attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+       var map = L.map('map').setView([5.63, 0.0015], 13);
+       L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
+       attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
             maxZoom: 14,
             id: 'mapbox/streets-v11',
             accessToken: 'pk.eyJ1IjoibWtnYWRyaSIsImEiOiJjazZzMG80ZngwOWJuM2Vxczc3Y3l5dWI1In0.Jgyb7Q-hriDlmi858EjIMg'
         }).addTo(map);
-        
+
 
 var marker1 = L.marker([5.63, 0.0015]).addTo(map)
 marker1.bindPopup(" <strong>The Port of Tema, Ghana</strong><br>The port of Tema is the most competitive port in West Africa<br>it is also the second biggest port in West Africa",{
@@ -131,28 +129,30 @@ keepInView:true,
 closeButton:true,
 autoPanPadding:[5,5],
 offset:[0,0]
-}) 
+})
 marker1.openPopup();
 
 
 var marker2 = L.circle([5.6737, 0.0045], {
 	radius: 1000,
-	fill: true, 
-	color: 'red', 
+	fill: true,
+	color: 'red',
 	fillColor: 'purple',
 	fillOpacity: 0.8
  }).bindPopup ("Tema Oil Refinery").addTo(map);
-    
-    
- var exampleMarker = new L.circleMarker([5.6547, -0.0404], {
-    radius: 40,  
+
+
+
+ var Marker3 = new L.circleMarker([5.6547, -0.0404], {
+    radius: 40,
 	fillColor: 'orange',
-	color: "#000",  
-	weight: 2, 
-	opacity: 1, 
-	fillOpacity: 0.9           
-    }).bindPopup("Ramsar Site, Tema").addTo(map);  
-       
+	color: "#000",
+	weight: 2,
+	opacity: 1,
+	fillOpacity: 0.9
+    }).bindPopup("Ramsar Site, Tema").addTo(map);
+
+
 var latlngs = [
     [5.6857, -0.0148],
     [5.6739, -0.0433],
@@ -161,7 +161,8 @@ var latlngs = [
 ];
 var polyline = L.polyline(latlngs, {color: 'red'}).addTo(map);
 map.fitBounds(polyline.getBounds());
-             
+
+
 var latlngs = [[5.6922, -0.0031],[5.6941, -0.0008],[5.6895, 0.001],[5.6882, -0.0016]];
 var polygon = L.polygon(latlngs, {color: 'blue'}).addTo(map);
 map.fitBounds(polygon.getBounds());
