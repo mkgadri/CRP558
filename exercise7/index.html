@@ -5,15 +5,14 @@
     <meta name="description" content=" exercise 7">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Exerxise 6</title>
+    <title>Exerxise 7</title>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
-    integrity="sha512-        xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+    integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
     crossorigin=""> 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
     integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
     crossorigin=""></script>
-
 <style>
     body {
    font-family: Arial, Helvetica, sans-serif;
@@ -35,7 +34,7 @@
   overflow: hidden;
 }
  .dropdown .dropbtn {
-  font-size: 16px;
+  font-size: 16px;  
   border: none;
   outline: none;
   color: white;
@@ -69,17 +68,12 @@
 .dropdown:hover .dropdown-content {
   display: block;
 }
- html, body {
-	height: 100%;
-	margin: 0;
-}
-#map {
-	width: 600px;
-	height: 400px;
+  #map {
+            width: 750px;
+            height: 550px;
 }
 </style>
 </head>
-
 <body>
    <div class="navbar">
    <a href="https://github.com/mkgadri/CRP558/">Homepage</a>
@@ -100,41 +94,69 @@
     </div>
      </div>
   <div id='map'> </div>
+
    <script>
-      var cities = L.layerGroup();
-    L.marker([5.5483,-0.2111]).bindPopup('Accra, the capital City of Ghana').addTo(cities)
-    var marker2 = L.circle([5.6726,0.0039], {
-	  radius: 1000,
-	  fill: true,
-	  color: 'red',
-	  fillColor: 'purple',
-	  fillOpacity: 0.8
- }).bindPopup ("Tema, the industrial hub of Ghana").addTo(cities);
+     console.clear();
 
-    var mbAttr = 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' +
-			'<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
-			'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
-		mbUrl = 'https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWtnYWRyaSIsImEiOiJjazZzMG80ZngwOWJuM2Vxczc3Y3l5dWI1In0.Jgyb7Q-hriDlmi858EjIMg';
+var OSM = L.tileLayer('https://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="https://osm.org/copyright">OpenStreetMap</a> contributors',
+    maxZoom: 18
+});
 
-	var grayscale = L.tileLayer(mbUrl, {id: 'mapbox/light-v9', tileSize: 512, zoomOffset: -1, attribution: mbAttr}),
-		  streets     = L.tileLayer(mbUrl, {id: 'mapbox/streets-v11', tileSize: 512, zoomOffset: -1, attribution: mbAttr});
+var Esri_WorldImagery = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+	attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
+});
 
-	var map = L.map('map', {
-		  center: [5.54880,-0.21101],
-		  zoom: 10,
-		  layers: [grayscale, cities]
-	});
+var Esri_WorldStreetMap = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}', {
+	attribution: 'Tiles &copy; Esri &mdash; Source: Esri, DeLorme, NAVTEQ, USGS, Intermap, iPC, NRCAN, Esri Japan, METI, Esri China (Hong Kong), Esri (Thailand), TomTom, 2012'
+});
 
-	var baseLayers = {
-		"Grayscale": grayscale,
-		"Streets": streets
-	};
+var OpenRailwayMap = L.tileLayer('https://{s}.tiles.openrailwaymap.org/standard/{z}/{x}/{y}.png', {
+	maxZoom: 19,
+	attribution: 'Map data: &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors | Map style: &copy; <a href="https://www.OpenRailwayMap.org">OpenRailwayMap</a> (<a href="https://creativecommons.org/licenses/by-sa/3.0/">CC-BY-SA</a>)'
+});
 
-	var overlays = {
-		"Cities": cities
-	};
+var bamako = L.marker([11.87,-7.91]).bindPopup('This is Bamako'),
+    lome    = L.marker([5.35,1.58]).bindPopup('This is Lome'),
+    kano    = L.marker([11.35,8.70]).bindPopup('This is Kano'),
+    Niamey    = L.marker([12.90,2.11]).bindPopup('This is Niamey');
+var africa = L.marker([12.47,19.51]).bindPopup('This is Africa');
 
-	L.control.layers(baseLayers, overlays).addTo(map);
+var polygon = L.polygon([
+    [10.833,-2.769],
+    [10.790,0.132],
+    [5.835,1.099],
+	[4.828,-2.813]
+],
+                        {
+    color: 'Red',
+    fillColor: 'blue',
+    fillOpacity: 0.9
+});
+
+var someStuff = L.layerGroup([bamako, lome, kano, Niamey, polygon]);
+
+
+var map = L.map('map', {
+    		center: new L.LatLng(12.47,19.51),
+    		zoom: 4,
+    		layers: [OSM, Esri_WorldImagery, Esri_WorldStreetMap, OpenRailwayMap , someStuff]
+		});
+
+
+		var baseMaps = {
+			"OpenStreetMap": OSM,
+      "Esri World Imagery": Esri_WorldImagery,
+			"StreetMap": Esri_WorldStreetMap,
+		};
+
+		var overlayMaps = {
+			"OpenRailwayMap": OpenRailwayMap,
+			"Some Stuff": someStuff,
+      "polygon": polygon
+		};
+		L.control.layers(baseMaps, overlayMaps).addTo(map);
+
     </script>
 </body>
 </html>
