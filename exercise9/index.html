@@ -1,1 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="description" content=" exercise 8">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Exerxise 8</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
+    integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+    crossorigin=""> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
+    integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
+    crossorigin=""></script>
+<style>
+   body {
+   font-family: Arial, Helvetica, sans-serif;
+}
+   .navbar {
+   overflow: hidden;
+   background-color: red;
+}
+  .navbar a {
+  float: right;
+  font-size: 16px;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+  .dropdown {
+  float:left;
+  overflow: hidden;
+}
+ .dropdown .dropbtn {
+  font-size: 16px;  
+  border: none;
+  outline: none;
+  color: white;
+  padding: 14px 16px;
+  background-color: inherit;
+  font-family: inherit;
+  margin: 0;
+}
+ .navbar a:hover, .dropdown:hover .dropbtn {
+  background-color: red;
+}
+ .dropdown-content {
+  display: none;
+  position: absolute;
+  background-color:blue;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 9999;
+}
+ .dropdown-content a {
+  float: none;
+  color: white;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+ .dropdown-content a:hover {
+  background-color: #ddd;
+}
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+  #map {
+            width: 750px;
+            height: 550px;
+}
+</style>
+</head>
+<body>
+ <div class="navbar">
+   <a href="https://github.com/mkgadri/CRP558/">Homepage</a>
+   <a href="https://github.com/mkgadri/CRP558/">CRP558</a>
+   <div class="dropdown">
+    <button class="dropbtn"><b>Exercise</b>
+    <i class="fa fa-caret-down"></i></button>
+    <div class="dropdown-content">
+    <a href="https://mkgadri.github.io/CRP558/exercise1/">Exercise 1</a>
+    <a href="https://mkgadri.github.io/CRP558/exercise2/">Exercise 2</a>
+    <a href="https://github.com/mkgadri/CRP558/blob/master/Exercise3/Iowa_Airports.geojson">Exercise 3</a>
+    <a href="https://mkgadri.github.io/CRP558/Exercise4/">Exercise 4</a>
+    <a href="https://mkgadri.github.io/CRP558/Assignment1/">Assignment 1</a>
+    <a href="https://mkgadri.github.io/CRP558/exercise5/">Exercise 5</a>
+    <a href="https://mkgadri.github.io/CRP558/exercise6/">Exercise 6</a>
+    <a href="https://mkgadri.github.io/CRP558/exercise7/">Exercise 7</a>
+      <a href="https://mkgadri.github.io/CRP558/exercise8/">Exercise 8</a>
+  </div>
+  </div>
+  </div>
+  <div id='map'> </div>
 
+   <script>
+     console.clear();
+
+var myGeoJSON = {"type":"FeatureCollection","features":[{"type":"Feature","id":"GHA","properties":{"name":"Ghana"},"geometry":{"type":"Polygon","coordinates":[[[1.060122,5.928837],[-0.507638,5.343473],[-1.063625,5.000548],[-1.964707,4.710462],[-2.856125,4.994476],[-2.810701,5.389051],[-3.24437,6.250472],[-2.983585,7.379705],[-2.56219,8.219628],[-2.827496,9.642461],[-2.963896,10.395335],[-2.940409,10.96269],[-1.203358,11.009819],[-0.761576,10.93693],[-0.438702,11.098341],[0.023803,11.018682],[-0.049785,10.706918],[0.36758,10.191213],[0.365901,9.465004],[0.461192,8.677223],[0.712029,8.312465],[0.490957,7.411744],[0.570384,6.914359],[0.836931,6.279979],[1.060122,5.928837]]]}}]}
+var OSM = L.tileLayer('https://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
+    maxZoom: 18
+});
+
+var map = L.map('map', {
+  center: new L.LatLng(6.8937, -1.1426),
+  zoom: 15,
+  layers: [OSM]
+});
+
+var myStyle = {
+    "color": "red",
+    "weight": 7,
+    "opacity": 0.9,
+    fillColor: 'green',
+};
+
+L.geoJSON(myGeoJSON,{style: myStyle,}).addTo(map);
+
+</script>
+</body>
+</html>
