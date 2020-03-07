@@ -1,17 +1,15 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta name="description" content=" exercise 8">
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Exerxise 8</title>
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
-    integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
-    crossorigin=""> 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
-    integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
-    crossorigin=""></script>
+  <meta name="description" content=" exercise 8">
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width>
+	<title>Choropleth Map - Leaflet</title>
+	<link rel="shortcut icon" type="image/x-icon" href="docs/images/favicon.ico" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
+  integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ==" crossorigin=""/>
+  <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js" integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew==" crossorigin=""></script>
+
 <style>
    body {
    font-family: Arial, Helvetica, sans-serif;
@@ -67,14 +65,14 @@
 .dropdown:hover .dropdown-content {
   display: block;
 }
-  #map {
-            width: 750px;
-            height: 550px;
-}
+		#map {
+		width: 600px;
+		height: 400px;
+		}
 </style>
 </head>
 <body>
- <div class="navbar">
+   <div class="navbar">
    <a href="https://github.com/mkgadri/CRP558/">Homepage</a>
    <a href="https://github.com/mkgadri/CRP558/">CRP558</a>
    <div class="dropdown">
@@ -89,47 +87,77 @@
     <a href="https://mkgadri.github.io/CRP558/exercise5/">Exercise 5</a>
     <a href="https://mkgadri.github.io/CRP558/exercise6/">Exercise 6</a>
     <a href="https://mkgadri.github.io/CRP558/exercise7/">Exercise 7</a>
-      <a href="https://mkgadri.github.io/CRP558/exercise8/">Exercise 8</a>
-  </div>
-  </div>
-  </div>
-  <div id='map'> </div>
-<script type="text/javascript" src="https://mkgadri.github.io/CRP558/geojsonexercise8/points.geojson"></script>
-<script type="text/javascript" src="https://mkgadri.github.io/CRP558/geojsonexercise8/lines.geojson"></script>
-<script type="text/javascript" src="https://mkgadri.github.io/CRP558/geojsonexercise8/polygons.geojson"></script>
-   <script>
-     
-var OSM = L.tileLayer('https://{s}.tile.osm.org/{z}/{x}/{y}.png', {
-    attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
-    maxZoom: 18
+    <a href="https://mkgadri.github.io/CRP558/exercise8/">Exercise 8</a>
+    </div>
+    </div>
+     </div>
+
+<div id='map'></div>
+<script type="text/javascript" src="https://mkgadri.github.io/CRP558/exercise8Geojson/boundaryDC.geojson"></script>
+<script type="text/javascript" src="https://mkgadri.github.io/CRP558/exercise8Geojson/heliportsDC.geojson"></script>
+<script type="text/javascript" src="https://mkgadri.github.io/CRP558/exercise8Geojson/roadDC.geojson"></script>
+
+<script>
+var OSM = L.tileLayer('https://{s}.tile.osm.org/{z}/{x}/{y}.png', {attribution: '&copy; <a href="https://osm.org/copyright">OpenStreetMap</a> contributors', maxZoom: 18
 });
 
-var map = L.map('map', {
-  center: new L.LatLng(	53.4085, -2.9761),
-  zoom: 15,
-  layers: [OSM]
-});
-
-var myStyle = {
-    "color": "red",
-    "weight": 7,
-    "opacity": 0.9,
-    fillColor: 'green',
-};
-  var polygon = new L.geoJson(polygon, {
-		style: style,
-		onEachFeature: onEachFeature
+var map = L.map('map').setView([38.9004, -77.0217], 11);
+L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
+		maxZoom: 18,
+		attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' +
+		'<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
+		'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+		id:'mapbox/streets-v11',
+		tileSize: 512,
+		zoomOffset: -1
 	}).addTo(map);
 
-var line = new L.geoJson(line, {
+	function getColor(d) {
+		return d > 0 ? '#7a0177' :
+							'#feebe2';
+	}
+	function style(feature) {
+		return {
+			weight: 2,
+			opacity: 1,
+			color: 'red',
+			dashArray: '3',
+			fillOpacity: 0.7,
+			fillColor: getColor(feature.properties.road)
+		};
+	}
+	function highlightFeature(e) {
+	var layer = e.target;
+	}
+
+	var geojson;
+
+	function resetHighlight(e) {
+		geojson.resetStyle(e.target);
+		info.update();
+	}
+
+	function zoomToFeature(e) {
+		map.fitBounds(e.target.getBounds());
+	}
+
+	function onEachFeature(feature, layer) {
+		layer.on({
+			mouseover: highlightFeature,
+			mouseout: resetHighlight,
+			click: zoomToFeature
+		});
+	}
+	var boundary = new L.geoJson(boundary, {
+		onEachFeature: onEachFeature
+	}).addTo(map);
+ var heliport = new L.geoJson(heliport, {
+		onEachFeature: onEachFeature
+	}).addTo(map);
+var road = new L.geoJson(road, {
 		style: style,
 		onEachFeature: onEachFeature
 	}).addTo(map);
- var point = new L.geoJson(point, {
-		style: style,
-		onEachFeature: onEachFeature
-	}).addTo(map);
-  
 </script>
 </body>
 </html>
