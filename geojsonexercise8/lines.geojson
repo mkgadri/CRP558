@@ -1,1 +1,0 @@
-var line = {"type":"FeatureCollection","features":[{"type":"Feature","properties":{"stroke":"#ff0000","stroke-width":3,"stroke-opacity":1},"geometry":{"type":"LineString","coordinates":[[-2.979097366333008,53.41572211681767],[-2.9738616943359375,53.408073684663734]]}}]}
