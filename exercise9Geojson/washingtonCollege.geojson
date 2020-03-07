@@ -1,8 +1,5 @@
-{
-"type": "FeatureCollection",
-"name": "wahington2",
-"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
-"features": [
+var college= {"type": "FeatureCollection",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },"features": [
 { "type": "Feature", "properties": { "OBJECTID": 1, "NAME": "Howard University", "ADDRESS": "2400 6TH STREET NW", "WEB_URL": "http:\/\/www.howard.edu\/", "GIS_ID": "Univ_007", "XCOORD": 398129.26, "YCOORD": 139473.11, "ADDR_ID": 284379 }, "geometry": { "type": "Point", "coordinates": [ -77.020715821185405, 38.921285104698171 ] } },
 { "type": "Feature", "properties": { "OBJECTID": 2, "NAME": "American University", "ADDRESS": "4400 MASSACHUSETTS AVENUE NW", "WEB_URL": "http:\/\/www.american.edu\/", "GIS_ID": "Univ_001", "XCOORD": 392334.76, "YCOORD": 141247.38, "ADDR_ID": 223994 }, "geometry": { "type": "Point", "coordinates": [ -77.088303088725965, 38.938335448417078 ] } },
 { "type": "Feature", "properties": { "OBJECTID": 3, "NAME": "George Washington University", "ADDRESS": "2121 I STREET NW", "WEB_URL": "http:\/\/www.gwu.edu\/", "GIS_ID": "Univ_005", "XCOORD": 395865.51, "YCOORD": 137012.82, "ADDR_ID": 242496 }, "geometry": { "type": "Point", "coordinates": [ -77.048019643393218, 38.899759537442016 ] } },
