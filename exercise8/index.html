@@ -148,7 +148,7 @@ L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_toke
 			click: zoomToFeature
 		});
 	}
-	var boundary = new L.geoJson(boundary, {
+var boundary = new L.geoJson(boundary, {
 		onEachFeature: onEachFeature
 	}).addTo(map);
  var heliport = new L.geoJson(heliport, {
