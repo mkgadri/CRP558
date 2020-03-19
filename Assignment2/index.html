@@ -1,1 +1,115 @@
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Assigment two</title>
+    <link rel="stylesheet" type="text/css" href="site.css"/> 
+ <style>
+  body{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.grid-box{
+    background-color: #262626;
+    text-align: center;
+}
+.grid-box > div h1{
+   color: #fff;
+  font-size: 30px;
+  font-weight: 200;
+  margin: 0;
+}
+nav.grid-box{
+    background-color: #eee;
+    text-align: center;
+}
+.ul-menu, .ul-sub-menu{
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    position: relative;
+}
+.ul-menu > li{
+    display: inline-block;
+    margin: 0 15px;
+    position: relative
+}
+.ul-menu > li a{
+    text-decoration: none;
+    font-weight: 500;
+    line-height: 60px;
+}
+ul.ul-sub-menu{
+    position: absolute;
+    width: 200px;
+    background-color: white;
+    box-shadow: 0 0 20px 10px rgba(0,0,0,0.14);
+    padding: 10px 0;
+    overflow: hidden;
+    border-radius: 10px;
+    right: -30px;
+    transition: all 0.35s ease;
+    -webkit-transition: all 0.35s ease;
+    opacity: 0.0;
+    z-index: 999;
+    margin-top: 35px;
+   
+}
+ul.ul-sub-menu > li a{
+    text-align: left;
+    padding: 15px 20px;
+    line-height: 15px;
+    color: blue;
+    width: 100%;
+    display: block;
+    text-align: left;
+}
+.ul-menu > li.sub-li-menu-btn:hover ul{
+    opacity: 1.0;
+    margin-top: 0;
+    pointer-events: auto;
+}
+.more{
+    width: 0;
+    height: 0;
+    display: inline-block;
+    border: 5px solid transparent;
+    border-top-color: #007aff;
+    position: absolute;
+    top: 47%;
+    margin-left: 10px;
+}
+</style>
+</head>
+<body>
+    <header class="grid-box">
+        <div class="grid-box-content">
+            <h1>RECREATIONAL CENTRES,WASHINGTON, DC</h1>
+        </div>
+    </header>
+    <nav class="grid-box">
+        <div class="grid-box-content">
+            <ul class="ul-menu">
+                <li><a href="https://dpr.dc.gov/page/recreation-centers-00">FIND A PARK</a></li>
+                <li><a href="https://dpr.dc.gov/service/find-pool">FIND A POOL</a></li>
+                <li><a href="https://www.google.com/maps/search/parks+in+washington+dc/@38.904339,-77.0265897,2083m/data=!3m1!1e3?hl=en">GOOGLE MAP</a></li>
+                <li><a href="http://dpr.dc.gov/page/recreation-centers">HOME</a></li>
+                <li class="sub-li-menu-btn">
+                    <div>
+                        <a>MORE <span class="more"></span></a>
+                        <ul class="ul-sub-menu">
+      <a href="https://mkgadri.github.io/CRP558/exercise1/">Exercise 1</a>
+      <a href="https://mkgadri.github.io/CRP558/exercise2/">Exercise 2</a>
+      <a href="https://github.com/mkgadri/CRP558/blob/master/Exercise3/Iowa_Airports.geojson">Exercise 3</a>
+      <a href="https://mkgadri.github.io/CRP558/Exercise4/">Exercise 4</a>
+      <a href="https://mkgadri.github.io/CRP558/exercise5/">Exercise 5</a>
+      <a href="https://mkgadri.github.io/CRP558/exercise6/">Exercise 6</>
+      <a href="https://mkgadri.github.io/CRP558/exercise7/">Exercise 7</>
+      <a href="https://mkgadri.github.io/CRP558/exercise8/">Exercise 8</>
+      <a href="https://mkgadri.github.io/CRP558/exercise9/">Exercise 9</>
+      <a href="https://mkgadri.github.io/CRP558/exercise10/">Exercise 10</>
+      <a href="https://mkgadri.github.io/CRP558/Assignment1/">Assignment 1</a>
+      <a href="https://mkgadri.github.io/CRP558/Assignment2/">Assignment 2</a>
+</body>
+</html>
