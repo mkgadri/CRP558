@@ -1,115 +1,88 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Assigment two</title>
-    <link rel="stylesheet" type="text/css" href="site.css"/> 
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Assignment 2 </title>
+
+  <link href="https://fonts.googleapis.com/css?family=Ropa+Sans:400,400i&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css"> 
  <style>
-  body{
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-.grid-box{
-    background-color: #262626;
-    text-align: center;
-}
-.grid-box > div h1{
-   color: #fff;
-  font-size: 30px;
-  font-weight: 200;
+ body {
+  padding: 0;
   margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  color:blue;
 }
-nav.grid-box{
-    background-color: #eee;
-    text-align: center;
+
+.container {
+  max-width: 1024px;
+  margin: auto;
 }
-.ul-menu, .ul-sub-menu{
-    margin: 0;
-    padding: 0;
-    list-style-type: none;
-    position: relative;
+
+.navbar {
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  background: #636363;
 }
-.ul-menu > li{
-    display: inline-block;
-    margin: 0 15px;
-    position: relative
+.nav-item .nav-list {
+  list-style-type: none;
+  display: inline-block;
 }
-.ul-menu > li a{
-    text-decoration: none;
-    font-weight: 500;
-    line-height: 60px;
+
+/* Styles for the anchor tags */
+.nav-item .nav-list a {
+  text-decoration: none;
+  display: inline-block;
+  color: #fff;
+  padding: 1.5pc;
+  font-size: 18px;
+  text-transform: uppercase;
+  border: 3px solid #636363;
 }
-ul.ul-sub-menu{
-    position: absolute;
-    width: 200px;
-    background-color: white;
-    box-shadow: 0 0 20px 10px rgba(0,0,0,0.14);
-    padding: 10px 0;
-    overflow: hidden;
-    border-radius: 10px;
-    right: -30px;
-    transition: all 0.35s ease;
-    -webkit-transition: all 0.35s ease;
-    opacity: 0.0;
-    z-index: 999;
-    margin-top: 35px;
-   
+
+/* This is to style the anchor tag when is is hovered on */
+.nav-item .nav-list a:hover {
+  background: #fff;
+  border-radius: 5px;
+  color: #607D8B;
 }
-ul.ul-sub-menu > li a{
-    text-align: left;
-    padding: 15px 20px;
-    line-height: 15px;
-    color: blue;
-    width: 100%;
-    display: block;
-    text-align: left;
+
+/* For your custom text space */
+.header-bar {
+  width: 100%;
+  padding: 20px;
+  background:#bdbdbd;
+  margin: 0;
+ font-size: 20px;
 }
-.ul-menu > li.sub-li-menu-btn:hover ul{
-    opacity: 1.0;
-    margin-top: 0;
-    pointer-events: auto;
-}
-.more{
-    width: 0;
-    height: 0;
-    display: inline-block;
-    border: 5px solid transparent;
-    border-top-color: #007aff;
-    position: absolute;
-    top: 47%;
-    margin-left: 10px;
-}
-</style>
+ </style>
 </head>
 <body>
-    <header class="grid-box">
-        <div class="grid-box-content">
-            <h1>RECREATIONAL CENTRES,WASHINGTON, DC</h1>
-        </div>
-    </header>
-    <nav class="grid-box">
-        <div class="grid-box-content">
-            <ul class="ul-menu">
-                <li><a href="https://dpr.dc.gov/page/recreation-centers-00">FIND A PARK</a></li>
-                <li><a href="https://dpr.dc.gov/service/find-pool">FIND A POOL</a></li>
-                <li><a href="https://www.google.com/maps/search/parks+in+washington+dc/@38.904339,-77.0265897,2083m/data=!3m1!1e3?hl=en">GOOGLE MAP</a></li>
-                <li><a href="http://dpr.dc.gov/page/recreation-centers">HOME</a></li>
-                <li class="sub-li-menu-btn">
-                    <div>
-                        <a>MORE <span class="more"></span></a>
-                        <ul class="ul-sub-menu">
-      <a href="https://mkgadri.github.io/CRP558/exercise1/">Exercise 1</a>
-      <a href="https://mkgadri.github.io/CRP558/exercise2/">Exercise 2</a>
-      <a href="https://github.com/mkgadri/CRP558/blob/master/Exercise3/Iowa_Airports.geojson">Exercise 3</a>
-      <a href="https://mkgadri.github.io/CRP558/Exercise4/">Exercise 4</a>
-      <a href="https://mkgadri.github.io/CRP558/exercise5/">Exercise 5</a>
-      <a href="https://mkgadri.github.io/CRP558/exercise6/">Exercise 6</>
-      <a href="https://mkgadri.github.io/CRP558/exercise7/">Exercise 7</>
-      <a href="https://mkgadri.github.io/CRP558/exercise8/">Exercise 8</>
-      <a href="https://mkgadri.github.io/CRP558/exercise9/">Exercise 9</>
-      <a href="https://mkgadri.github.io/CRP558/exercise10/">Exercise 10</>
-      <a href="https://mkgadri.github.io/CRP558/Assignment1/">Assignment 1</a>
-      <a href="https://mkgadri.github.io/CRP558/Assignment2/">Assignment 2</a>
+  <div class="header-bar">
+    <div class="container">
+      <h1 style="text-align:center;"> WELCOME TO WASHINGTON- DC</h1>
+      <h3 style="text-align:center;">Neighborhood and Health Facilities in Washington, DC</h3>
+    </div>
+  </div>
+  <div class="navbar">
+    <div class="nav-item">
+      <ul class="container">
+        <li class="nav-list">
+          <a href="https://dchealth.dc.gov/page/about-dc-health">About DC Health</a>
+        </li>
+         <li class="nav-list">
+          <a href="https://dchealth.dc.gov/vital-records">VITAL RECORDS</a>
+        </li>
+        <li class="nav-list">
+          <a href="https://www.google.com/maps/search/Health+Facilities,+Washington,+DC/@38.9160212,-77.0217421,9060m/data=!3m1!1e3">Google Map</a>
+        </li>
+        <li class="nav-list">
+          <a href="">Assignments</a>
+        </li>
+      </ul>
+    </div>
+  </div>
 </body>
 </html>
