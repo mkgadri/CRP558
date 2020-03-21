@@ -1,13 +1,16 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Breadcrumb Tuts</title>
+    <meta name="description" content="Assignment 2">
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width>meta charset="UTF-8"
+    <link href="https://fonts.googleapis.com/css?family=Ropa+Sans:400,400i&display=swap"  rel="stylesheet"> 
+	<link rel="shortcut icon" type="image/x-icon" href="docs/images/favicon.ico" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
+     integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ==" crossorigin=""/>
+  <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js" integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew==" crossorigin=""></script>
 
-  <link href="https://fonts.googleapis.com/css?family=Ropa+Sans:400,400i&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css"> 
- <style>
+<style>
  body {
   padding: 0;
   margin: 0;
@@ -57,7 +60,12 @@
   margin: 0;
  font-size: 20px;
 }
- </style>
+		#map {
+		width: 1000px;
+		height: 600px;
+		}
+   .info { padding: 6px 8px; font: 14px/16px Arial, Helvetica, sans-serif;background: white; background: rgba(255,255,255,0.8); box-shadow: 0 0 15px rgba(0,0,0,0.2); border-radius: 5px; } .info h4 { margin: 0 0      5px; color: #777; }.legend { text-align: left; line-height: 18px; color: #555; } .legend i { width: 18px; height: 18px; float: left; margin-right: 8px; opacity: 0.7; }
+</style>
 </head>
 <body>
   <div class="header-bar">
@@ -87,5 +95,116 @@
       </ul>
     </div>
   </div>
+
+ <div id='map'></div>
+<script type="text/javascript" src="https://mkgadri.github.io/CRP558/Assignment2geojson/Ward_by_Population.geojson"></script>
+<script type="text/javascript" src="https://mkgadri.github.io/CRP558/Assignment2geojson/Pharmacy_Location.geojson"></script>
+
+<script>
+var Esri_WorldImagery = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
+});
+var Esri_WorldStreetMap = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}', {attribution: 'Tiles &copy; Esri &mdash; Source: Esri, DeLorme, NAVTEQ, USGS, Intermap, iPC, NRCAN, Esri Japan, METI, Esri China (Hong Kong), Esri (Thailand), TomTom, 2012'
+});
+var OSM = L.tileLayer('https://{s}.tile.osm.org/{z}/{x}/{y}.png', {attribution: '&copy; <a href="https://osm.org/copyright">OpenStreetMap</a> contributors', maxZoom: 18
+});
+
+var map = L.map('map').setView([38.9004, -77.0217], 11);
+L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
+		maxZoom: 18,
+		attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' +
+		'<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
+		'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+		id:'mapbox/light-v9',
+		tileSize: 512,
+		zoomOffset: -1
+	}).addTo(map);
+function getColor(d) {
+        return d === '1'  ? "#d95f0e" :
+               d === '2'  ? "#377eb8" :
+               d === '3' ? "#4daf4a" :
+               d === '4' ? "#984ea3" :
+               d === '5' ? "#fec44f" :
+               d === '6' ? "#fc9272" :
+               d === '7' ? "#fa9fb5" :
+               d === '8' ? "#c51b8a" :
+                            "#ff7f00";
+    }
+
+    function style(feature) {
+        return {
+            weight: 1.0,
+            opacity: 1,
+            fillOpacity: 1,
+            fillColor: getColor(feature.properties.WARD_ID),
+            color: "black"
+
+        };
+        
+    }
+
+	function highlightFeature(e) {
+		var layer = e.target;
+	}
+
+	var geojson;
+
+	function resetHighlight(e) {
+		geojson.resetStyle(e.target);
+		info.update();
+	}
+
+	function zoomToFeature(e) {
+		map.fitBounds(e.target.getBounds());
+	}
+
+	function onEachFeature(feature, layer) {
+		 layer.bindPopup("POP2000: " + feature.properties.POP2000 +"<br/>"+"POPDENSITY: " + feature.properties.POPDENSITY);
+        layer.on({
+			mouseover: highlightFeature,
+			mouseout: resetHighlight,
+		});
+	}
+    
+	var ward = new L.geoJson(ward, {
+		style: style,
+		onEachFeature: onEachFeature
+	}).addTo(map);
+    
+ var pharmacy = new L.geoJson(pharmacy, {
+		style: style,
+		onEachFeature: onEachFeature
+	}).bindPopup ("PHARMACY").addTo(map);
+
+var legend = L.control({position: 'bottomleft'});
+    legend.onAdd = function (map) {
+
+    var div = L.DomUtil.create('div', 'info legend');
+    labels = ['<strong>Wards</strong>'],
+    categories = ['1','2','3','4','5','6','7','8'];
+
+    for (var i = 0; i < categories.length; i++) {
+
+            div.innerHTML += 
+            labels.push(
+                '<i class="circle" style="background:' + getColor(categories[i]) + '"></i> ' +
+            (categories[i] ? categories[i] : '+'));
+
+        }
+        div.innerHTML = labels.join('<br>');
+    return div;
+    };
+    legend.addTo(map);
+    
+       var baseMaps  = {
+      "open street map": OSM,
+      "Esri World Imagery": Esri_WorldImagery,
+			"StreetMap": Esri_WorldStreetMap,
+		};
+var overlayMaps = {
+        "wards": ward,
+        "Pharmacies": pharmacy,
+        }
+		L.control.layers(baseMaps,overlayMaps).addTo(map);
+</script>
 </body>
 </html>
