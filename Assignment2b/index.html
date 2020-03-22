@@ -9,7 +9,10 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
      integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ==" crossorigin=""/>
   <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js" integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew==" crossorigin=""></script>
+<!--Load in Heat plugin -->
+    <script src="https://leaflet.github.io/Leaflet.heat/dist/leaflet-heat.js"></script>
 
+    <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
 <style>
  body {
   padding: 0;
@@ -97,13 +100,10 @@
   </div>
 
  <div id='map'></div>
-<script type="text/javascript" src="https://mkgadri.github.io/CRP558/Assignment2geojson/Ward_by_Population.geojson"></script>
-<script type="text/javascript" src="https://mkgadri.github.io/CRP558/Assignment2geojson/Pharmacy_Location.geojson"></script>
-
 <script>
 var Esri_WorldImagery = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
 });
-var Stamen_TonerLines = L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/toner/{z}/{x}/{y}{r}.{ext}', {
+var Stamen_Toner = L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/toner/{z}/{x}/{y}{r}.{ext}', {
   attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
   subdomains: 'abcd',
   minZoom: 0,
@@ -123,97 +123,28 @@ L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_toke
 		tileSize: 512,
 		zoomOffset: -1
 	}).addTo(map);
-function getColor(d) {
-        return d === '1'  ? "#d95f0e" :
-               d === '2'  ? "#377eb8" :
-               d === '3' ? "#4daf4a" :
-               d === '4' ? "#984ea3" :
-               d === '5' ? "#fec44f" :
-               d === '6' ? "#fc9272" :
-               d === '7' ? "#fa9fb5" :
-               d === '8' ? "#c51b8a" :
-                            "#ff7f00";
-    }
 
-    function style(feature) {
-        return {
-            weight: 1.0,
-            opacity: 1,
-            fillOpacity: 1,
-            fillColor: getColor(feature.properties.WARD_ID),
-            color: "black"
-
-        };
-        
-    }
-
-	function highlightFeature(e) {
-		var layer = e.target;
-	}
-
-	var geojson;
-
-	function resetHighlight(e) {
-		geojson.resetStyle(e.target);
-		info.update();
-	}
-
-	function zoomToFeature(e) {
-		map.fitBounds(e.target.getBounds());
-	}
-
-	function onEachFeature(feature, layer) {
-		 layer.bindPopup("POP2000: " + feature.properties.POP2000 +"<br/>"+"POPDENSITY: " + feature.properties.POPDENSITY);
-        layer.on({
-			mouseover: highlightFeature,
-			mouseout: resetHighlight,
-		});
-	}
-    
-	var ward = new L.geoJson(ward, {
-		style: style,
-		onEachFeature: onEachFeature
-	}).addTo(map);
-    
- var pharmacy = new L.geoJson(pharmacy, {
-		style: style,
-		onEachFeature: onEachFeature
-	}).bindPopup ("PHARMACY").addTo(map);
-
-var legend = L.control({position: 'bottomleft'});
-    legend.onAdd = function (map) {
-
-    var div = L.DomUtil.create('div', 'info legend');
-    labels = ['<strong>Wards</strong>'],
-    categories = ['1','2','3','4','5','6','7','8'];
-
-    for (var i = 0; i < categories.length; i++) {
-
-            div.innerHTML += 
-            labels.push(
-                '<i class="circle" style="background:' + getColor(categories[i]) + '"></i> ' +
-            (categories[i] ? categories[i] : '+'));
-
-        }
-        div.innerHTML = labels.join('<br>');
-    return div;
-    };
-    legend.addTo(map);
-    
+$.getJSON("https://mkgadri.github.io/CRP558/Assignment2geojson/Recreational_Facilities.geojson", function(data) {
+            coords = data.features.map(feat => feat.geometry.coordinates.slice().reverse())
+            var heatMap = L.heatLayer(coords, {
+                      minOpacity: 0.9, //the minimum opacity the heat will start at
+                      maxZoom: 19, //zoom level where the points reach maximum intensity (as intensity scales with zoom), equals maxZoom of the map by default
+                      max: 1.0, //maximum point intensity, 1.0 by default
+                      radius: 15, //radius of each "point" of the heatmap, 25 by default
+                      blur: 10, //amount of blur, 15 by default
+                      gradient: {
+                        0.5: 'green',
+                        0.75: 'yellow',
+                        1: 'red'
+                      }
+                    }).addTo(map)
+                });
        var baseMaps  = {
       "open street map": OSM,
       "Esri World Imagery": Esri_WorldImagery,
-			"Stamen_TonerLines": Stamen_TonerLines,
-		};
-var overlayMaps = {
-        "wards": ward,
-        "Pharmacies": pharmacy,
-        }
-		L.control.layers(baseMaps,overlayMaps).addTo(map);
-        </script>
-        <h1 style="color:red;">National Institutes of Health Campus</h1>
-  
-<p>The National Institutes of Health (NIH) campus is located in Bethesda, Maryland. Bethesda is an unincorporated, census-designated place in southern Montgomery County, Maryland, United States, located just northwest of the U.S. capital of Washington, D.C. It takes its name from a local church, the Bethesda Meeting House (1820, rebuilt 1849), which in turn took its name from Jerusalem's Pool of Bethesda. The National Institutes of Health main campus and the Walter Reed National Military Medical Center are in Bethesda, as are a number of corporate and government headquarters</p><br>
-<p><b>The National Institutes of Health (NIH) campus</b><br><img src="health.jpg" width="650" height="650"></p>
+			"Stamen_Toner": Stamen_Toner,
+};
+L.control.layers(baseMaps).addTo(map);
+</script>
 </body>
 </html>
