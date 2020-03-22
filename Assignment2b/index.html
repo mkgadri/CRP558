@@ -124,7 +124,7 @@ L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_toke
 		zoomOffset: -1
 	}).addTo(map);
 
-$.getJSON("https://mkgadri.github.io/CRP558/Assignment2geojson/Recreational_Facilities.geojson", function(data) {
+$.getJSON("https://mkgadri.github.io/CRP558/Assignment2geojson/Primary_Care_Centers.geojson", function(data) {
             coords = data.features.map(feat => feat.geometry.coordinates.slice().reverse())
             var heatMap = L.heatLayer(coords, {
                       minOpacity: 0.9, //the minimum opacity the heat will start at
