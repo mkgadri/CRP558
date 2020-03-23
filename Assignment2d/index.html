@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta name="description" content=" exercise5">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Getting Started with Leaflet</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
+        integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+        crossorigin=""/>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
+        integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
+        crossorigin=""></script>
+
+<style>
+ body {
+  padding: 0;
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  color:blue;
+}
+
+.container {
+  max-width: 1024px;
+  margin: auto;
+}
+
+.navbar {
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  background: #636363;
+}
+.nav-item .nav-list {
+  list-style-type: none;
+  display: inline-block;
+}
+
+/* Styles for the anchor tags */
+.nav-item .nav-list a {
+  text-decoration: none;
+  display: inline-block;
+  color: #fff;
+  padding: 1.5pc;
+  font-size: 18px;
+  text-transform: uppercase;
+  border: 3px solid #636363;
+}
+
+/* This is to style the anchor tag when is is hovered on */
+.nav-item .nav-list a:hover {
+  background: #fff;
+  border-radius: 5px;
+  color: #607D8B;
+}
+
+/* For your custom text space */
+.header-bar {
+  width: 100%;
+  padding: 20px;
+  background:#bdbdbd;
+  margin: 0;
+ font-size: 20px;
+}
+		#map {
+		width: 800px;
+		height: 400px;
+		}
+   .info { padding: 6px 8px; font: 14px/16px Arial, Helvetica, sans-serif;background: white; background: rgba(255,255,255,0.8); box-shadow: 0 0 15px rgba(0,0,0,0.2); border-radius: 5px; } .info h4 { margin: 0 0      5px; color: #777; }.legend { text-align: left; line-height: 18px; color: #555; } .legend i { width: 18px; height: 18px; float: left; margin-right: 8px; opacity: 0.7; }
+
+
+* {box-sizing:border-box}
+
+/* Slideshow container */
+.slideshow-container {
+  max-width: 1000px;
+  position: relative;
+  margin: auto;
+}
+
+/* Hide the images by default */
+.mySlides {
+  display: none;
+}
+
+/* Next & previous buttons */
+.prev, .next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  width: auto;
+  margin-top: -22px;
+  padding: 16px;
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+  transition: 0.6s ease;
+  border-radius: 0 3px 3px 0;
+  user-select: none;
+}
+
+/* Position the "next button" to the right */
+.next {
+  right: 0;
+  border-radius: 3px 0 0 3px;
+}
+
+/* On hover, add a black background color with a little bit see-through */
+.prev:hover, .next:hover {
+  background-color: rgba(0,0,0,0.8);
+}
+
+/* Caption text */
+.text {
+  color: #f2f2f2;
+  font-size: 15px;
+  padding: 8px 12px;
+  position: absolute;
+  bottom: 8px;
+  width: 100%;
+  text-align: center;
+}
+
+/* Number text (1/3 etc) */
+.numbertext {
+  color: #f2f2f2;
+  font-size: 12px;
+  padding: 8px 12px;
+  position: absolute;
+  top: 0;
+}
+
+/* The dots/bullets/indicators */
+.dot {
+  cursor: pointer;
+  height: 15px;
+  width: 15px;
+  margin: 0 2px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.6s ease;
+}
+
+.active, .dot:hover {
+  background-color: #717171;
+}
+
+/* Fading animation */
+.fade {
+  -webkit-animation-name: fade;
+  -webkit-animation-duration: 1.5s;
+  animation-name: fade;
+  animation-duration: 1.5s;
+}
+
+</style>
+</head>
+<body>
+  <div class="header-bar">
+    <div class="container">
+      <h1 style="text-align:center;"> WELCOME TO WASHINGTON- DC</h1>
+      <h3 style="text-align:center;">Neighborhood and Health Facilities in Washington, DC</h3>
+    </div>
+  </div>
+  <div class="navbar">
+    <div class="nav-item">
+      <ul class="container">
+        <li class="nav-list">
+          <a href="https://dchealth.dc.gov/page/about-dc-health">About DC Health</a>
+        </li>
+        <li class="nav-list">
+          <a href="https://dchealth.dc.gov/services">Services</a>
+        </li>
+         <li class="nav-list">
+          <a href="https://dchealth.dc.gov/vital-records">VITAL RECORDS</a>
+        </li>
+        <li class="nav-list">
+          <a href="https://www.google.com/maps/search/Health+Facilities,+Washington,+DC/@38.9160212,-77.0217421,9060m/data=!3m1!1e3">Google Map</a>
+        </li>
+        <li class="nav-list">
+          <a href="">Assignments</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+			     
+		    
+ <div id='map'></div>
+    <br>Pan to <a href="javascript:Washington()">Washington, DC </a><br>
+    <button id="Capitol">Capitol Fountain Hill</button>
+<script type="text/javascript" src="https://mkgadri.github.io/CRP558/Assignment2geojson/hospitals.geojson"></script>
+
+<script>
+var Esri_WorldImagery = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
+});
+var Stamen_TonerLines = L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/toner/{z}/{x}/{y}{r}.{ext}', {
+  attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+  subdomains: 'abcd',
+  minZoom: 0,
+  maxZoom: 20,
+  ext: 'png'
+});
+var OSM = L.tileLayer('https://{s}.tile.osm.org/{z}/{x}/{y}.png', {attribution: '&copy; <a href="https://osm.org/copyright">OpenStreetMap</a> contributors', maxZoom: 18
+});
+
+var map = L.map('map').setView([38.9004, -77.0217], 11);
+ L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
+            attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+            maxZoom: 18,
+            id: 'mapbox/streets-v11',
+            accessToken: 'pk.eyJ1IjoibWtnYWRyaSIsImEiOiJjazZzMG80ZngwOWJuM2Vxczc3Y3l5dWI1In0.Jgyb7Q-hriDlmi858EjIMg'
+        }).addTo(map);
+
+function getColor(d) {}
+function style(feature) {
+        return {};}
+
+	function highlightFeature(e) {
+		var layer = e.target;
+	}
+
+	function resetHighlight(e) {
+		geojson.resetStyle(e.target);
+		info.update();
+	}
+
+	function zoomToFeature(e) {
+		map.fitBounds(e.target.getBounds());
+	}
+
+	function onEachFeature(feature, layer) {
+		 layer.bindPopup("NAME: " + feature.properties.NAME +"<br/>"+"TYPE: " + feature.properties.TYPE);
+        layer.on({
+			mouseover: highlightFeature,
+			mouseout: resetHighlight,
+		});
+	}
+	var geojson;
+
+	function resetHighlight(e) {
+		geojson.resetStyle(e.target);
+		info.update();
+	}
+
+	function zoomToFeature(e) {
+		map.fitBounds(e.target.getBounds());
+	}
+
+	function onEachFeature(feature, layer) {
+        layer.on({
+			mouseover: highlightFeature,
+			mouseout: resetHighlight,
+		});
+	}
+
+ var hospital = new L.geoJson(hospital, {
+		style: style,
+		onEachFeature: onEachFeature
+	}).bindPopup ("hospital").addTo(map);
+
+       var baseMaps  = {
+      "open street map": OSM,
+      "Esri World Imagery": Esri_WorldImagery,
+			"Stamen_TonerLines": Stamen_TonerLines,
+		};
+var overlayMaps = {
+        "hospital": hospital,
+        }
+		L.control.layers(baseMaps,overlayMaps).addTo(map);
+
+  function Washington() {
+            map.panTo(new L.LatLng(39.0020,-77.1046));
+        };
+        document.getElementById("Capitol").addEventListener("click", Capitol);
+
+        function Capitol() {
+            map.setView(new L.LatLng(38.88977,-77.01007), 13);
+        };
+        </script>
+</body>
+</html>
