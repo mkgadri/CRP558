@@ -279,8 +279,7 @@ function getColor(d) {
 	}).bindPopup ("PHARMACY").addTo(map);
 
 var legend = L.control({position: 'bottomleft'});
-    legend.onAdd = function (map) {
-
+    legend.removeFrom = function (map) {
     var div = L.DomUtil.create('div', 'info legend');
     labels = ['<strong>Wards</strong>'],
     categories = ['1','2','3','4','5','6','7','8'];
