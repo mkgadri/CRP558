@@ -65,12 +65,32 @@
   margin: 0;
  font-size: 20px;
 }
-		#map {
-		width: 800px;
-		height: 400px;
-		}
-   .info { padding: 6px 8px; font: 14px/16px Arial, Helvetica, sans-serif;background: white; background: rgba(255,255,255,0.8); box-shadow: 0 0 15px rgba(0,0,0,0.2); border-radius: 5px; } .info h4 { margin: 0 0      5px; color: #777; }.legend { text-align: left; line-height: 18px; color: #555; } .legend i { width: 18px; height: 18px; float: left; margin-right: 8px; opacity: 0.7; }
+		#map { height: 480px; margin: 0; padding: 0; }
 
+
+.legend {
+    line-height: 10px;
+    color: #555;
+}
+.legend i {
+    width: 18px;
+    height: 20px;
+    float: left;
+    margin-right: 8px;
+    opacity: 0.9;
+}
+.info {
+    padding: 6px 8px;
+    font: 10px/20px Arial, Helvetica, sans-serif;
+    background: rgba(255,255,255,0.8);
+    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    border-radius: 5px;
+	width: 80px;
+}
+.info h4 {
+    margin: 0 0 5px;
+    color: #777;
+}
 
 * {box-sizing:border-box}
 
@@ -190,11 +210,14 @@
 			     
 		    
  <div id='map'></div>
+ 
     <br>Pan to <a href="javascript:Washington()">Washington, DC </a><br>
+    <button id="NIH">The National Institutes of Health (NIH) campus</button><br>
     <button id="Capitol">Capitol Fountain Hill</button>
-<script type="text/javascript" src="https://mkgadri.github.io/CRP558/Assignment2geojson/hospitals.geojson"></script>
+   
 
 <script>
+console.clear();
 var Esri_WorldImagery = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
 });
 var Stamen_TonerLines = L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/toner/{z}/{x}/{y}{r}.{ext}', {
@@ -207,7 +230,7 @@ var Stamen_TonerLines = L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/t
 var OSM = L.tileLayer('https://{s}.tile.osm.org/{z}/{x}/{y}.png', {attribution: '&copy; <a href="https://osm.org/copyright">OpenStreetMap</a> contributors', maxZoom: 18
 });
 
-var map = L.map('map').setView([38.9004, -77.0217], 11);
+var map = L.map('map').setView([38.8996,-77.0306], 7);
  L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
             attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
             maxZoom: 18,
@@ -215,71 +238,185 @@ var map = L.map('map').setView([38.9004, -77.0217], 11);
             accessToken: 'pk.eyJ1IjoibWtnYWRyaSIsImEiOiJjazZzMG80ZngwOWJuM2Vxczc3Y3l5dWI1In0.Jgyb7Q-hriDlmi858EjIMg'
         }).addTo(map);
 
-function getColor(d) {}
-function style(feature) {
-        return {};}
+var myPoints = [
+  ["22", 38.94139,-76.98120, "cancer", "obstetrics"],
+  ["20", 38.93675,-77.10886, "burns", "gynecology"],
+  ["15", 38.91827,-77.02007, "geriatrics", "gynecology"],
+  ["19", 38.92733,-77.01433, "burns", "pediatrics"],
+  ["12", 38.83574,-76.98495, "trauma", "asthma"],
+  ["5", 38.90136,-77.05060, "accident", "pediatrics"],
+  ["14", 38.92874,-77.01476, "asthma", "obstetrics"],
+  ["23", 38.91147,-77.07520, "accident", "burns"],
+  ["6", 38.89219,-76.99473, "diabetes", "pediatrics"],
+  ["14",38.92874,-77.01485, "cancer ", "diabetes"],
+];
 
-	function highlightFeature(e) {
-		var layer = e.target;
-	}
 
-	function resetHighlight(e) {
-		geojson.resetStyle(e.target);
-		info.update();
-	}
 
-	function zoomToFeature(e) {
-		map.fitBounds(e.target.getBounds());
-	}
+//set color of marker
+function getColorHospital(d) {
+  return d == 'burns' ? '#253494' :
+    d == 'trauma' ? "#2c7fb8" :
+    d == 'accident' ? "#41b6c4" :
+    d == 'asthma' ? "#a1dab4" :
+    d == 'diabetes' ? "#ffffcc" :
+    "#FFFFFF00"; //white
+}
 
-	function onEachFeature(feature, layer) {
-		 layer.bindPopup("NAME: " + feature.properties.NAME +"<br/>"+"TYPE: " + feature.properties.TYPE);
-        layer.on({
-			mouseover: highlightFeature,
-			mouseout: resetHighlight,
-		});
-	}
-	var geojson;
+function getColorSpecialty(d) {
+  return d == 'pediatrics' ? 'tan' :
+    d == 'obstetrics' ? "brown" :
+    d == 'gynecology' ? "orange" :
+    d == 'geriatrics' ? "yellow" :
+    d == 'cancer' ? "green" :
+    "#FFFFFF00"; //white
+}
 
-	function resetHighlight(e) {
-		geojson.resetStyle(e.target);
-		info.update();
-	}
 
-	function zoomToFeature(e) {
-		map.fitBounds(e.target.getBounds());
-	}
 
-	function onEachFeature(feature, layer) {
-        layer.on({
-			mouseover: highlightFeature,
-			mouseout: resetHighlight,
-		});
-	}
+var hospitalLayerGroup = L.layerGroup([]);
 
- var hospital = new L.geoJson(hospital, {
-		style: style,
-		onEachFeature: onEachFeature
-	}).bindPopup ("hospital").addTo(map);
+for (var i = 0; i < myPoints.length; i++) {
+  marker = new L.circleMarker([myPoints[i][1], myPoints[i][2]], {
+      radius: myPoints[i][0] / 2 + 5,
+      fillColor: getColorHospital(myPoints[i][3]),
+      color: "#000",
+      weight: 0,
+      opacity: 1,
+      fillOpacity: 0.9
+    })
+    .bindPopup("Category: " + myPoints[i][3]) //note there is no comma here
+    .addTo(hospitalLayerGroup);
+	hospitalLayerGroup.addTo(map);
+}
 
-       var baseMaps  = {
+
+
+var sandwichLayerGroup = L.layerGroup([]);
+
+for (var i = 0; i < myPoints.length; i++) {
+	num = Math.random(); // this will get a number between 0 and 1;
+	num *= Math.floor(Math.random()*2) == 1 ? 1 : -1; // this will add minus sign in 50% of cases
+
+  marker = new L.circleMarker([myPoints[i][1]+num, myPoints[i][2]+num], {
+     radius: myPoints[i][0] / 2 + 5,
+     fillColor: getColorSpecialty(myPoints[i][4]),
+	 //fillColor: 'blue',
+      color: "#000",
+      weight: 0,
+      opacity: 1,
+      fillOpacity: 0.9
+    })
+    .bindPopup("Category: " + myPoints[i][4]) //note there is no comma here
+    .addTo(sandwichLayerGroup);
+	
+	sandwichLayerGroup.addTo(map);
+}
+
+
+//Create individual Legends
+var legend1 = L.control({
+  position: 'bottomleft'
+	//Possible values are 'topleft', 'topright', 'bottomleft' or 'bottomright'
+});
+
+legend1.onAdd = function(map) {
+
+  var div = L.DomUtil.create('div', 'info legend'),
+    hospital = ['burns', 'trauma', 'accident', 'asthma', 'diabetes'],
+    labels = [''];
+
+	 div.innerHTML += "<b>Hospital</b><br>";
+  // loop through items and generate a label with a colored square for each
+  for (var i = 0; i < hospital.length; i++) {
+    div.innerHTML +=
+      '<i style="background:' + getColorHospital(hospital[i]) + ' "></i> ' +
+      hospital[i] + (hospital ? '' + '<br>' : '');
+  }
+
+  return div;
+};
+legend1.addTo(map);
+
+
+
+var legend2 = L.control({
+  position: 'bottomleft'
+	//Possible values are 'topleft', 'topright', 'bottomleft' or 'bottomright'
+});
+
+legend2.onAdd = function(map) {
+
+  var div = L.DomUtil.create('div', 'info legend'),
+    hospital = ['pediatrics', 'obstetrics', 'gynecology', 'geriatrics', 'cancer'],
+    labels = [''];
+
+	 div.innerHTML += "<b>Specialty</b><br>";
+  // loop through items and generate a label with a colored square for each
+  for (var i = 0; i < hospital.length; i++) {
+    div.innerHTML +=
+      '<i style="background:' + getColorSpecialty(hospital[i]) + ' "></i> ' +
+      hospital[i] + (hospital ? '' + '<br>' : '');
+  }
+
+  return div;
+};
+legend2.addTo(map);
+
+
+
+
+
+//layer control
+var baseMaps  = {
       "open street map": OSM,
       "Esri World Imagery": Esri_WorldImagery,
 			"Stamen_TonerLines": Stamen_TonerLines,
-		};
+
+};
+
 var overlayMaps = {
-        "hospital": hospital,
-        }
-		L.control.layers(baseMaps,overlayMaps).addTo(map);
+	"Hospital circles": hospitalLayerGroup,
+	"Sandwich circles": sandwichLayerGroup
+};
+
+L.control.layers(baseMaps, overlayMaps).addTo(map);
+
+
+// Add and remove legend from layers when selected in control
+map.on('overlayremove', function (eventLayer) {
+	console.log(eventLayer.name  + " off");
+	if (eventLayer.name == "Hospital circles") {
+		this.removeControl(legend1);
+	}else if (eventLayer.name == "Sandwich circles"){
+		this.removeControl(legend2);
+	}
+});
+
+map.on('overlayadd', function (eventLayer) {
+	console.log(eventLayer.name + " on");
+	if (eventLayer.name == "Hospital circles") {
+		 legend1.addTo(this);
+	}else if (eventLayer.name == "Sandwich circles"){
+		 legend2.addTo(this);
+	}	
+});
 
   function Washington() {
             map.panTo(new L.LatLng(39.0020,-77.1046));
+        };
+        
+         document.getElementById("NIH").addEventListener("click",NIH);
+
+        function NIH() {
+            map.setView(new L.LatLng(39.00200,-77.10469), 13);
         };
         document.getElementById("Capitol").addEventListener("click", Capitol);
 
         function Capitol() {
             map.setView(new L.LatLng(38.88977,-77.01007), 13);
         };
+       
         </script>
 </body>
 </html>
