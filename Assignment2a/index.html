@@ -34,7 +34,7 @@
   display: inline-block;
 }
 
-/* Styles for the anchor tags */
+//* Styles for the anchor tags *//
 .nav-item .nav-list a {
   text-decoration: none;
   display: inline-block;
@@ -45,14 +45,14 @@
   border: 3px solid #636363;
 }
 
-/* This is to style the anchor tag when is is hovered on */
+//* This is to style the anchor tag when hovered on *//
 .nav-item .nav-list a:hover {
   background: #fff;
   border-radius: 5px;
   color: #607D8B;
 }
 
-/* For your custom text space */
+//* For custom text space *//
 .header-bar {
   width: 100%;
   padding: 20px;
@@ -69,19 +69,19 @@
 
 * {box-sizing:border-box}
 
-/* Slideshow container */
+//* Slideshow container *//
 .slideshow-container {
   max-width: 1000px;
   position: relative;
   margin: auto;
 }
 
-/* Hide the images by default */
+//* Hide the images by default *//
 .mySlides {
   display: none;
 }
 
-/* Next & previous buttons */
+//* Next & previous buttons *//
 .prev, .next {
   cursor: pointer;
   position: absolute;
@@ -97,7 +97,7 @@
   user-select: none;
 }
 
-/* Position the "next button" to the right */
+//* Position the "next button" to the right *//
 .next {
   right: 0;
   border-radius: 3px 0 0 3px;
@@ -108,7 +108,7 @@
   background-color: rgba(0,0,0,0.8);
 }
 
-/* Caption text */
+//* Caption text *//
 .text {
   color: #f2f2f2;
   font-size: 15px;
@@ -119,7 +119,7 @@
   text-align: center;
 }
 
-/* Number text (1/3 etc) */
+//* Number text (1/3 etc) *//
 .numbertext {
   color: #f2f2f2;
   font-size: 12px;
@@ -128,7 +128,7 @@
   top: 0;
 }
 
-/* The dots/bullets/indicators */
+//* The dots/bullets/indicators *//
 .dot {
   cursor: pointer;
   height: 15px;
@@ -142,24 +142,6 @@
 
 .active, .dot:hover {
   background-color: #717171;
-}
-
-/* Fading animation */
-.fade {
-  -webkit-animation-name: fade;
-  -webkit-animation-duration: 1.5s;
-  animation-name: fade;
-  animation-duration: 1.5s;
-}
-
-@-webkit-keyframes fade {
-  from {opacity: .4} 
-  to {opacity: 1}
-}
-
-@keyframes fade {
-  from {opacity: .4} 
-  to {opacity: 1}
 }
 
 </style>
@@ -195,10 +177,12 @@
 			     
 		    
  <div id='map'></div>
+//*Call my geojson feature from my github account using a source code*//
 <script type="text/javascript" src="https://mkgadri.github.io/CRP558/Assignment2geojson/Ward_by_Population.geojson"></script>
 <script type="text/javascript" src="https://mkgadri.github.io/CRP558/Assignment2geojson/Pharmacy_Location.geojson"></script>
 
 <script>
+//*insert basemaps layers*//
 var Esri_WorldImagery = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
 });
 var Stamen_TonerLines = L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/toner/{z}/{x}/{y}{r}.{ext}', {
@@ -221,6 +205,7 @@ L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_toke
 		tileSize: 512,
 		zoomOffset: -1
 	}).addTo(map);
+//*get different colors for attribute features*//
 function getColor(d) {
         return d === '1'  ? "#d95f0e" :
                d === '2'  ? "#377eb8" :
@@ -232,7 +217,7 @@ function getColor(d) {
                d === '8' ? "#c51b8a" :
                             "#ff7f00";
     }
-
+//*attribute the colors to specific feature property*//
     function style(feature) {
         return {
             weight: 1.0,
@@ -259,7 +244,7 @@ function getColor(d) {
 	function zoomToFeature(e) {
 		map.fitBounds(e.target.getBounds());
 	}
-
+//*create popups based on various attribute features in geojson *//
 	function onEachFeature(feature, layer) {
 		 layer.bindPopup("POP2000: " + feature.properties.POP2000 +"<br/>"+"POPDENSITY: " + feature.properties.POPDENSITY);
         layer.on({
@@ -277,7 +262,7 @@ function getColor(d) {
 		style: style,
 		onEachFeature: onEachFeature
 	}).bindPopup ("PHARMACY").addTo(map);
-
+//*create a legend for the map*//
 var legend = L.control({position: 'bottomleft'});
     legend.onAdd = function (map) {
     var div = L.DomUtil.create('div', 'info legend');
@@ -296,7 +281,7 @@ var legend = L.control({position: 'bottomleft'});
     return div;
     };
     legend.removeFrom(map);
-    
+   //*create control layers*//
        var baseMaps  = {
       "open street map": OSM,
       "Esri World Imagery": Esri_WorldImagery,
