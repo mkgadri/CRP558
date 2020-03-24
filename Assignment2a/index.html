@@ -276,7 +276,7 @@ function getColor(d) {
  var pharmacy = new L.geoJson(pharmacy, {
 		style: style,
 		onEachFeature: onEachFeature
-	}).addTo(map);
+	}).bindPopup ("PHARMACY").addTo(map);
 
 var legend = L.control({position: 'bottomleft'});
     legend.onAdd = function (map) {
