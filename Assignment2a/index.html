@@ -280,7 +280,6 @@ function getColor(d) {
 
 var legend = L.control({position: 'bottomleft'});
     legend.onAdd = function (map) {
-
     var div = L.DomUtil.create('div', 'info legend');
     labels = ['<strong>Wards</strong>'],
     categories = ['1','2','3','4','5','6','7','8'];
@@ -296,7 +295,7 @@ var legend = L.control({position: 'bottomleft'});
         div.innerHTML = labels.join('<br>');
     return div;
     };
-    legend.addTo(map);
+    legend.removeFrom(map);
     
        var baseMaps  = {
       "open street map": OSM,
