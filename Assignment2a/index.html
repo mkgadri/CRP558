@@ -34,7 +34,7 @@
   display: inline-block;
 }
 
-
+/* Styles for the anchor tags */
 .nav-item .nav-list a {
   text-decoration: none;
   display: inline-block;
@@ -45,14 +45,14 @@
   border: 3px solid #636363;
 }
 
-
+/* This is to style the anchor tag when is is hovered on */
 .nav-item .nav-list a:hover {
   background: #fff;
   border-radius: 5px;
   color: #607D8B;
 }
 
-
+/* For your custom text space */
 .header-bar {
   width: 100%;
   padding: 20px;
@@ -69,19 +69,19 @@
 
 * {box-sizing:border-box}
 
-
+/* Slideshow container */
 .slideshow-container {
   max-width: 1000px;
   position: relative;
   margin: auto;
 }
 
-
+/* Hide the images by default */
 .mySlides {
   display: none;
 }
 
-
+/* Next & previous buttons */
 .prev, .next {
   cursor: pointer;
   position: absolute;
@@ -97,18 +97,18 @@
   user-select: none;
 }
 
-
+/* Position the "next button" to the right */
 .next {
   right: 0;
   border-radius: 3px 0 0 3px;
 }
 
-
+/* On hover, add a black background color with a little bit see-through */
 .prev:hover, .next:hover {
   background-color: rgba(0,0,0,0.8);
 }
 
-
+/* Caption text */
 .text {
   color: #f2f2f2;
   font-size: 15px;
@@ -119,7 +119,7 @@
   text-align: center;
 }
 
-
+/* Number text (1/3 etc) */
 .numbertext {
   color: #f2f2f2;
   font-size: 12px;
@@ -128,7 +128,7 @@
   top: 0;
 }
 
-
+/* The dots/bullets/indicators */
 .dot {
   cursor: pointer;
   height: 15px;
@@ -142,6 +142,24 @@
 
 .active, .dot:hover {
   background-color: #717171;
+}
+
+/* Fading animation */
+.fade {
+  -webkit-animation-name: fade;
+  -webkit-animation-duration: 1.5s;
+  animation-name: fade;
+  animation-duration: 1.5s;
+}
+
+@-webkit-keyframes fade {
+  from {opacity: .4} 
+  to {opacity: 1}
+}
+
+@keyframes fade {
+  from {opacity: .4} 
+  to {opacity: 1}
 }
 
 </style>
@@ -177,12 +195,10 @@
 			     
 		    
  <div id='map'></div>
-
 <script type="text/javascript" src="https://mkgadri.github.io/CRP558/Assignment2geojson/Ward_by_Population.geojson"></script>
 <script type="text/javascript" src="https://mkgadri.github.io/CRP558/Assignment2geojson/Pharmacy_Location.geojson"></script>
 
 <script>
-
 var Esri_WorldImagery = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
 });
 var Stamen_TonerLines = L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/toner/{z}/{x}/{y}{r}.{ext}', {
@@ -205,7 +221,6 @@ L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_toke
 		tileSize: 512,
 		zoomOffset: -1
 	}).addTo(map);
-
 function getColor(d) {
         return d === '1'  ? "#d95f0e" :
                d === '2'  ? "#377eb8" :
@@ -281,7 +296,7 @@ var legend = L.control({position: 'bottomleft'});
     return div;
     };
     legend.removeFrom(map);
- 
+    
        var baseMaps  = {
       "open street map": OSM,
       "Esri World Imagery": Esri_WorldImagery,
