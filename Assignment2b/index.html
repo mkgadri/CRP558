@@ -37,7 +37,7 @@
   display: inline-block;
 }
 
-//*Styles for the anchor tags*//
+
 .nav-item .nav-list a {
   text-decoration: none;
   display: inline-block;
@@ -48,14 +48,13 @@
   border: 3px solid #636363;
 }
 
-//*This is to style the anchor tag when is is hovered on*//
+
 .nav-item .nav-list a:hover {
   background: #fff;
   border-radius: 5px;
   color: #607D8B;
 }
 
-//*For your custom text space*//
 .header-bar {
   width: 100%;
   padding: 20px;
@@ -119,7 +118,6 @@
 <script>
 var Esri_WorldImagery = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
 });
-//*insert basemaps layers*//
 var Stamen_Toner = L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/toner/{z}/{x}/{y}{r}.{ext}', {
   attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
   subdomains: 'abcd',
@@ -140,7 +138,6 @@ L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_toke
 		tileSize: 512,
 		zoomOffset: -1
 	}).addTo(map);
-//*Call my geojson feature from my github account using a query*//
 $.getJSON("https://mkgadri.github.io/CRP558/Assignment2geojson/Primary_Care_Centers.geojson", function(data) {
             coords = data.features.map(feat => feat.geometry.coordinates.slice().reverse())
             var heatMap = L.heatLayer(coords, {
@@ -155,8 +152,7 @@ $.getJSON("https://mkgadri.github.io/CRP558/Assignment2geojson/Primary_Care_Cent
                         1: 'red'
                       }
                     }).addTo(map)
-                });
-//*create control layers*//					  
+                });					  
        var baseMaps  = {
       "open street map": OSM,
       "Esri World Imagery": Esri_WorldImagery,
