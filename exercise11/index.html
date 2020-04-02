@@ -14,7 +14,7 @@
     <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
         integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
         crossorigin=""></script>
-        <script src="./L.KML.js"></script>
+        <script src='//api.tiles.mapbox.com/mapbox.js/plugins/leaflet-omnivore/v0.3.1/leaflet-omnivore.min.js'></script>
 <style>
  body {
   padding: 0;
@@ -310,7 +310,7 @@ var naip_2010_nc = L.tileLayer.wms("https://ortho.gis.iastate.edu/arcgis/service
     		attribution: "Iowa State University GIS Facility &copy; 2020, USDA National Agriculture Imagery Program 2010"
 		});
 // Load kml file
-var trailLayer = L.kml('Trail.kml')
+var trailLayer = omnivore.kml('Trail.kml')
             .on('ready', function() {
                 map.fitBounds(trailLayer.getBounds());
             })
