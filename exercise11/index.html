@@ -311,7 +311,8 @@ var naip_2010_nc = L.tileLayer.wms("https://ortho.gis.iastate.edu/arcgis/service
 		});
 // Load kml file
 var trailLayer = fetch('exercise11/Trail.kml')
-            .on('ready', function() {
+            .then(res => res.text())
+                .then(kmltext => {
                 map.fitBounds(trailLayer.getBounds());
             })
             .addTo(map);
