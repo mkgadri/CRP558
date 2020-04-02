@@ -316,11 +316,11 @@ fetch('exercise11/Trail.kml')
                     // Create new kml overlay
                     const parser = new DOMParser();
                     const kml = parser.parseFromString(kmltext, 'text/xml');
-                    const track = new L.KML(kml);
-                    map.addLayer(track);
+                    const Trail = new L.KML(kml);
+                    map.addLayer(Trail);
 
                     // Adjust map to show the kml
-                    const bounds = track.getBounds();
+                    const bounds = Trail.getBounds();
                     map.fitBounds(bounds);
  var baseMaps = {
                             "Open Street Map": map,
