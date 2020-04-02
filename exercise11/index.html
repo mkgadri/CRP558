@@ -310,18 +310,11 @@ var naip_2010_nc = L.tileLayer.wms("https://ortho.gis.iastate.edu/arcgis/service
     		attribution: "Iowa State University GIS Facility &copy; 2020, USDA National Agriculture Imagery Program 2010"
 		});
 // Load kml file
-fetch('exercise11/Trail.kml')
-                .then(res => res.text())
-                .then(kmltext => {
-                    // Create new kml overlay
-                    const parser = new DOMParser();
-                    const kml = parser.parseFromString(kmltext, 'text/xml');
-                    const Trail = new L.KML(kml);
-                    map.addLayer(Trail);
-
-                    // Adjust map to show the kml
-                    const bounds = Trail.getBounds();
-                    map.fitBounds(bounds);
+var trailLayer = fetch('exercise11/Trail.kml')
+            .on('ready', function() {
+                map.fitBounds(trailLayer.getBounds());
+            })
+            .addTo(map);
  var baseMaps = {
                             "Open Street Map": map,
                             "2016_2018 ortho": ortho_2016_2018_nc,
@@ -329,7 +322,7 @@ fetch('exercise11/Trail.kml')
 	                         };
 
             var overlayMap = {
-                               "Trail.kml": fetch,
+                               "Trail.kml": trailLayer,
                               };
 
             L.control.layers(baseMaps, overlayMap).addTo(map);
