@@ -14,6 +14,8 @@
     <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
         integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
         crossorigin=""></script>
+	
+    //leaflet-omnivore plugin for loading KML
         <script src='//api.tiles.mapbox.com/mapbox.js/plugins/leaflet-omnivore/v0.3.1/leaflet-omnivore.min.js'></script>
 <style>
  body {
@@ -246,28 +248,20 @@
 <body>
  <div class="header-bar">
     <div class="container">
-      <h1 style="text-align:center;"> WELCOME TO WASHINGTON- DC</h1>
-      <h3 style="text-align:center;">Neighborhood Parks and Health Facilities in Washington, DC</h3>
+      <h1 style="text-align:center;"> WELCOME TO IOWA</h1>
+      <h3 style="text-align:center;">BIKE TRAILS IN IOWA</h3>
     </div>
   </div>
   <div class="navbar">
     <div class="nav-item"><ul class="container">
       <li class="nav-list">
-        <a href="https://dchealth.dc.gov/page/about-dc-health">About DC Health</a>
+        <a href="https://public-iowadot.opendata.arcgis.com/datasets/trail">DATA SOURCE</a>
       </li>
       <li class="nav-list">
-        <a href="https://dchealth.dc.gov/services">Services</a>
-      </li>
-      <li class="nav-list">
-        <a href="https://dchealth.dc.gov/vital-records">VITAL RECORDS</a>
-      </li>
-      <li class="nav-list">
-        <a
-          href="https://www.google.com/maps/search/Health+Facilities,+Washington,+DC/@38.9160212,-77.0217421,9060m/data=!3m1!1e3">Google
-          Map</a>
+        <a href="https://github.com/mkgadri/CRP558/">Home</a>
       </li>
       <li class="nav-list assignments">
-        <a class="">Assignments <i class="fa fa-caret-down"></i></a>
+        <a class="">Exercises and Assignments <i class="fa fa-caret-down"></i></a>
 
         <ul class="assignment-list">
           <li><a href="https://mkgadri.github.io/CRP558/Assignment1/">Assignment 1</a></li>
@@ -282,6 +276,7 @@
            <li><a href="https://mkgadri.github.io/CRP558/exercise8/">Exercise 8</a></li>
            <li><a href="https://mkgadri.github.io/CRP558/exercise9/">Exercise 9</a></li>
            <li><a href="https://mkgadri.github.io/CRP558/exercise10/">Exercise 10</a></li>
+	   <li><a href="https://mkgadri.github.io/CRP558/exercise11/">Exercise 11</a></li>
         </ul>
       </li>
     </ul>
@@ -320,7 +315,7 @@ var trailLayer = omnivore.kml('Trail.kml')
                             "2016_2018 ortho": ortho_2016_2018_nc,
                             "2010 ortho": naip_2010_nc,
 	                         };
-
+ // Create kml overlay
             var overlayMap = {
                                "Trail.kml": trailLayer,
                               };
