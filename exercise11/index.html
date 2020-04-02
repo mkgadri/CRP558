@@ -329,7 +329,7 @@ fetch('exercise11/Trail.kml')
 	                         };
 
             var overlayMap = {
-                               "Trail.kml": trailLayer,
+                               "Trail.kml": fetch,
                               };
 
             L.control.layers(baseMaps, overlayMap).addTo(map);
