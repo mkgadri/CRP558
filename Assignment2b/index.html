@@ -174,6 +174,8 @@
     </div>
   </div>
  <div id='map'></div>
+    <button id="NIH">The National Institutes of Health (NIH) campus</button><br>
+    <button id="Capitol">Capitol Fountain Hill</button>
 <script>
 var Esri_WorldImagery = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
 });
@@ -221,6 +223,17 @@ $.getJSON("https://mkgadri.github.io/CRP558/Assignment2geojson/Primary_Care_Cent
 			"Stamen_Toner": Stamen_Toner,
 };
 L.control.layers(baseMaps).addTo(map);
+				      
+document.getElementById("NIH").addEventListener("click",NIH);
+
+        function NIH() {
+            map.setView(new L.LatLng(39.00200,-77.10469), 13);
+        };
+        document.getElementById("Capitol").addEventListener("click", Capitol);
+
+        function Capitol() {
+            map.setView(new L.LatLng(38.88977,-77.01007), 13);
+        };
 </script>
 </body>
 </html>
