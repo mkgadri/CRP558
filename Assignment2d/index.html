@@ -375,7 +375,7 @@ var sandwichLayerGroup = L.layerGroup([]);
 
 for (var i = 0; i < myPoints.length; i++) {
 	num = Math.random(); // this will get a number between 0 and 1;
-	num *= Math.floor(Math.random()*1) == 1 ? 1 : -1; // this will add minus sign in 50% of cases
+	num *= Math.floor(Math.random()*2) == 1 ? 1 : -1; // this will add minus sign in 50% of cases
 
   marker = new L.circleMarker([myPoints[i][1]+num, myPoints[i][2]+num], {
      radius: myPoints[i][0] / 2 + 4,
