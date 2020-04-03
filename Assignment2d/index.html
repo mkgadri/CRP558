@@ -291,7 +291,6 @@
 		    
  <div id='map'></div>
  
-    <br>Pan to <a href="javascript:Washington()">Washington, DC </a><br>
     <button id="NIH">The National Institutes of Health (NIH) campus</button><br>
     <button id="Capitol">Capitol Fountain Hill</button>
    
@@ -481,10 +480,6 @@ map.on('overlayadd', function (eventLayer) {
 		 legend2.addTo(this);
 	}	
 });
-
-  function Washington() {
-            map.panTo(new L.LatLng(39.0020,-77.1046));
-        };
         
          document.getElementById("NIH").addEventListener("click",NIH);
 
