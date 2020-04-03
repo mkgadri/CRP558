@@ -173,6 +173,10 @@
 			     
 		    
  <div id='map'></div>
+								     
+    <button id="NIH">The National Institutes of Health (NIH) campus</button><br>
+    <button id="Capitol">Capitol Fountain Hill</button>
+			
 <script type="text/javascript" src="https://mkgadri.github.io/CRP558/Assignment2geojson/Ward_by_Population.geojson"></script>
 <script type="text/javascript" src="https://mkgadri.github.io/CRP558/Assignment2geojson/Pharmacy_Location.geojson"></script>
 
@@ -286,6 +290,18 @@ var overlayMaps = {
         "Pharmacies": pharmacy,
         }
 		L.control.layers(baseMaps,overlayMaps).addTo(map);
+					  
+  document.getElementById("NIH").addEventListener("click",NIH);
+
+        function NIH() {
+            map.setView(new L.LatLng(39.00200,-77.10469), 13);
+        };
+        document.getElementById("Capitol").addEventListener("click", Capitol);
+
+        function Capitol() {
+            map.setView(new L.LatLng(38.88977,-77.01007), 13);
+        };
+       
         </script>
  
 </body>
