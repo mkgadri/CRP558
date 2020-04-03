@@ -379,14 +379,14 @@ for (var i = 0; i < myPoints.length; i++) {
 
   marker = new L.circleMarker([myPoints[i][1]+num, myPoints[i][2]+num], {
      radius: myPoints[i][0] / 2 + 2,
-     fillColor: getColorSpecialty(myPoints[i][2]),
+     fillColor: getColorSpecialty(myPoints[i][3]),
 	 //fillColor: 'blue',
       color: "#000",
       weight: 0,
       opacity: 1,
       fillOpacity: 0.9
     })
-    .bindPopup("Category: " + myPoints[i][2]) //note there is no comma here
+    .bindPopup("Category: " + myPoints[i][3]) //note there is no comma here
     .addTo(sandwichLayerGroup);
 	
 	sandwichLayerGroup.addTo(map);
