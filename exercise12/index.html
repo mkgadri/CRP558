@@ -98,6 +98,9 @@
     </div>
      </div>
 <body>
+<h1 style= text-align:center;"> Information Included in the Style Template </h1>
+<p style= text-align:justify;"> The data included in the style Template shows the location of hospital in Washington State, obtained from <a href="http://geo.wa.gov/.">Washington Geospatial Open Data</a><br>Changes made hospital points included change of <b>color to green, stroke width to 2  and radius to 8</b><br>Also, changes made to road layer obtained Mapbox Streets v8 Source by filtering the feature type to primary,secondary, tertiary, trucks and motoways includes changing the <b>Opacity to 0.8, Gap Width to 2, Width of road itself to 1 and Join to Round</p><br>
+
     <div id='map'></div>
 
     <script>
@@ -114,7 +117,8 @@
         L.marker([47.6239,-122.3184]).addTo(map)
             .bindPopup("Capitol Hill")
             .openPopup();
-    </script>
 
+
+ </script>
 </body>
 </html>
