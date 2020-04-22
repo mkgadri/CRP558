@@ -2,18 +2,17 @@
 <html>
 <head>
     <meta name="description" content="Final Project">
-    <meta charset="utf-8" />
+    <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width">
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width">
+    <link rel="stylesheet" href="css/leaflet.css"><link rel="stylesheet" href="css/L.Control.Locate.min.css">
+    <link rel="stylesheet" href="css/qgis2web.css"><link rel="stylesheet" href="css/fontawesome-all.min.css">
+    <link rel="stylesheet" href="css/leaflet-search.css">
+    <link rel="stylesheet" href="css/leaflet-control-geocoder.Geocoder.css">
     <link href="https://fonts.googleapis.com/css?family=Ropa+Sans:400,400i&display=swap" rel="stylesheet"> 
     <link rel="shortcut icon" type="image/x-icon" href="docs/images/favicon.ico" />
-    <link rel="stylesheet" href="css/leaflet.css">
-    <link rel="stylesheet" href="css/qgis2web.css"><link rel="stylesheet" href="css/fontawesome-all.min.css">
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
-    integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ==" crossorigin=""/>
-    <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js" integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew==" crossorigin=""></script>
     <style>
     body{
     padding: 0;
@@ -87,11 +86,9 @@
     padding:30px;
     background: #bdbdbd;
     }   
-html, body, #map {
-            width: 100%;
-            height: 100%;
-            padding: 0;
-            margin: 0;
+#map {
+            width: 1296px;
+            height: 834px;
     }
 img{
     display: block;
@@ -121,7 +118,6 @@ img{
  h3 {margin-left: 1.5%;color:#252525; text-align:left; font-size: 20px; font-family: Cambria;}
  p  {color:#252525;  margin-right: 1.5%; margin-left: 1.5%; text-align: justify; font-size: 18px; font-family: Cambria;}
  </style>
- <title></title>
  </head>
  <body>
     <div class="header-bar">
@@ -162,11 +158,10 @@ img{
 <p><b>•	Water Loss</b><br>Mining cause the water table to shrink. Water often seeps into areas that contain coal and other valuable products, and that water needs to be pumped out of the mine to allow the miners to work. Aside from pollution, the process would also cause water loss in the ground.Nearby residents who depend on wells for their water supply can also get affected. They will need to drill even deeper to ensure that they have access to water.</p>
 <p><b>•	Pollution</b><br>Mining can leak pollutants into the environment that may lead to water contamination. At the most basic level, mining requires clearing of trees that hold soil in place. The process can disturb the ground and wash the soil into waterways. The mining process exposes bodies of water to heavy metals and toxic minerals like selenium which can negatively impact the human and the marine lives.<b>Check-out my storymap below for an in-depth knowledge on these effects.</b></p>
 <p><iframe width="100%" height="500px" src="https://arcg.is/1Pqmm5"></iframe><p>
-    <body>
-        <div id="map">
+<div id="map">
         </div>
         <script src="js/qgis2web_expressions.js"></script>
-        <script src="js/leaflet.js"></script>
+        <script src="js/leaflet.js"></script><script src="js/L.Control.Locate.min.js"></script>
         <script src="js/leaflet.rotatedMarker.js"></script>
         <script src="js/leaflet.pattern.js"></script>
         <script src="js/leaflet-hash.js"></script>
@@ -174,9 +169,11 @@ img{
         <script src="js/rbush.min.js"></script>
         <script src="js/labelgun.min.js"></script>
         <script src="js/labels.js"></script>
+        <script src="js/leaflet-control-geocoder.Geocoder.js"></script>
         <script src="js/leaflet-search.js"></script>
         <script src="data/Ghana_Shapefile_New_0.js"></script>
         <script src="data/Forest_and_Game_Reserves_1.js"></script>
+        <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js" integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew==" crossorigin=""></script>
         <script>
         var highlightLayer;
         function highlightFeature(e) {
@@ -195,10 +192,11 @@ img{
             highlightLayer.openPopup();
         }
         var map = L.map('map', {
-            zoomControl:true, maxZoom:18, minZoom:1
-        }).fitBounds([[4.343953504500348,-5.203820514244936],[11.128452053675966,5.419102906441441]]);
+            zoomControl:true, maxZoom:28, minZoom:1
+        }).fitBounds([[4.497671226452822,-6.353556666902288],[11.274635339197761,4.276744555102987]]);
         var hash = new L.Hash(map);
         map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
+        L.control.locate({locateOptions: {maxZoom: 19}}).addTo(map);
         var bounds_group = new L.featureGroup([]);
         function setBounds() {
         }
@@ -505,7 +503,7 @@ img{
             });
             var popupContent = '<table>\
                     <tr>\
-                        <td colspan="2"><strong>AREA</strong><br />' + (feature.properties['AREA'] !== null ? Autolinker.link(feature.properties['AREA'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
+                        <td colspan="2">' + (feature.properties['AREA'] !== null ? Autolinker.link(feature.properties['AREA'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
                     </tr>\
                     <tr>\
                         <td colspan="2">' + (feature.properties['PERIMETER'] !== null ? Autolinker.link(feature.properties['PERIMETER'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
@@ -514,13 +512,13 @@ img{
                         <td colspan="2">' + (feature.properties['ID'] !== null ? Autolinker.link(feature.properties['ID'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <td colspan="2"><strong>CAPTION</strong><br />' + (feature.properties['CAPTION'] !== null ? Autolinker.link(feature.properties['CAPTION'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
+                        <td colspan="2">' + (feature.properties['CAPTION'] !== null ? Autolinker.link(feature.properties['CAPTION'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
                     </tr>\
                     <tr>\
                         <td colspan="2">' + (feature.properties['STYLE'] !== null ? Autolinker.link(feature.properties['STYLE'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <td colspan="2"><strong>Type</strong><br />' + (feature.properties['Type'] !== null ? Autolinker.link(feature.properties['Type'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
+                        <td colspan="2">' + (feature.properties['Type'] !== null ? Autolinker.link(feature.properties['Type'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
                     </tr>\
                 </table>';
             layer.bindPopup(popupContent, {maxHeight: 400});
