@@ -1,7 +1,7 @@
 {
 "type": "FeatureCollection",
 "name": "mineral",
-"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:EPSG::32630" } },
 "features": [
 { "type": "Feature", "properties": { "Id": 0, "Type": "Alluvial_gold_prospect" }, "geometry": { "type": "Point", "coordinates": [ 585489.993566691409796, 553053.997064515016973 ] } },
 { "type": "Feature", "properties": { "Id": 0, "Type": "Alluvial_gold_prospect" }, "geometry": { "type": "Point", "coordinates": [ 585278.326476690592244, 560462.345214544679038 ] } },
