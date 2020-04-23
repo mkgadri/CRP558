@@ -235,16 +235,13 @@ img{
 });    
     Esri_WorldImagery;
         map.addLayer(Esri_WorldImagery); 
-		
-	var Monochrome:L.tileLayer('https://api.mapbox.com/styles/v1/mkgadri/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
-         attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+	L.tileLayer('https://api.mapbox.com/styles/v1/mkgadri/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
+            attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
             maxZoom: 18,
-          id:'ck8o5rgfs3bcg1ipnelhnyg66',
+            id:'ck8o5rgfs3bcg1ipnelhnyg66',
             // This is a unique access token, you must register for your own from https://account.mapbox.com/access-tokens/
-         accessToken: 'pk.eyJ1IjoibWtnYWRyaSIsImEiOiJjazZzMG80ZngwOWJuM2Vxczc3Y3l5dWI1In0.Jgyb7Q-hriDlmi858EjIMg'
-         Monochrome;
-        map.addLayer(Monochrome);
-		
+            accessToken: 'pk.eyJ1IjoibWtnYWRyaSIsImEiOiJjazZzMG80ZngwOWJuM2Vxczc3Y3l5dWI1In0.Jgyb7Q-hriDlmi858EjIMg'
+        }).addTo(map);
         function pop_Ghana_Shapefile_New_1(feature, layer) {
             layer.on({
                 mouseout: function(e) {
@@ -429,7 +426,7 @@ img{
         document.getElementsByClassName('leaflet-control-geocoder-icon')[0]
         .title += 'Search for a place';
         var baseMaps = {};
-        L.control.layers(baseMaps,{'Forest_and_Game_Reserves<br /><table><tr><td style="text-align: center;"><img src="legend/Forest_and_Game_Reserves_2_Forestreserves0.png" /></td><td>Forest_reserves</td></tr><tr><td style="text-align: center;"><img src="legend/Forest_and_Game_Reserves_2_Protectedareas1.png" /></td><td>Protected_areas</td></tr><tr><td style="text-align: center;"><img src="legend/Forest_and_Game_Reserves_2_Ramsarsites2.png" /></td><td>Ramsar_sites</td></tr><tr><td style="text-align: center;"><img src="legend/Forest_and_Game_Reserves_2_Waterbodies3.png" /></td><td>Water_bodies</td></tr></table>': layer_Forest_and_Game_Reserves_2,'<img src="legend/Ghana_Shapefile_New_1.png" /> Ghana_Shapefile_(New)': layer_Ghana_Shapefile_New_1,"Esri_WorldImagery":Esri_WorldImagery,"OpenStreetMap": layer_OpenStreetMap_0,"Monochrome":Monochrome}).addTo(map);
+        L.control.layers(baseMaps,{'Forest_and_Game_Reserves<br /><table><tr><td style="text-align: center;"><img src="legend/Forest_and_Game_Reserves_2_Forestreserves0.png" /></td><td>Forest_reserves</td></tr><tr><td style="text-align: center;"><img src="legend/Forest_and_Game_Reserves_2_Protectedareas1.png" /></td><td>Protected_areas</td></tr><tr><td style="text-align: center;"><img src="legend/Forest_and_Game_Reserves_2_Ramsarsites2.png" /></td><td>Ramsar_sites</td></tr><tr><td style="text-align: center;"><img src="legend/Forest_and_Game_Reserves_2_Waterbodies3.png" /></td><td>Water_bodies</td></tr></table>': layer_Forest_and_Game_Reserves_2,'<img src="legend/Ghana_Shapefile_New_1.png" /> Ghana_Shapefile_(New)': layer_Ghana_Shapefile_New_1,"Esri_WorldImagery":Esri_WorldImagery,"OpenStreetMap": layer_OpenStreetMap_0}).addTo(map);
         setBounds();
         map.addControl(new L.Control.Search({
             layer: layer_Forest_and_Game_Reserves_2,
