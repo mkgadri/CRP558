@@ -55,7 +55,6 @@ var map = L.map('map').setView([7.863,-1.121], 6);
     // This is a unique access token, you must register for your own from https://account.mapbox.com/access-tokens/
     accessToken: 'pk.eyJ1IjoibWtnYWRyaSIsImEiOiJjazZzMG80ZngwOWJuM2Vxczc3Y3l5dWI1In0.Jgyb7Q-hriDlmi858EjIMg'
     }).addTo(map);
-//load geojson from my gitgub
 $.getJSON("https://mkgadri.github.io/CRP558/finalprojectgeojson/Mines.geojson", function(data) {
     coords = data.features.map(feat => feat.geometry.coordinates.slice().reverse())
 var heatMap = L.heatLayer(coords, {
