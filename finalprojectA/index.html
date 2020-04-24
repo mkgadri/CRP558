@@ -20,6 +20,7 @@
 </style>
 </head>
 <body>
+  //adding maps of QGIS
   <div id="map"></div>
   <script src="js/qgis2web_expressions.js"></script>
   <script src="js/leaflet.js"></script><script src="js/L.Control.Locate.min.js"></script>
@@ -36,6 +37,7 @@
   <script src="data/Ghana_Shapefile_New_1.js"></script>
   <script src="data/Minerals_points_2.js"></script>
 <script>
+//highlight over map
   var  highlightLayer;
        function highlightFeature(e) {
        highlightLayer = e.target;
@@ -51,6 +53,7 @@
        }
        highlightLayer.openPopup();
        }
+  //initializing the map
   var  map = L.map('map', {
        zoomControl:true, maxZoom:18, minZoom:1
        }).fitBounds([[4.661184188652181,-6.133567208161308],[11.365499162138896,5.574801605612212]]);
@@ -60,6 +63,7 @@
        var bounds_group = new L.featureGroup([]);
        function setBounds() {
        }
+  //basemaps
   var layer_OpenStreetMap_0 = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
       opacity: 1.0,
       attribution: '',
@@ -108,6 +112,7 @@
       </table>';
       layer.bindPopup(popupContent, {maxHeight: 400});
       }
+      //set boundary for Ghana
       function style_Ghana_Shapefile_New_1_0() {
       return {
          pane: 'pane_Ghana_Shapefile_New_1',
@@ -163,6 +168,7 @@
       </table>';
       layer.bindPopup(popupContent, {maxHeight: 400});
       }
+     //mineral resources locations points
       function style_Minerals_points_2_0(feature) {
       switch(String(feature.properties['Type'])) {
       case 'Alluvial_gold_prospect':
@@ -333,6 +339,7 @@
        .className += ' fa fa-search';
        document.getElementsByClassName('leaflet-control-geocoder-icon')[0]
        .title += 'Search for a place';
+       //adding basemaps to legend
    var baseMaps = {};
        L.control.layers(baseMaps,{'Minerals_points<br /><table><tr><td style="text-align: center;"><img src="legend/Minerals_points_2_Alluvialgoldprospect0.png" /></td><td>Alluvial_gold_prospect</td></tr><tr><td style="text-align: center;"><img src="legend/Minerals_points_2_clamshells1.png" /></td><td>clam_shells</td></tr><tr><td style="text-align: center;"><img src="legend/Minerals_points_2_currentgoldproducer2.png" /></td><td>current_gold_producer</td></tr><tr><td style="text-align: center;"><img src="legend/Minerals_points_2_Diamond3.png" /></td><td>Diamond</td></tr><tr><td style="text-align: center;"><img src="legend/Minerals_points_2_Goldprospect4.png" /></td><td>Gold_prospect</td></tr><tr><td style="text-align: center;"><img src="legend/Minerals_points_2_Ironore5.png" /></td><td>Iron_ore</td></tr><tr><td style="text-align: center;"><img src="legend/Minerals_points_2_Limestone6.png" /></td><td>Limestone</td></tr><tr><td style="text-align: center;"><img src="legend/Minerals_points_2_Manganese7.png" /></td><td>Manganese</td></tr></table>': layer_Minerals_points_2,'<img src="legend/Ghana_Shapefile_New_1.png" /> Boundary': layer_Ghana_Shapefile_New_1,"Navigation":navigation,"Esri_WorldImagery":Esri_WorldImagery,"OpenStreetMap": layer_OpenStreetMap_0,}).addTo(map);
        setBounds();
