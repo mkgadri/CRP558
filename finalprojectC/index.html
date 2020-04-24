@@ -2,94 +2,85 @@
 <html>
 <head>
     <meta name="description" content="Assignment 2">
-	<meta charset="utf-8" />
-	<meta name="viewport" content="width=device-width>meta charset="UTF-8"
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width>meta charset="UTF-8"
     <link href="https://fonts.googleapis.com/css?family=Ropa+Sans:400,400i&display=swap"  rel="stylesheet"> 
-	<link rel="shortcut icon" type="image/x-icon" href="docs/images/favicon.ico" />
+    <link rel="shortcut icon" type="image/x-icon" href="docs/images/favicon.ico" />
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
-     integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ==" crossorigin=""/>
-  <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js" integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew==" crossorigin=""></script>
+    integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ==" crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js" integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew==" crossorigin=""></script>
 <!--Load in Heat plugin -->
     <script src="https://leaflet.github.io/Leaflet.heat/dist/leaflet-heat.js"></script>
-
     <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
 <style>
-  body {
-      padding: 0;
-      margin: 0;
-      font-family: 'Ropa Sans', sans-serif;
-      color: #607D8B;
+    body {
+    padding: 0;
+    margin: 0;
+    font-family: 'Ropa Sans', sans-serif;
+    color: #607D8B;
     }
- html, body, #map {
-            width: 100%;
-            height: 100%;
-            padding: 0;
-            margin: 0;
-}
+    html, body, #map {
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    }
 </style>
 </head>
 <body>
- <div id='map'></div>
-    <button  id="Tarkawa_Ghana">Mining Areas</button>
-    <button id="Obuasi_Ghana">Major Mining Hub</button>
+   <div id='map'></div>
+   <button  id="Tarkawa_Ghana">Mining Areas</button>
+   <button id="Obuasi_Ghana">Major Mining Hub</button>
 <script>
-
 var Stamen_Toner = L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/toner/{z}/{x}/{y}{r}.{ext}', {
-  attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-  subdomains: 'abcd',
-  minZoom: 0,
-  maxZoom: 20,
-  ext: 'png'
-});
+   attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+   subdomains: 'abcd',
+   minZoom: 0,
+   maxZoom: 20,
+   ext: 'png'
+   });
 var OSM = L.tileLayer('https://{s}.tile.osm.org/{z}/{x}/{y}.png', {attribution: '&copy; <a href="https://osm.org/copyright">OpenStreetMap</a> contributors', maxZoom: 18
 });
-															   
 var Esri_WorldImagery = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
 });
-
 var map = L.map('map').setView([7.863,-1.121], 6);
- L.tileLayer('https://api.mapbox.com/styles/v1/mkgadri/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
-            attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
-            maxZoom: 18,
-            id:'ck9cxaqia0pjf1iocug22fmfv',
-            // This is a unique access token, you must register for your own from https://account.mapbox.com/access-tokens/
-            accessToken: 'pk.eyJ1IjoibWtnYWRyaSIsImEiOiJjazZzMG80ZngwOWJuM2Vxczc3Y3l5dWI1In0.Jgyb7Q-hriDlmi858EjIMg'
-        }).addTo(map);
-
+    L.tileLayer('https://api.mapbox.com/styles/v1/mkgadri/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
+    attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+    maxZoom: 18,
+    id:'ck9cxaqia0pjf1iocug22fmfv',
+    // This is a unique access token, you must register for your own from https://account.mapbox.com/access-tokens/
+    accessToken: 'pk.eyJ1IjoibWtnYWRyaSIsImEiOiJjazZzMG80ZngwOWJuM2Vxczc3Y3l5dWI1In0.Jgyb7Q-hriDlmi858EjIMg'
+    }).addTo(map);
 $.getJSON("https://mkgadri.github.io/CRP558/finalprojectgeojson/Mines.geojson", function(data) {
-            coords = data.features.map(feat => feat.geometry.coordinates.slice().reverse())
-            var heatMap = L.heatLayer(coords, {
-                      minOpacity: 0.9, //the minimum opacity the heat will start at
-                      maxZoom: 19, //zoom level where the points reach maximum intensity (as intensity scales with zoom), equals maxZoom of the map by default
-                      max: 1.0, //maximum point intensity, 1.0 by default
-                      radius: 15, //radius of each "point" of the heatmap, 25 by default
-                      blur: 10, //amount of blur, 15 by default
-                      gradient: {
-                        0.5: 'green',
-                        0.75: 'yellow',
-                        1: 'red'
-                      }
-                    }).addTo(map)
-                });
-
-       var baseMaps  = {
-      "Esri World Imagery": Esri_WorldImagery,
-      "open street map": OSM,
-      "Stamen_Toner": Stamen_Toner,
-};
-L.control.layers(baseMaps).addTo(map);
-
-document.getElementById("Tarkawa_Ghana").addEventListener("click",Tarkawa_Ghana);
-
-        function Tarkawa_Ghana() {
-            map.setView(new L.LatLng(6.7205,-1.6342), 10
-                                                                 );
-        };
-        document.getElementById("Obuasi_Ghana").addEventListener("click", Obuasi_Ghana);
-
-        function Obuasi_Ghana() {
-            map.setView(new L.LatLng(6.2088,-1.6974), 9);
-        };
+    coords = data.features.map(feat => feat.geometry.coordinates.slice().reverse())
+var heatMap = L.heatLayer(coords, {
+    minOpacity: 0.9, //the minimum opacity the heat will start at
+    maxZoom: 19, //zoom level where the points reach maximum intensity (as intensity scales with zoom), equals maxZoom of the map by default
+    max: 1.0, //maximum point intensity, 1.0 by default
+    radius: 15, //radius of each "point" of the heatmap, 25 by default
+    blur: 10, //amount of blur, 15 by default
+    gradient: {
+    0.5: 'green',
+    0.75: 'yellow',
+    1: 'red'
+    }
+    }).addTo(map)
+    });
+var baseMaps  = {
+    "Esri World Imagery": Esri_WorldImagery,
+    "open street map": OSM,
+    "Stamen_Toner": Stamen_Toner,
+    };
+    L.control.layers(baseMaps).addTo(map);
+    document.getElementById("Tarkawa_Ghana").addEventListener("click",Tarkawa_Ghana);
+    function Tarkawa_Ghana() {
+    map.setView(new L.LatLng(6.7205,-1.6342), 10
+    );
+    };
+    document.getElementById("Obuasi_Ghana").addEventListener("click", Obuasi_Ghana);
+    function Obuasi_Ghana() {
+    map.setView(new L.LatLng(6.2088,-1.6974), 9);
+    };
 </script>
 </body>
 </html>
