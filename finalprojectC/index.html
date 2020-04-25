@@ -30,8 +30,8 @@
 </head>
 <body>
    <div id='map'></div>
-   <button id="HIGHLY DEGRADED MINING AREAS">VIEW HIGHLY DEGRADED MINING AREAS</button>&nbsp;
-   <button id="GENERAL OVERVIEW">VIEW ALL MINING AFFECTED AREAS</button>
+   <button  id="Tarkawa_Ghana">Mining Areas</button>
+   <button id="Obuasi_Ghana">Major Mining Hub</button>
 <script>
 //basemaps
 var Stamen_Toner = L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/toner/{z}/{x}/{y}{r}.{ext}', {
@@ -76,19 +76,15 @@ var baseMaps  = {
     "Stamen_Toner": Stamen_Toner,
     };
     L.control.layers(baseMaps).addTo(map);
-    //Add an event listener for a click event on the button
-    document.getElementById("GENERAL OVERVIEW").addEventListener("click", GENERAL OVERVIEW);
-    //view mining affected areas button
-    function GENERAL OVERVIEW() {
-    map.setView(new L.LatLng(7.950,-1.165), 2);
+    document.getElementById("Tarkawa_Ghana").addEventListener("click",Tarkawa_Ghana);
+    function Tarkawa_Ghana() {
+    map.setView(new L.LatLng(6.7205,-1.6342), 10
+    );
     };
-
-    //Add an event listener for a click event on the button
-    document.getElementById("HIGHLY DEGRADED MINING AREAS").addEventListener("click", HIGHLY DEGRADED MINING AREAS);
-     //view of highly degraded mining areas  button
-     function HIGHLY DEGRADED MINING AREAS() {
-     map.setView(new L.LatLng(5.310,-2.296), 7);
-     };
+    document.getElementById("Obuasi_Ghana").addEventListener("click", Obuasi_Ghana);
+    function Obuasi_Ghana() {
+    map.setView(new L.LatLng(6.2088,-1.6974), 9);
+    };
 </script>
 </body>
 </html>
