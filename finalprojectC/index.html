@@ -97,10 +97,10 @@ var baseMaps  = {
     "open street map": OSM,
     "Stamen_Toner": Stamen_Toner,
     };
- Var overlay ={
+ Var overlayMap = {
      "Mining sites":towns
      };
-    L.control.layers(baseMaps,overlay).addTo(map);
+    L.control.layers(baseMaps,overlayMap).addTo(map);
     document.getElementById("world").addEventListener("click",world);
     function world() {
     map.setView(new L.LatLng(5.5914,-2.1945), 3
