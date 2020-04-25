@@ -42,7 +42,7 @@
 </head>
 <body>
    <div id='map'></div>
-   <p style=text-align:center><button  id="Tarkawa_Ghana">Mining Areas</button>&nbsp;<button id="Obuasi_Ghana">Major Mining Hub</button></p>
+   <p style=text-align:center><button  id="mining_sites"> Major mining Sites</button>&nbsp;<button id="world"> World View</button></p>
 <script>
 //basemaps
 var Stamen_Toner = L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/toner/{z}/{x}/{y}{r}.{ext}', {
@@ -81,31 +81,31 @@ var heatMap = L.heatLayer(coords, {
     }
     }).addTo(map)
     });
-     var towns = [
-           [6.6931, -1.6042, "Kumasi Technical Institute, Kuamsi, Ghana"],
-            [6.6764, -1.5717, "University of Science and Technogy, Kumasi, Ghana"],
-            [6.69718, -1.62966, "Komfo Anokye Teaching Hospital,Kumasi, Ghana"],
-           [6.7064, -1.573, "Kumasi Academy,Kumasi, Ghana"]
-           ];
-        for (var i = 0; i < towns.length; i++) {
-            marker = new L.marker([towns[i][0], towns[i][1]])
-                .bindPopup(towns[i][2])
-                .addTo(map);
-        }
+var mining sites = [
+    [7.0258,-2.3440, "Newmont Ahafo mining Site"],
+    [5.2526, -2.0490, "AngloGold Ashanti mining site"],
+    [5.9588,-1.9364, "Perseus Mining mining site"],
+    [5.45392,-2.12220, "Rocksure International mining site"]
+    ];
+    for (var i = 0; i < towns.length; i++) {
+    marker = new L.marker([towns[i][0], towns[i][1]])
+    .bindPopup(towns[i][2])
+    .addTo(map);
+    }
 var baseMaps  = {
     "Esri World Imagery": Esri_WorldImagery,
     "open street map": OSM,
     "Stamen_Toner": Stamen_Toner,
     };
     L.control.layers(baseMaps).addTo(map);
-    document.getElementById("Tarkawa_Ghana").addEventListener("click",Tarkawa_Ghana);
+    document.getElementById("world").addEventListener("click",world);
     function Tarkawa_Ghana() {
-    map.setView(new L.LatLng(5.5914,-2.1945), 5
+    map.setView(new L.LatLng(5.5914,-2.1945), 3
     );
     };
-    document.getElementById("Obuasi_Ghana").addEventListener("click", Obuasi_Ghana);
-    function Obuasi_Ghana() {
-    map.setView(new L.LatLng(6.2088,-1.6974), 9);
+    document.getElementById(" mining_sites").addEventListener("click", mining_sites);
+    function mining_sites() {
+    map.setView(new L.LatLng(5.9576,-1.9144), 7);
     };
 </script>
 </body>
