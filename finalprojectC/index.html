@@ -81,6 +81,17 @@ var heatMap = L.heatLayer(coords, {
     }
     }).addTo(map)
     });
+     var towns = [
+           [6.6931, -1.6042, "Kumasi Technical Institute, Kuamsi, Ghana"],
+            [6.6764, -1.5717, "University of Science and Technogy, Kumasi, Ghana"],
+            [6.69718, -1.62966, "Komfo Anokye Teaching Hospital,Kumasi, Ghana"],
+           [6.7064, -1.573, "Kumasi Academy,Kumasi, Ghana"]
+           ];
+        for (var i = 0; i < towns.length; i++) {
+            marker = new L.marker([towns[i][0], towns[i][1]])
+                .bindPopup(towns[i][2])
+                .addTo(map);
+        }
 var baseMaps  = {
     "Esri World Imagery": Esri_WorldImagery,
     "open street map": OSM,
