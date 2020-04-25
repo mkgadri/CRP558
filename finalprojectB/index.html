@@ -54,8 +54,7 @@
         highlightLayer.openPopup();
         }
     //initializing tha map
-    var map = L.map('map', {
-        zoomControl:true, maxZoom:18, minZoom:3
+    var map = L.map('map').setView([7.863,-1.121], 6);
         }).fitBounds([[3.8471218070632047,-4.792041024336937],[10.552279591075468,6.868997182584667]]);
     var hash = new L.Hash(map);
         map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
