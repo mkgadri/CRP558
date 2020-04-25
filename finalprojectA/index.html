@@ -33,6 +33,7 @@
 </head>
 <body>
   <div id="map"></div>
+  <!-- Creates interactive buttons -->
   <p style=text-align:center><button  id="gold ">Zoom to VieW Major Gold Mining Areas</button>&nbsp;<button id="world"> World View</button></p>
   <script src="js/qgis2web_expressions.js"></script>
   <script src="js/leaflet.js"></script><script src="js/L.Control.Locate.min.js"></script>
@@ -374,6 +375,7 @@
        map.on("layerremove", function(){
        resetLabels([layer_Ghana_Shapefile_New_1]);
         });
+       <!-- Setting an event when clicking the buttons -->
         document.getElementById("world").addEventListener("click",world);
         function world() {
         map.setView(new L.LatLng(5.5914,-2.1945), 3
