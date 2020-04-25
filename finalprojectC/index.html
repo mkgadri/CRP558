@@ -42,7 +42,7 @@
 </head>
 <body>
    <div id='map'></div>
-   <p style=text-align:center><button  id="Sites"> Major mining Sites</button>&nbsp;<button id="world"> World View</button></p>
+   <p style=text-align:center><button  id="sites"> Major mining Sites</button>&nbsp;<button id="world"> World View</button></p>
 <script>
 //basemaps
 var Stamen_Toner = L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/toner/{z}/{x}/{y}{r}.{ext}', {
@@ -83,7 +83,6 @@ var heatMap = L.heatLayer(coords, {
     });
 var mining sites = [
     [7.0258,-2.3440, "Newmont Ahafo mining Site"],
-    [5.2526, -2.0490, "AngloGold Ashanti mining site"],
     [5.9588,-1.9364, "Perseus Mining mining site"],
     [5.45392,-2.12220, "Rocksure International mining site"]
     ];
@@ -103,8 +102,8 @@ var baseMaps  = {
     map.setView(new L.LatLng(5.5914,-2.1945), 3
     );
     };
-    document.getElementById(" Sites").addEventListener("click",Sites);
-    function Sites() {
+    document.getElementById(" sites").addEventListener("click",sites);
+    function sites() {
     map.setView(new L.LatLng(5.9576,-1.9144), 7);
     };
 </script>
