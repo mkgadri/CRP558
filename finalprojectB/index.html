@@ -54,7 +54,14 @@
         highlightLayer.openPopup();
         }
     //initializing tha map
-   
+   var map = L.map('map').setView([7.863,-1.121], 6);
+    L.tileLayer('https://api.mapbox.com/styles/v1/mkgadri/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
+    attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery � <a href="https://www.mapbox.com/">Mapbox</a>',
+    maxZoom: 18,
+    id:'ck9cxaqia0pjf1iocug22fmfv',
+    // This is a unique access token, you must register for your own from https://account.mapbox.com/access-tokens/
+    accessToken: 'pk.eyJ1IjoibWtnYWRyaSIsImEiOiJjazZzMG80ZngwOWJuM2Vxczc3Y3l5dWI1In0.Jgyb7Q-hriDlmi858EjIMg'
+    }).addTo(map);
     var measureControl = new L.Control.Measure({
          position: 'topleft',
          primaryLengthUnit: 'meters',
