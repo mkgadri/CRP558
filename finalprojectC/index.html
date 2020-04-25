@@ -81,16 +81,6 @@ var heatMap = L.heatLayer(coords, {
     }
     }).addTo(map)
     });
-var mining sites = [
-    [7.0258,-2.3440, "Newmont Ahafo mining Site"],
-    [5.9588,-1.9364, "Perseus Mining mining site"],
-    [5.45392,-2.12220, "Rocksure International mining site"]
-    ];
-    for (var i = 0; i < towns.length; i++) {
-    marker = new L.marker([towns[i][0], towns[i][1]])
-    .bindPopup(towns[i][2])
-    .addTo(map);
-    }
 var baseMaps  = {
     "Esri World Imagery": Esri_WorldImagery,
     "open street map": OSM,
