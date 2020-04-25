@@ -98,7 +98,8 @@ var baseMaps  = {
     "Stamen_Toner": Stamen_Toner,
     };
  Var overlay ={
-     "Mining sites":towns            
+     "Mining sites":towns
+     };
     L.control.layers(baseMaps,overlay).addTo(map);
     document.getElementById("world").addEventListener("click",world);
     function world() {
