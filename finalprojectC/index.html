@@ -75,8 +75,6 @@ var baseMaps  = {
     "Stamen_Toner": Stamen_Toner,
     };
     L.control.layers(baseMaps).addTo(map);
-    <!-- Setting an event when clicking the buttons -->
-
     //Add an event listener for a click event on the button
     document.getElementById("GENERAL OVERVIEW").addEventListener("click", GENERAL OVERVIEW);
     //view mining affected areas button
@@ -86,7 +84,6 @@ var baseMaps  = {
 
     //Add an event listener for a click event on the button
     document.getElementById("HIGHLY DEGRADED MINING AREAS").addEventListener("click", HIGHLY DEGRADED MINING AREAS);
-
      //view of highly degraded mining areas  button
      function HIGHLY DEGRADED MINING AREAS() {
      map.setView(new L.LatLng(5.310,-2.296), 7);
