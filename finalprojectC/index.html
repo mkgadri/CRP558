@@ -42,7 +42,7 @@
 </head>
 <body>
    <div id='map'></div>
-   <p style=text-align:center><button  id="mining_sites"> Major mining Sites</button>&nbsp;<button id="world"> World View</button></p>
+   <p style=text-align:center><button  id="Sites"> Major mining Sites</button>&nbsp;<button id="world"> World View</button></p>
 <script>
 //basemaps
 var Stamen_Toner = L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/toner/{z}/{x}/{y}{r}.{ext}', {
@@ -103,8 +103,8 @@ var baseMaps  = {
     map.setView(new L.LatLng(5.5914,-2.1945), 3
     );
     };
-    document.getElementById(" mining_sites").addEventListener("click", mining_sites);
-    function mining_sites() {
+    document.getElementById(" Sites").addEventListener("click",Sites);
+    function Sites() {
     map.setView(new L.LatLng(5.9576,-1.9144), 7);
     };
 </script>
