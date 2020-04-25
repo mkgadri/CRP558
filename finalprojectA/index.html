@@ -16,12 +16,24 @@
   height: 100%;
   padding: 0;
   margin: 0;
-   }
+  }
+  button {
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  }
 </style>
 </head>
 <body>
   <div id="map"></div>
-  //adding maps of QGIS
+  <p style=text-align:center><button  id="gold ">Zoom to VieW Major Gold Mining Areas</button>&nbsp;<button id="world"> World View</button></p>
   <script src="js/qgis2web_expressions.js"></script>
   <script src="js/leaflet.js"></script><script src="js/L.Control.Locate.min.js"></script>
   <script src="js/leaflet-svg-shape-markers.min.js"></script>
@@ -54,12 +66,14 @@
        highlightLayer.openPopup();
        }
   //initializing the map
-  var  map = L.map('map', {
-       zoomControl:true, maxZoom:18, minZoom:1
-       }).fitBounds([[4.661184188652181,-6.133567208161308],[11.365499162138896,5.574801605612212]]);
-       var hash = new L.Hash(map);
-       map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
-       L.control.locate({locateOptions: {maxZoom: 19}}).addTo(map);
+  var map = L.map('map').setView([7.863,-1.121], 6);
+    L.tileLayer('https://api.mapbox.com/styles/v1/mkgadri/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
+    attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery � <a href="https://www.mapbox.com/">Mapbox</a>',
+    maxZoom: 18,
+    id:'ck9cxaqia0pjf1iocug22fmfv',
+    // This is a unique access token, you must register for your own from https://account.mapbox.com/access-tokens/
+    accessToken: 'pk.eyJ1IjoibWtnYWRyaSIsImEiOiJjazZzMG80ZngwOWJuM2Vxczc3Y3l5dWI1In0.Jgyb7Q-hriDlmi858EjIMg'
+    }).addTo(map);
        var bounds_group = new L.featureGroup([]);
        function setBounds() {
        }
@@ -74,7 +88,7 @@
       });
       layer_OpenStreetMap_0;
       map.addLayer(layer_OpenStreetMap_0);
-  var navigation = L.tileLayer('https://api.mapbox.com/styles/v1/mkgadri/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
+  var basic = L.tileLayer('https://api.mapbox.com/styles/v1/mkgadri/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
       attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
       maxZoom: 18,
       id:'ck8o5rgfs3bcg1ipnelhnyg66',
@@ -341,7 +355,7 @@
        .title += 'Search for a place';
        //adding basemaps to legend
    var baseMaps = {};
-       L.control.layers(baseMaps,{'Minerals_points<br /><table><tr><td style="text-align: center;"><img src="legend/Minerals_points_2_Alluvialgoldprospect0.png" /></td><td>Alluvial_gold_prospect</td></tr><tr><td style="text-align: center;"><img src="legend/Minerals_points_2_clamshells1.png" /></td><td>clam_shells</td></tr><tr><td style="text-align: center;"><img src="legend/Minerals_points_2_currentgoldproducer2.png" /></td><td>current_gold_producer</td></tr><tr><td style="text-align: center;"><img src="legend/Minerals_points_2_Diamond3.png" /></td><td>Diamond</td></tr><tr><td style="text-align: center;"><img src="legend/Minerals_points_2_Goldprospect4.png" /></td><td>Gold_prospect</td></tr><tr><td style="text-align: center;"><img src="legend/Minerals_points_2_Ironore5.png" /></td><td>Iron_ore</td></tr><tr><td style="text-align: center;"><img src="legend/Minerals_points_2_Limestone6.png" /></td><td>Limestone</td></tr><tr><td style="text-align: center;"><img src="legend/Minerals_points_2_Manganese7.png" /></td><td>Manganese</td></tr></table>': layer_Minerals_points_2,'<img src="legend/Ghana_Shapefile_New_1.png" /> Boundary': layer_Ghana_Shapefile_New_1,"Navigation":navigation,"Esri_WorldImagery":Esri_WorldImagery,"OpenStreetMap": layer_OpenStreetMap_0,}).addTo(map);
+       L.control.layers(baseMaps,{'Minerals_points<br /><table><tr><td style="text-align: center;"><img src="legend/Minerals_points_2_Alluvialgoldprospect0.png" /></td><td>Alluvial_gold_prospect</td></tr><tr><td style="text-align: center;"><img src="legend/Minerals_points_2_clamshells1.png" /></td><td>clam_shells</td></tr><tr><td style="text-align: center;"><img src="legend/Minerals_points_2_currentgoldproducer2.png" /></td><td>current_gold_producer</td></tr><tr><td style="text-align: center;"><img src="legend/Minerals_points_2_Diamond3.png" /></td><td>Diamond</td></tr><tr><td style="text-align: center;"><img src="legend/Minerals_points_2_Goldprospect4.png" /></td><td>Gold_prospect</td></tr><tr><td style="text-align: center;"><img src="legend/Minerals_points_2_Ironore5.png" /></td><td>Iron_ore</td></tr><tr><td style="text-align: center;"><img src="legend/Minerals_points_2_Limestone6.png" /></td><td>Limestone</td></tr><tr><td style="text-align: center;"><img src="legend/Minerals_points_2_Manganese7.png" /></td><td>Manganese</td></tr></table>': layer_Minerals_points_2,'<img src="legend/Ghana_Shapefile_New_1.png" /> Boundary': layer_Ghana_Shapefile_New_1,"Basic_layer":basic,"Esri_WorldImagery":Esri_WorldImagery,"OpenStreetMap": layer_OpenStreetMap_0,}).addTo(map);
        setBounds();
        map.addControl(new L.Control.Search({
        layer: layer_Minerals_points_2,
@@ -360,6 +374,15 @@
        map.on("layerremove", function(){
        resetLabels([layer_Ghana_Shapefile_New_1]);
         });
+        document.getElementById("world").addEventListener("click",world);
+        function world() {
+        map.setView(new L.LatLng(5.5914,-2.1945), 3
+       );
+       };
+       document.getElementById("gold").addEventListener("click",gold);
+       function gold() {
+       map.setView(new L.LatLng(6.577,-2.153), 9);
+       };
 </script>
 </body>
 </html>
