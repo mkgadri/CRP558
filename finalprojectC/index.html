@@ -82,7 +82,6 @@ var heatMap = L.heatLayer(coords, {
     }).addTo(map)
     });
 var towns= [
-    [7.0258,-2.3440, "Newmont Ahafo mining Site"],
     [5.2526, -2.0490, "AngloGold Ashanti mining site"],
     [5.9588,-1.9364, "Perseus Mining mining site"],
     [5.45392,-2.12220, "Rocksure International mining site"]
@@ -105,7 +104,7 @@ var baseMaps  = {
     };
     document.getElementById("sites").addEventListener("click",sites);
     function sites() {
-    map.setView(new L.LatLng(6.577,-2.153), 10);
+    map.setView(new L.LatLng(6.577,-2.153), 9);
     };
 </script>
 </body>
