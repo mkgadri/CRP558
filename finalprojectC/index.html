@@ -41,6 +41,7 @@
 </head>
 <body>
 <div id='map'></div>
+<!-- Creates interactive buttons -->
 <p style=text-align:center><button  id="sites">Zoom View Major Mining Sites</button>&nbsp;<button id="world"> World View</button></p>
 <script>
 //basemaps
@@ -97,6 +98,7 @@ var baseMaps  = {
     "open street map": OSM,
     "Stamen_Toner": Stamen_Toner,
     };
+    //Add an event listener for a click event on the button
     document.getElementById("world").addEventListener("click",world);
     function world() {
     map.setView(new L.LatLng(5.5914,-2.1945), 3
