@@ -131,15 +131,17 @@
        },
        mouseover: highlightFeature,
        });
-   var popupContent = '<table>\
-       <tr>\
-       <td colspan="2"><strong>REGION</strong><br />' + (feature.properties['REGION'] !== null ? Autolinker.link(feature.properties['REGION'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
-       </tr>\
-       <tr>\
-       <td colspan="2"><strong>Capital</strong><br />' + (feature.properties['Capital'] !== null ? Autolinker.link(feature.properties['Capital'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
-       </tr>\
-       </table>';
-       layer.bindPopup(popupContent, {maxHeight: 400});
+  var popupContent = '<table>\
+                    <tr>\
+                        <th scope="row">REGION</th>\
+                        <td>' + (feature.properties['REGION'] !== null ? Autolinker.link(feature.properties['REGION'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Capital</th>\
+                        <td>' + (feature.properties['Capital'] !== null ? Autolinker.link(feature.properties['Capital'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
        }
        // set bounadry for Ghana
        function style_Ghana_Shapefile_New_1_0() {
@@ -188,26 +190,32 @@
         mouseover: highlightFeature,
         });
     var popupContent = '<table>\
-        <tr>\
-        <td colspan="2"><strong>AREA</strong><br />' + (feature.properties['AREA'] !== null ? Autolinker.link(feature.properties['AREA'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
-        </tr>\
-        <tr>\
-        <td colspan="2">' + (feature.properties['PERIMETER'] !== null ? Autolinker.link(feature.properties['PERIMETER'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
-        </tr>\
-        <tr>\
-        <td colspan="2">' + (feature.properties['ID'] !== null ? Autolinker.link(feature.properties['ID'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
-        </tr>\
-        <tr>\
-        <td colspan="2">' + (feature.properties['CAPTION'] !== null ? Autolinker.link(feature.properties['CAPTION'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
-        </tr>\
-        <tr>\
-        <td colspan="2">' + (feature.properties['STYLE'] !== null ? Autolinker.link(feature.properties['STYLE'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
-        </tr>\
-        <tr>\
-        <td colspan="2">' + (feature.properties['Type'] !== null ? Autolinker.link(feature.properties['Type'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
-        </tr>\
-        </table>';
-        layer.bindPopup(popupContent, {maxHeight: 400});
+                    <tr>\
+                        <th scope="row">AREA</th>\
+                        <td>' + (feature.properties['AREA'] !== null ? Autolinker.link(feature.properties['AREA'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">PERIMETER</th>\
+                        <td>' + (feature.properties['PERIMETER'] !== null ? Autolinker.link(feature.properties['PERIMETER'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">ID</th>\
+                        <td>' + (feature.properties['ID'] !== null ? Autolinker.link(feature.properties['ID'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">CAPTION</th>\
+                        <td>' + (feature.properties['CAPTION'] !== null ? Autolinker.link(feature.properties['CAPTION'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">STYLE</th>\
+                        <td>' + (feature.properties['STYLE'] !== null ? Autolinker.link(feature.properties['STYLE'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Type</th>\
+                        <td>' + (feature.properties['Type'] !== null ? Autolinker.link(feature.properties['Type'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
         }
 	//add forest and game reserves location
         function style_forest_game_reserves_2_0(feature) {
