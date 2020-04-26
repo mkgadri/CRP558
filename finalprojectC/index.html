@@ -98,6 +98,7 @@ var baseMaps  = {
     "open street map": OSM,
     "Stamen_Toner": Stamen_Toner,
     };
+    L.control.layers(baseMaps).addTo(map);
     <!-- Setting an event when clicking the buttons -->
     document.getElementById("world").addEventListener("click",world);
     function world() {
