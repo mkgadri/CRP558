@@ -1,362 +1,596 @@
 <html>
-<head>
+  <head>
     <meta name="description" content="Final Project">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width">
     <link href="https://fonts.googleapis.com/css?family=Ropa+Sans:400,400i&amp;display=swap" rel="stylesheet"> 
     <link rel="stylesheet" href="css/font-awesome.min.css">
+    
     <link rel="shortcut icon" type="image/x-icon" href="docs/images/favicon.ico">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" integrity="sha512-xwEAz9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ==" crossorigin="">
+    <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js" integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew==" crossorigin=""></script>
     <title>Final Projct</title>
-<style>
+    <!-- <style>
       body{
-      padding: 0;
-      margin: 0;
-      /*font-family: 'Ropa Sans', sans-serif;*/
-      font-family: Cambria;
-      color: #607D8B;
-      font-size: 20px;
-      line-height: 40px;
-      }
+        padding: 0;
+        margin: 0;
+        font-family: 'Ropa Sans', sans-serif;
+        color: #607D8B;
+        }
       .container{
-      margin: auto;
-      max-width: 1200px;
-      }
-      .effects-container {
-      padding: 70px 0;
-      width: 100%;
-      background: url('nature.jpg') 100% 100% no-repeat;
-      margin: 0 auto;
-      margin-bottom: 5pc;
-      background-attachment: fixed;
-      }
-      .effects-container .container {
-      display: flex;
-      justify-content: space-between;
-      }
-      .contained, .text-content {
-      border-radius: 3px;
-      }
-      .text-content {
-      line-height: 40px;
-      background: #FFF;
-      width: 100%;
-       padding: 0 20px;
-      }
-      .contained {
-      background: #fff;
-      padding: 0 40px;
-      line-height: 40px;
-      margin-bottom: 2pc;
-      border-radius: 3px;
-      width: 50%;
-      }
-      .contained h3 {
-      text-align: left;
-      margin: 0;
-      margin-top: 1.5pc;
-      }
+        max-width: 950px;
+        margin: auto;
+        }
       .nav-item{
-      width: 100%;
-      padding: 0;
-      margin: auto;
-      background:#636363;
-      }
+        width: 105%;
+        padding: 0;
+        margin: auto;
+        background:#636363;
+        }
       .nav-item .nav-list{
-      list-style-type: none;
-      display: inline-block;
-      }
+        list-style-type: none;
+        display: inline-block;
+        }
       .nav-item .nav-list>a{
-      text-decoration: none;
-      display: inline-block;
-      color: #fff;
-      padding: 1.5pc;
-      font-size: 18px;
-      font-family: Cambria;
-      text-transform: uppercase;
-      border: 3px solid #636363;
-      }
+        text-decoration: none;
+        display: inline-block;
+        color: #fff;
+        padding: 1.5pc;
+        font-size: 18px;
+        font-family: Cambria;
+        text-transform: uppercase;
+        border: 3px solid #636363;
+        }
       .nav-item .nav-list>a:hover{
-      background: #fff;
-      border-radius: 6px;
-      color: #607D8B;
-      }
+        background: #fff;
+        border-radius: 6px;
+        color: #607D8B;
+        }
       .assignments {
-      position: relative;
-      }
+        position: relative;
+        }
       .nav-item .nav-list.assignments>a:hover{
-      background: transparent;
-      color: #fff;
-      }
+        background: transparent;
+        color: #fff;
+        }
       .assignments:hover .assignment-list{
-      display: block;
-      }
+          display: block;
+        }
       .assignment-list{
-      position: absolute;
-      top: 73px;
-      background: #9e9e9e;
-      padding: 0;
-      border-radius: 1.5px;
-      display: none;
-      }
+        position: absolute;
+        top: 73px;
+        background: #9e9e9e;
+        padding: 0;
+        border-radius: 1.5px;
+        display: none;
+        }
       .assignment-list li{
-      list-style-type: none;
-      }
+        list-style-type: none;
+        }
       .assignment-list li a{
-      padding: 10px 40px;
-      display: block;
-      text-decoration: none;
-      color:#fff;
-      font-size: 15px;
-      }
+        padding: 10px 40px;
+        display: block;
+        text-decoration: none;
+        color:#fff;
+        font-size: 15px;
+        font-family: Cambria;
+        }
       .assignment-list li a:hover{
-      background: #3b9aff;
-      }
+        background: #3b9aff;
+        }
       .header-bar{
-       width: 100%;
-      padding:30px 0;
-      background: url('waterfall.jpg') 100% 100% no-repeat;
-      position: relative;
-      height: 200px;
-      }
-      .header-bar .container {
-      position: relative;
-      z-index: 10;
-      }
-      .overlay {
-      width: 100%;
-      height: 100%;
-      background: #2223233b;
-      position: absolute;
-      left: 0;
-      top: 0;
-      } 
-      #map{
-      width: 800px;
-      height: 400px;
-      overflow: hidden;
-      }
+        width: 100%;
+        padding:30px;
+        background: #bdbdbd;
+        }   
+        html, body, #map {
+                width: 100%;
+                height: 100%;
+                padding: 0;
+                margin: 0;
+          }
       img{
-      display: block;
-      margin-left: auto;
-      margin-right: auto;
-      }
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        }
+      .legend{
+        line-height: 20px;
+        color: #555;
+        }
+      .legend i{
+        width: 14px;
+        height: 30px;
+        float: left;
+        margin-right: 4px;
+        opacity: 1;
+        }
       .info{
-      padding: 4px 8px;
-      background: rgba(255,255,255,0.8);
-      box-shadow: 0 0 15px rgba(0,0,0,0.2);
-      border-radius: 7px;
-      } 
-      a {
-      text-decoration: none;
-      color: #333;
-      }
-      iframe {
-      width: 95%;
-      margin: auto;
-      display: block;
-      }
-      .wrapper {
-      background: url('waterfall.jpg') 100% 100% no-repeat;
-      background-size: cover;
-      padding: 4pc 20px;
-      }
-      .other-contents {
-      margin-top: 5pc;
-      display: flex;
-      max-width: 1310px;
-      margin: auto;
-      }
-      .other-contents .map-container, .other-contents .misc-container {
-        width: 650%;
-      }
-      .map-container {
-      display: flex;
-      flex-direction: column;
-      }
-      .map-container .maps, .misc-container .misc-contents {
-      border-radius: 3px;
-      }
-      .map-container .maps {
-      background:#fff;
-      padding: 20px;
-      border-radius: 3px;
-      }
-      .map-container .maps .map-source {
-      margin: 5px 1pc;
-      }
-      .maps:first-child {
-      padding-bottom: 0;
-      }
-      .maps:last-child {
-      padding-top: 0;
-      }
-      .map-container .maps iframe {
-      width: 95%;
-      }
-      .misc-container .misc-contents {
-      width: 85%;
-      height: 90%;
-      margin: auto;
-      background: #fff;
-      padding: 5%;
-      height: 1397px;
-      }
-      .misc-container .misc-contents div {
-      line-height: 38px;
-      }
-      .misc-container .misc-contents div h3 {
-      text-align: left;
-      margin: 13px;
-      }
-      .storymap {
-      padding: 70px 0;
-      margin-bottom: 5pc;
-      }
-      .extra-contents {
-      display: flex;
-      }
-      .extra-contents .containements {
-      width: 90%;
-      text-align: justify;
-      line-height: 25px;
-      padding: 50px 10px;
-      }
-      ol li {
-      line-height: 30px;
-      margin-bottom: 1.5pc;
-      }
-      .acknowledgement-container {
-      width: 100%;
-      background: #4c4c4c;
-      padding: 10px 0;
-      color:#fff;  
-      }
+        padding: 4px 8px;
+        font: 10px/15px Calibri, Helvetica, sans-serif;
+        background: rgba(255,255,255,0.8);
+        box-shadow: 0 0 15px rgba(0,0,0,0.2);
+        border-radius: 7px;
+        } 
       h1 {color:#08519c; text-decoration: bold; text-align: center; background: none; font-size: 20px; font-family: Cambria;}
-      h2 {color:#e6550d; text-align: left; font-size: 20px; font-family: Cambria;}
-      h3 {margin-left: 1.5%;color:#252525; text-align:center; font-size: 20px; font-family: Cambria;}
-      h4 {margin-center: 1.5%;color:#252525; text-align:left; font-size: 18px; font-family: Cambria;}
-      h5 {margin-center: 1.5%;color:#252525; text-align:left; font-size: 18px; font-family: Cambria;}
+      h2 {color:#de2d26; text-align: left; font-size: 20px; font-family: Cambria;}
+      h3 {margin-left: 1.5%;color:#252525; text-align:left; font-size: 20px; font-family: Cambria;}
       p  {color:#252525;  margin-right: 1.5%; margin-left: 1.5%; text-align: justify; font-size: 18px; font-family: Cambria;}
-      a { color:Blue; text-align: right; margin: auto;  font-size: 15px; font-family: Cambria;}
-</style>
-</head>
-<body>
-      <div class="header-bar">
+    </style> -->
+
+    <style>
+      body{
+        padding: 0;
+        margin: 0;
+        /*font-family: 'Ropa Sans', sans-serif;*/
+        font-family: Cambria;
+        color: #607D8B;
+        font-size: 20px;
+        line-height: 40px;
+      }
+
+      .overlay {
+        width: 100%;
+        height: 100%;
+        background: #22232375;
+        position: absolute;
+        left: 0;
+        top: 0;
+      }
+
+      .container{
+        margin: auto;
+        max-width: 1200px;
+      }
+
+      .effects-container {
+        padding: 150px 0;
+        width: 100%;
+        background: url('img/nature.jpg') 100% 100% no-repeat;
+        margin: 0 auto;
+        margin-bottom: 5pc;
+        background-attachment: fixed;
+      }
+
+      .effects-container .container {
+        display: flex;
+        justify-content: space-between;
+      }
+
+      .contained, .text-content {
+        border-radius: 3px;
+      }
+
+      .text-content {
+        line-height: 40px;
+        background: #FFF;
+        width: 100%;
+        padding: 0 20px;
+      }
+
+      .contained {
+        background: #fff;
+        padding: 0 40px;
+        line-height: 40px;
+        margin-bottom: 2pc;
+        border-radius: 3px;
+        width: 50%;
+      }
+
+      .contained h3 {
+        text-align: left;
+        margin: 0;
+        margin-top: 1.5pc;
+      }
+
+
+      .nav-item{
+        width: 100%;
+        padding: 0;
+        margin: auto;
+        background:#636363;
+      }
+
+      .nav-item .nav-list{
+        list-style-type: none;
+        display: inline-block;
+      }
+
+      .nav-item .nav-list>a{
+        text-decoration: none;
+        display: inline-block;
+        color: #fff;
+        padding: 1.5pc;
+        font-size: 18px;
+        font-family: Cambria;
+        text-transform: uppercase;
+        border: 3px solid #636363;
+      }
+
+      .nav-item .nav-list>a:hover{
+        background: #fff;
+        border-radius: 6px;
+        color: #607D8B;
+      }
+
+      .assignments {
+        position: relative;
+      }
+
+      .nav-item .nav-list.assignments>a:hover{
+        background: transparent;
+        color: #fff;
+      }
+
+      .assignments:hover .assignment-list{
+        display: block;
+      }
+
+      .assignment-list{
+        position: absolute;
+        top: 73px;
+        background: #9e9e9e;
+        padding: 0;
+        border-radius: 1.5px;
+        display: none;
+        z-index: 999;
+        overflow-y: scroll;
+        line-height: 20px;
+        height: 250px;
+      }
+
+      .assignment-list li{
+        list-style-type: none;
+      }
+
+      .assignment-list li a{
+        padding: 10px 40px;
+        display: block;
+        text-decoration: none;
+        color:#fff;
+        font-size: 15px;
+      }
+
+      .assignment-list li a:hover{
+        background: #3b9aff;
+      }
+
+      .header-bar{
+        width: 100%;
+        padding:30px 0;
+        background: url('img/waterfall.jpg') 100% 100% no-repeat;
+        position: relative;
+        height: 200px;
+      }
+
+      .header-bar .container {
+        position: relative;
+        z-index: 10;
+      }
+
+      /* .overlay {
+        width: 100%;
+        height: 100%;
+        background: #2223233b;
+        position: absolute;
+        left: 0;
+        top: 0;
+      }  */
+
+      #map{
+        width: 800px;
+        height: 400px;
+        overflow: hidden;
+      }
+
+      img{
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .legend{
+        line-height: 20px;
+        color: #555;
+      }
+
+      .legend i{
+        width: 14px;
+        height: 30px;
+        float: left;
+        margin-right: 4px;
+        opacity: 1;
+      }
+
+      .info{
+        padding: 4px 8px;
+        background: rgba(255,255,255,0.8);
+        box-shadow: 0 0 15px rgba(0,0,0,0.2);
+        border-radius: 7px;
+      } 
+
+      a {
+        text-decoration: none;
+        color: #333;
+      }
+
+      h1, h2, h3 {
+        font-family: Cambria;
+        text-align: center; 
+      }
+
+      h1 {
+        font-size: 30px;             
+      }
+
+       h2 {
+        font-size: 27px;
+      }
+
+       p  {
+        margin-right: 1.5%; 
+        margin-left: 1.5%; 
+        text-align: justify; 
+        font-size: 18px; 
+        text-align: justify;
+      }
+
+      iframe {
+        width: 95%;
+        margin: auto;
+        display: block;
+      }
+
+      .wrapper {
+        background: url('img/waterfall.jpg') 100% 100% no-repeat;
+        background-size: cover;
+        padding: 4pc 20px;
+      }
+
+      .other-contents {
+        margin-top: 5pc;
+        display: flex;
+        max-width: 1310px;
+        margin: auto;
+      }
+
+      .map-container {
+        width: 65%;
+      }
+      
+      .misc-container {
+        width: 35%;
+      }
+
+      .map-container {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .map-container .maps, .misc-container .misc-contents {
+        border-radius: 3px;
+      }
+
+      .map-container .maps {
+        background: #FFF;
+        padding: 20px;
+        border-radius: 3px;
+      }
+
+      .map-container .maps .map-source {
+        margin: 5px 1pc;
+      }
+
+      .maps:first-child {
+        padding-bottom: 0;
+      }
+
+      .maps:last-child {
+        padding-top: 0;
+      }
+
+      .misc-container .misc-contents {
+        width: 85%;
+        margin-left: 5%;
+        background: #FFF;
+        padding: 4.45% 5%;
+      }
+
+      .misc-container .misc-contents div {
+        line-height: 38px;
+      }
+
+      .misc-container .misc-contents div h3 {
+        text-align: left;
+        margin: 13px;
+      }
+
+      .storymap {
+        padding: 30px 0;
+        margin-bottom: 5pc;
+      }
+
+      .extra-contents {
+        display: flex;
+      }
+
+      .containements {
+        padding: 50px 10px;
+        display: flex;
+      }
+
+      ol li {
+        margin-bottom: 1.5pc;
+      }
+
+      .acknowledgement-container {
+        width: 100%;
+        background: #4c4c4c;
+        padding: 10px 0;
+        color: #FFF;
+        
+      }
+
+      .conclusion-box {
+        width: 100%;
+        padding: 50px 0;
+        background: url('img/waterdrops.jpg') 100% 100% no-repeat;
+        background-size: cover;
+        position: relative;
+      }
+
+      .conclusion-box .conclusion {
+        margin: auto;
+        max-width: 1024px;
+        background: #FFF;
+        padding: 20px;
+        border-radius: 3px;
+        position: relative;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="header-bar">
       <div class="container">
-      <h1 style="text-align:center;color: #efefef;">  CRP 558 WEB MAPPING (SPRING 2020)<br>FINAL PROJECT<br>SUBMITTED BY MANDELA KWAME GADRI</h1>
-      <h2 style="text-align:center;">FOREST RESERVES AND MINERAL RESOURCES AREAS IN GHANA</h2>
+        <h1 style="text-align:center;color: #efefef;">  CRP 558 WEB MAPPING (SPRING 2020)<br>FINAL PROJECT<br>SUBMITTED BY MANDELA KWAME GADRI</h1>
+        <h2 style="text-align:center;color: #f57676;">FOREST RESERVES AND MINERAL RESOURCES AREAS IN GHANA</h2>
       </div>
-      </div>
-      <div class="navbar">
+    </div>
+
+    <div class="navbar">
       <div class="nav-item">
         <ul class="container">
-        <li class="nav-list">
-        <a href="https://en.wikipedia.org/wiki/Mining_industry_of_Ghana">MINING IN GHANA</a>
-        </li>
-        <li class="nav-list">
-        <a href="https://theculturetrip.com/africa/ghana/articles/the-top-10-national-parks-in-ghana/">NATIONAL PARKS IN GHANA</a>
-        </li>
-        <li class="nav-list">
-        <a href="https://mkgadri.github.io/CRP558/projectproposal">FINAL PROJECT PROPOSAL</a>
-        </li>
-        <li class="nav-list assignments">
-        <a class="">Assignments <i class="fa fa-caret-down"></i></a>
-        <ul class="assignment-list">
-        <li>
-        <a href="https://mkgadri.github.io/CRP558/Assignment1/">Assignment 1</a>
-        </li>
-        <li>
-        <a href="https://mkgadri.github.io/CRP558/Assignment2/">Assignment 2</a>
-        </li>
-        <li>
-        <a href="https://mkgadri.github.io/CRP558/exercise1/">Exercise 1</a>
-        </li>
-        <li>
-        <a href="https://mkgadri.github.io/CRP558/exercise2/">Exercise 2</a>
-        </li>
-        <li>
-        <a href="https://github.com/mkgadri/CRP558/blob/master/Exercise3/Iowa_Airports.geojson">Exercise 3</a>
-        </li>
-        <li>
-        <a href="https://mkgadri.github.io/CRP558/Exercise4/">Exercise 4</a>
-        </li>
-        <li>
-        <a href="https://mkgadri.github.io/CRP558/exercise5/">Exercise 5 </a>
-        </li>
-        <li>
-        <a href="https://mkgadri.github.io/CRP558/exercise6/">Exercise 6</a>
-        </li>
-        <li>
-        <a href="https://mkgadri.github.io/CRP558/exercise7/">Exercise 7</a>
-        </li>
-        <li>
-        <a href="https://mkgadri.github.io/CRP558/exercise8/">Exercise 8</a>
-        </li>
-        <li>
-        <a href="https://mkgadri.github.io/CRP558/exercise9/">Exercise 9</a>
-        </li>
-        <li>
-        <a href="https://mkgadri.github.io/CRP558/exercise10/">Exercise 10</a>
-        </li>
+          <li class="nav-list">
+            <a href="https://en.wikipedia.org/wiki/Mining_industry_of_Ghana">MINING IN GHANA</a>
+          </li>
+          <li class="nav-list">
+            <a href="https://theculturetrip.com/africa/ghana/articles/the-top-10-national-parks-in-ghana/">NATIONAL PARKS IN GHANA</a>
+          </li>
+          <li class="nav-list">
+            <a href="https://mkgadri.github.io/CRP558/projectproposal">FINAL PROJECT PROPOSAL</a>
+          </li>
+          <li class="nav-list assignments">
+            <a class="">Assignments <i class="fa fa-caret-down"></i></a>
+
+            <ul class="assignment-list">
+              <li>
+                <a href="https://mkgadri.github.io/CRP558/Assignment1/">Assignment1</a>
+              </li>
+              <li>
+                <a href="https://mkgadri.github.io/CRP558/Assignment2/">Assignment2</a>
+              </li>
+              <li>
+                <a href="https://mkgadri.github.io/CRP558/exercise1/">Exercise 1</a>
+              </li>
+              <li>
+                <a href="https://mkgadri.github.io/CRP558/exercise2/">Exercise 2</a>
+              </li>
+              <li>
+                <a href="https://github.com/mkgadri/CRP558/blob/master/Exercise3/Iowa_Airports.geojson">Exercise 3</a>
+              </li>
+              <li>
+                <a href="https://mkgadri.github.io/CRP558/Exercise4/">Exercise 4</a>
+              </li>
+              <li>
+                <a href="https://mkgadri.github.io/CRP558/exercise5/">Exercise 5 </a>
+              </li>
+              <li>
+                <a href="https://mkgadri.github.io/CRP558/exercise6/">Exercise 6</a>
+              </li>
+              <li>
+                <a href="https://mkgadri.github.io/CRP558/exercise7/">Exercise 7</a>
+              </li>
+              <li>
+                <a href="https://mkgadri.github.io/CRP558/exercise8/">Exercise 8</a>
+              </li>
+              <li>
+                <a href="https://mkgadri.github.io/CRP558/exercise9/">Exercise 9</a>
+              </li>
+              <li>
+                <a href="https://mkgadri.github.io/CRP558/exercise10/">Exercise 10</a>
+              </li>
+            </ul>
+          </li>
         </ul>
-        </li>
-        </ul>
-        </div>
-        </div>
-        <div class="effects-container">
-        <div class="container">
-        <div class="text-content">
+      </div>
+    </div>
+
+    
+    <div class="effects-container" style="position: relative;">
+      <div class="overlay"></div>
+        
+      <div class="container">
+        <div class="text-content" style="position: relative;">
           <h3> BACKGROUND INFORMATION </h3>
           <p>
-                 Mining is an inherently destructive industry, and the mining effects of even a single operation can have a severe impact on the environment and the wildlife
-                 that lives nearby. Although there are some regulations in place that are intended to minimize the damage, they are not enough to allow mining and wildlife to 
-                 exist in harmony, especially in cases where the regulations are difficult to enforce.The mining industry has the potential to disrupt ecosystems and wipe out 
-                 wildlife populations in several different ways.Mining is not going to stop anytime soon, but it is possible to lessen their negative impact on the environment 
-                 and wildlife.Responsible mining will not only save the environment and wildlife, but it can also ensure the safety of the people working in the mine and living 
-                 in nearby areas. Thus, the purpose of this project is to create an interactive map and that shows the spatial location of mineral resources and areas of 
-                 concentration of various mineral types, and how their exploration could affect available nature reserves.You can find the link to my proposal 
-                 <a href="https://mkgadri.github.io/CRP558/projectproposal/."> here.</a><b> Please check-out my storymap below for an in-depth knowledge on these effects.</b>
+              Mining is an inherently destructive industry, and the mining effects of even a single operation can have a severe impact on the environment and the wildlife
+              that lives nearby. Although there are some regulations in place that are intended to minimize the damage, they are not enough to allow mining and wildlife to 
+              exist in harmony, especially in cases where the regulations are difficult to enforce.The mining industry has the potential to disrupt ecosystems and wipe out 
+              wildlife populations in several different ways.Mining is not going to stop anytime soon, but it’s possible to lessen their negative impact on the environment 
+              and wildlife.Responsible mining will not only save the environment and wildlife, but it can also ensure the safety of the people working in the mine and living 
+              in nearby areas. Thus, the purpose of this project is to create an interactive map and that shows the spatial location of mineral resources and areas of 
+              concentration of various mineral types, and how their exploration could affect available nature reserves.You can find the link to my proposal 
+              <a href="https://mkgadri.github.io/CRP558/projectproposal/."> here.</a>
           </p>
         </div>
-        </div>
-        </div>
-        <div class="storymap">
-               <p><iframe width="100%" height="550px" src="https://isugisf.maps.arcgis.com/apps/MapJournal/index.html?appid=ebe30b36c7d046babbeb18bacb19e7e4" frameborder="0" scrolling="no"></iframe>
-               Note:Pictures and videos included in the storymap were obtained from
-               <a href="https://www.google.com/search?q=image+of+mining+effects+in+Ghana&amp;rlz=1C1GCEA_enUS851US851&amp;source=lnms&amp;tbm=isch&amp;sa=X&amp;ved=2ahUKEwj1rbPV1v_oAhUDHc0KHauOCE4Q_AUoAXoECA0QAw&amp;biw=1280&amp;bih=610"> google.com.</a> and 
-               <a href="https://www.youtube.com/watch?v=j6qaiPSbZsQ&amp;t=1456s">youtube.com.</a>
-               </p>
-        </div>
-        <div class="wrapper">
-        <div class="other-contents">
+      </div>
+    </div>
+
+    
+    <div class="storymap">
+      <iframe width="100%" height="550px" src="https://isugisf.maps.arcgis.com/apps/MapJournal/index.html?appid=ebe30b36c7d046babbeb18bacb19e7e4" frameborder="0" scrolling="no"></iframe>
+      Note:Pictures and videos included in the storymap were obtained from
+      <a href="https://www.google.com/search?q=image+of+mining+effects+in+Ghana&amp;rlz=1C1GCEA_enUS851US851&amp;source=lnms&amp;tbm=isch&amp;sa=X&amp;ved=2ahUKEwj1rbPV1v_oAhUDHc0KHauOCE4Q_AUoAXoECA0QAw&amp;biw=1280&amp;bih=610"> google.com.</a> and 
+      <a href="https://www.youtube.com/watch?v=j6qaiPSbZsQ&amp;t=1456s">youtube.com.</a>
+    </div>
+
+    <div class="wrapper" style="position: relative;">
+
+      <div class="overlay"></div>
+
+      <div class="other-contents" style="position: relative;">
+          
         <div class="map-container">
-        <div class="maps" id="map1">
-          <p>
-               This map shows the locations and type of various minerals in Ghana. This includes gold, bauxite, 
-               diamond and other minerals as shown in the legend. Most of these resources are located in the western 
-               and southern parts of the country compared to other areas of the country.
-          </p>
-               <iframe width="100%" height="450px" src="https://mkgadri.github.io/CRP558/finalprojectA/"></iframe>
-               <p class="map-source"><b>Data source:</b> <a href="https://data.gov.gh/">Ghana Open Data Initiative.</a></p>
+  
+          <div class="maps" id="map1">
+            <h3>Type of Minerals in Ghana</h3>
+            <p>
+              This map shows the locations and type of various minerals in Ghana. This includes gold, bauxite, 
+              diamond and other minerals as shown in the legend. Most of these resources are located in the western 
+              and southern parts of the country compared to other areas of the country.
+            </p>
+  
+            <iframe width="50%" height="550" src="https://mkgadri.github.io/CRP558/finalprojectA/"></iframe>
+  
+            <p class="map-source"><b>Data source:</b> <a href="https://data.gov.gh/">Ghana Open Data Initiative.</a></p>
           </div>
+    
           <hr>
+  
           <div class="maps" id="map2">
-          <p>
-               This map illusatrate the location and type of nature reserves in Ghana. As shown in the map below, 
-               most of nature reserves can be found in the western and southern portion of the country where mining 
-               activities are high. Thus chances of these reserves being degraded are very high.
-          </p>
-               <iframe width="50%" height="450px" src="https://mkgadri.github.io/CRP558/finalprojectB/"></iframe>
-               <p class="map-source"><b>Data source:</b> <a href="https://data.gov.gh/"> Ghana Open Data Initiative.</a></p>
+            <h3>Type of Natre Reserves in Ghana</h3>
+            <p>
+              This map illusatrate the location and type of nature reserves in Ghana. As shown in the map below, 
+              most of nature reserves can be found in the western and southern portion of the country where mining 
+              activities are high. Thus chances of these reserves being degraded are very high.
+            </p>
+  
+            <iframe width="50%" height="550" src="https://mkgadri.github.io/CRP558/finalprojectB/"></iframe>
+            
+            <p class="map-source"><b>Data source:</b> <a href="https://data.gov.gh/"> Ghana Open Data Initiative.</a></p>
+          </div>
         </div>
-        </div>
+  
         <div class="misc-container">
-        <div class="misc-contents">
-          <h3 style="text-align: center;">HOW MINING AFFECTS THE ENVIRONMENT AND WILDLIFE</h3>
-        <div>
-          <h3><i class="fa fa-caret-right"></i> Habitat Loss</h3>   
-          <p>
+          <div class="misc-contents">
+            <h3 style="text-align: center;">HOW MINING AFFECTS THE ENVIRONMENT AND WILDLIFE</h3>
+  
+            <div>
+              <h3><i class="fa fa-caret-right"></i> Habitat Loss</h3>
+    
+              <p>
                   Mining can lead to the destruction of habitats in surrounding areas. 
                   The process begins with deforestation. The land above the mine must be cleared
                   of all obstructions to allow the miners to go to work. Sadly, most mining companies
@@ -366,104 +600,126 @@
                   Any remaining survivors are forced to relocate and find a new dwelling. 
                   The removal of trees can also significantly affect the plants that rely on them for shade
                   from the harsh sun.
-          </p>
-        </div>
-        <div>
+              </p>
+            </div>
+  
+            <div>
               <h3><i class="fa fa-caret-right"></i> Water Loss</h3>
     
               <p> 
-                     Mining cause the water table to shrink. Water often seeps into areas that contain coal and other valuable
-                     products, and that water needs to be pumped out of the mine to allow the miners to work. Aside from
-                     pollution, the process would also cause water loss in the ground.Nearby residents who depend on wells 
-                     for their water supply can also get affected. They will need to drill even deeper to ensure that they 
-                     have access to water.
+                  Mining cause the water table to shrink. Water often seeps into areas that contain coal and other valuable
+                  products, and that water needs to be pumped out of the mine to allow the miners to work. Aside from
+                  pollution, the process would also cause water loss in the ground.Nearby residents who depend on wells 
+                  for their water supply can also get affected. They will need to drill even deeper to ensure that they 
+                  have access to water.
               </p>
-        </div>
-        <div>
+            </div>
+              
+            <div>
               <h3><i class="fa fa-caret-right"></i> Pollution</h3>
+    
               <p> 
-                      Mining can leak pollutants into the environment that may lead to water contamination. 
-                      At the most basic level, mining requires clearing of trees that hold soil in place. 
-                      The process can disturb the ground and wash the soil into waterways. 
-                      The mining process exposes bodies of water to heavy metals and toxic minerals like
-                      selenium which can negatively impact the human and the marine lives.
+                Mining can leak pollutants into the environment that may lead to water contamination. 
+                At the most basic level, mining requires clearing of trees that hold soil in place. 
+                The process can disturb the ground and wash the soil into waterways. 
+                The mining process exposes bodies of water to heavy metals and toxic minerals like
+                selenium which can negatively impact the human and the marine lives.
+                <b>Check-out my storymap below for an in-depth knowledge on these effects.</b>
               </p>
+            </div>
+          </div>
         </div>
-        </div>
-        </div>
-        </div>
-        </div>
-        <div class="extra-contents">
-        <div class="containements">
-        <div>
-                       <h5>Mean rating of attitudes toward the importance of forest</h5>
-        <!-- The image is floated to the left in order to be able to wrap the text content around it -->
-                       <P><img src="img/pic1.png" width="400" height="280" style="float: left;margin-right: 1pc">
-                       Research conducted by <a href="https://www.cell.com/heliyon/pdf/S2405-8440(19)36277-2.pdf">Obeng, et al, 2019</a> 
-                       on the level of importance attached to forest ecosystem services shows that on the level of 
-                       importance attached to nonmarket forest ecosystem services in the study area ecosystem services 
-                       were perceived to be very important among respondents. Cultural and spiritual significance of 
-                       forest which recorded the least mean importance of 3.97 is still a positive perception but only 
-                       trails behind the other eight services. These findings underscore the relevance of ecosystem to 
-                       wildlife and human survival. <br>
-                       <small><strong>Source: Obeng, et al. 2019</strong></small>
-              </P>
-        </div>
-        <div>
-                       <h5>Mean rating of impact of Mining on environmental resources</h5>
-                      <!-- The image is floated to the left in order to be able to wrap the text content around it -->
+      </div>
+    </div>
+    
 
-                       <p><img src="img/pic2.png" width="350" height="280" style="float: left;margin-right: 1pc">
-                       Further analysis by 
-                      <a href="https://www.cell.com/heliyon/pdf/S2405-8440(19)36277-2.pdf">Obeng, et al, 2019</a> 
-                       on impacts of mining on forest ecosystem services pointed to the fact that water availability and 
-                       quality are increasingly being jeopardized. Much the same way, farmlands and animal life are being 
-                       jeopardized as well. This is because while activities of mining cause drying up and inaccessibility 
-                       of water bodies, it also pollutes the few ones that are accessible. This equally stressed the need 
-                       to limited the impact of mining on the environment. <br>
-                       <small><strong>Source: Obeng, et al. 2019.</strong></small>
-               </p>
+    <div class="extra-contents" style="border-bottom: 1px solid lightgray;">
+      
+        <div style="text-align: justify;padding: 25px;">
+          <h5>Mean rating of attitudes toward the importance of forest</h5>
+
+          <!-- The image is floated to the left in order to be able to wrap the text content around it -->
+
+          
+          Research conducted by <a href="https://www.cell.com/heliyon/pdf/S2405-8440(19)36277-2.pdf">Obeng, et al, 2019</a> 
+          on the level of importance attached to forest ecosystem services shows that on the level of 
+          importance attached to nonmarket forest ecosystem services in the study area ecosystem services 
+          were perceived to be very important among respondents. Cultural and spiritual significance’ of 
+          forest which recorded the least mean importance of 3.97 is still a positive perception but only 
+          trails behind the other eight services. These findings underscore the relevance of ecosystem to 
+          wildlife and human survival.
+          <p>
+            <img src="img/pic1.png" width="550" height="450">
+          </p>
+          <strong>Source: Obeng, et al. 2019</strong>
         </div>
-        </div>
-        <div class="containements">
-        <div>
-                <p>
-                       The heatmap below shows areas high concentration mining actvities. It is obvious from the map that most 
-                       forest reserves tend be affected as mining activities are predominant in areas where these forest are 
-                       located<br>
-                       <iframe width="50%" height="350" src="https://mkgadri.github.io/CRP558/finalprojectC/" __idm_frm__="23"></iframe>
-                      <br><b>Data source:</b> <a href="https://data.gov.gh/">Ghana Open Data Initiative.<br></a>
-                </p>   
-        </div>
-        <div class="references" style="border-top: 1px solid lightgray;">
-                       <h4>References</h4>
-                       <ol>
-                       <li>
-                       <a href="https://www.cell.com/heliyon/pdf/S2405-8440(19)36277-2.pdf">
-                       Obeng, E. A., Oduro, K. A., Obiri, B. D., Abukari, H., Guuroh, R. T., Djagbletey, G. D., ... &amp; 
-                       Appiah, M. (2019). Impact of illegal mining activities on forest ecosystem services: local communities
-                       attitudes and willingness to participate in restoration activities in Ghana. Heliyon, 5(10), e02617.
-                       </a>
-                       </li>
-                       <li>
-                       <a href="https://data.gov.gh/"> Ghana Open Data Initiative. https://data.gov.gh/</a>
-                       </li>
-                       <li>
-                       <a href="https://www.tripadvisor.com/Attractions-g293796-Activities-c57-t68-Ghana.html">
-                       https://www.tripadvisor.com/Attractions-g293796-Activities-c57-t68-Ghana.html
-                       </a>
-                       </li>
-                       </ol>
-        </div>
-        </div>
-        </div>
-        <div class="acknowledgement-container" style="text-align: center;font-size: 14px; font-family: Cambria;">
-                       <b>ACKNOWLEDGEMENT</b><br>
-                       My deepest appreciation goes to my course instructor, Bailey Hanson, for her
-                       outstanding guidance, patience, encouragement,inspiration<br>
-                       and constructive comments given me throughout
-                       this entire course, I just cannot thank
-                       you enough; I am forever grateful.
-                       </div>
- </body>
- </html>
+        
+
+      
+          <div style="text-align: justify;padding: 25px;">
+            <h5>Mean rating of impact of Mining on environmental resources</h5>
+  
+            
+            Further analysis by 
+            <a href="https://www.cell.com/heliyon/pdf/S2405-8440(19)36277-2.pdf">Obeng, et al, 2019</a> 
+            on impacts of mining on forest ecosystem services pointed to the fact that water availability and 
+            quality are increasingly being jeopardized. Much the same way, farmlands and animal life are being 
+            jeopardized as well. This is because while activities of mining cause drying up and inaccessibility 
+            of water bodies, it also pollutes the few ones that are accessible. This equally stressed the need 
+            to limited the impact of mining on the environment.
+            <p>
+              <img src="img/pic2.png" width="550" height="450">
+            </p>
+            <strong>Source: Obeng, et al. 2019.</strong>
+          </div>
+    </div>
+          
+    <div class="containements">
+      <div class="map-container">
+        <h3>High Concentration Mining Activities</h3>
+        <p>
+          The heatmap below shows areas high concentration mining actvities. It is obvious from the map that most 
+          forest reserves tend be affected as mining activities are predominant in areas where these forest are 
+          located<br>
+          <iframe width="50%" height="550" src="https://mkgadri.github.io/CRP558/finalprojectC/"></iframe>
+          <br><b>Data source:</b> <a href="https://data.gov.gh/">Ghana Open Data Initiative.<br></a>
+        </p>   
+      </div>
+      
+      <div class="misc-container references">
+        <h3>References</h3>
+        <ol>
+          <li>
+            <a href="https://www.cell.com/heliyon/pdf/S2405-8440(19)36277-2.pdf">
+              Obeng, E. A., Oduro, K. A., Obiri, B. D., Abukari, H., Guuroh, R. T., Djagbletey, G. D., ... &amp; 
+              Appiah, M. (2019). Impact of illegal mining activities on forest ecosystem services: local communities’ 
+              attitudes and willingness to participate in restoration activities in Ghana. Heliyon, 5(10), e02617.
+            </a>
+          </li>
+          <li>
+            <a href="https://data.gov.gh/"> Ghana Open Data Initiative. https://data.gov.gh/</a>
+          </li>
+
+          <li>
+            <a href="https://www.tripadvisor.com/Attractions-g293796-Activities-c57-t68-Ghana.html">
+              https://www.tripadvisor.com/Attractions-g293796-Activities-c57-t68-Ghana.html
+            </a>
+          </li>
+        </ol>
+      </div>
+    </div>
+    
+    <div class="conclusion-box">
+      <div class="overlay"></div>
+      <div class="conclusion container">
+        <h3>Conclusion</h3>
+    
+        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Iure vel, earum eum velit officiis, vero dignissimos architecto eveniet deleniti harum odit obcaecati impedit! Tempora, officiis dolorum! Expedita asperiores ipsa quidem.</p>
+      </div>
+    </div>
+
+    <div class="acknowledgement-container" style="text-align: center;">
+      Your Acknowledgements goes <br> here
+    </div>
+  </body>
+</html>
