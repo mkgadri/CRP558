@@ -120,10 +120,12 @@
       });
   var popupContent = '<table>\
       <tr>\
-      <td colspan="2"><strong>REGION</strong><br />' + (feature.properties['REGION'] !== null ? Autolinker.link(feature.properties['REGION'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
+      <th scope="row">REGION</th>\
+      <td>' + (feature.properties['REGION'] !== null ? Autolinker.link(feature.properties['REGION'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
       </tr>\
       <tr>\
-      <td colspan="2"><strong>Capital</strong><br />' + (feature.properties['Capital'] !== null ? Autolinker.link(feature.properties['Capital'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
+      <th scope="row">Capital</th>\
+      <td>' + (feature.properties['Capital'] !== null ? Autolinker.link(feature.properties['Capital'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
       </tr>\
       </table>';
       layer.bindPopup(popupContent, {maxHeight: 400});
