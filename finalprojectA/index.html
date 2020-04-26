@@ -78,10 +78,7 @@
     // This is a unique access token, you must register for your own from https://account.mapbox.com/access-tokens/
     accessToken: 'pk.eyJ1IjoibWtnYWRyaSIsImEiOiJjazZzMG80ZngwOWJuM2Vxczc3Y3l5dWI1In0.Jgyb7Q-hriDlmi858EjIMg'
     }).addTo(map);
-       var bounds_group = new L.featureGroup([]);
-       function setBounds() {
-       }
-var measureControl = new L.Control.Measure({
+  var measureControl = new L.Control.Measure({
     position: 'topleft',
     primaryLengthUnit: 'meters',
     secondaryLengthUnit: 'kilometers',
@@ -96,6 +93,9 @@ var measureControl = new L.Control.Measure({
 var bounds_group = new L.featureGroup([]);
     function setBounds() {
     }
+     var bounds_group = new L.featureGroup([]);
+     function setBounds() {
+       }
   //basemaps
   var layer_OpenStreetMap_0 = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
       opacity: 1.0,
