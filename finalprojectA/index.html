@@ -10,7 +10,6 @@
   <link rel="stylesheet" href="css/qgis2web.css"><link rel="stylesheet" href="css/fontawesome-all.min.css">
   <link rel="stylesheet" href="css/leaflet-search.css">
   <link rel="stylesheet" href="css/leaflet-control-geocoder.Geocoder.css">
-  <link rel="stylesheet" href="css/leaflet-measure.css">
 <style>
   html, body, #map {
   width: 100%;
@@ -48,7 +47,6 @@
   <script src="js/labelgun.min.js"></script>
   <script src="js/labels.js"></script>
   <script src="js/leaflet-control-geocoder.Geocoder.js"></script>
-  <script src="js/leaflet-measure.js"></script>
   <script src="js/leaflet-search.js"></script>
   <script src="data/Ghana_Shapefile_New_1.js"></script>
   <script src="data/Minerals_points_2.js"></script>
@@ -78,21 +76,6 @@
     // This is a unique access token, you must register for your own from https://account.mapbox.com/access-tokens/
     accessToken: 'pk.eyJ1IjoibWtnYWRyaSIsImEiOiJjazZzMG80ZngwOWJuM2Vxczc3Y3l5dWI1In0.Jgyb7Q-hriDlmi858EjIMg'
     }).addTo(map);
-  var measureControl = new L.Control.Measure({
-    position: 'topleft',
-    primaryLengthUnit: 'meters',
-    secondaryLengthUnit: 'kilometers',
-    primaryAreaUnit: 'sqmeters',
-    secondaryAreaUnit: 'hectares'
-    });
-    measureControl.addTo(map);
-    document.getElementsByClassName('leaflet-control-measure-toggle')[0]
-    .innerHTML = '';
-    document.getElementsByClassName('leaflet-control-measure-toggle')[0]
-    .className += ' fas fa-ruler';
-var bounds_group = new L.featureGroup([]);
-    function setBounds() {
-    }
      var bounds_group = new L.featureGroup([]);
      function setBounds() {
        }
