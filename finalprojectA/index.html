@@ -35,7 +35,7 @@
   <div id="map"></div>
    <!-- adding maps of QGIS-->
   <!-- Creates interactive buttons -->
-  <p style=text-align:center><button  id="gold ">Zoom to View Major Gold Mining Areas</button>&nbsp;<button id="world"> World View</button></p>
+  <p style=text-align:center><button  id="gold">Zoom to view major gold mining areas</button>&nbsp;<button id="world"> World view</button></p>
   <script src="js/qgis2web_expressions.js"></script>
   <script src="js/leaflet.js"></script><script src="js/L.Control.Locate.min.js"></script>
   <script src="js/leaflet-svg-shape-markers.min.js"></script>
@@ -76,8 +76,8 @@
     // This is a unique access token, you must register for your own from https://account.mapbox.com/access-tokens/
     accessToken: 'pk.eyJ1IjoibWtnYWRyaSIsImEiOiJjazZzMG80ZngwOWJuM2Vxczc3Y3l5dWI1In0.Jgyb7Q-hriDlmi858EjIMg'
     }).addTo(map);
-       var bounds_group = new L.featureGroup([]);
-       function setBounds() {
+     var bounds_group = new L.featureGroup([]);
+     function setBounds() {
        }
   //basemaps
   var layer_OpenStreetMap_0 = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -120,10 +120,12 @@
       });
   var popupContent = '<table>\
       <tr>\
-      <td colspan="2"><strong>REGION</strong><br />' + (feature.properties['REGION'] !== null ? Autolinker.link(feature.properties['REGION'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
+      <th scope="row">REGION</th>\
+      <td>' + (feature.properties['REGION'] !== null ? Autolinker.link(feature.properties['REGION'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
       </tr>\
       <tr>\
-      <td colspan="2"><strong>Capital</strong><br />' + (feature.properties['Capital'] !== null ? Autolinker.link(feature.properties['Capital'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
+      <th scope="row">Capital</th>\
+      <td>' + (feature.properties['Capital'] !== null ? Autolinker.link(feature.properties['Capital'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
       </tr>\
       </table>';
       layer.bindPopup(popupContent, {maxHeight: 400});
@@ -175,14 +177,16 @@
       mouseover: highlightFeature,
       });
  var popupContent = '<table>\
-      <tr>\
-      <td colspan="2">' + (feature.properties['Id'] !== null ? Autolinker.link(feature.properties['Id'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
-      </tr>\
-      <tr>\
-      <td colspan="2">' + (feature.properties['Type'] !== null ? Autolinker.link(feature.properties['Type'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
-      </tr>\
-      </table>';
-      layer.bindPopup(popupContent, {maxHeight: 400});
+     <tr>\
+     <th scope="row">Id</th>\
+     <td>' + (feature.properties['Id'] !== null ? Autolinker.link(feature.properties['Id'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
+     </tr>\
+     <tr>\
+     <th scope="row">Type</th>\
+     <td>' + (feature.properties['Type'] !== null ? Autolinker.link(feature.properties['Type'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
+     </tr>\
+     </table>';
+     layer.bindPopup(popupContent, {maxHeight: 400});
       }
      //mineral resources locations points
       function style_Minerals_points_2_0(feature) {
