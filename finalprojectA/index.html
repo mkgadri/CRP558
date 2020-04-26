@@ -177,14 +177,16 @@
       mouseover: highlightFeature,
       });
  var popupContent = '<table>\
-      <tr>\
-      <td colspan="2">' + (feature.properties['Id'] !== null ? Autolinker.link(feature.properties['Id'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
-      </tr>\
-      <tr>\
-      <td colspan="2">' + (feature.properties['Type'] !== null ? Autolinker.link(feature.properties['Type'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
-      </tr>\
-      </table>';
-      layer.bindPopup(popupContent, {maxHeight: 400});
+     <tr>\
+     <th scope="row">Id</th>\
+     <td>' + (feature.properties['Id'] !== null ? Autolinker.link(feature.properties['Id'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
+     </tr>\
+     <tr>\
+     <th scope="row">Type</th>\
+     <td>' + (feature.properties['Type'] !== null ? Autolinker.link(feature.properties['Type'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
+     </tr>\
+     </table>';
+     layer.bindPopup(popupContent, {maxHeight: 400});
       }
      //mineral resources locations points
       function style_Minerals_points_2_0(feature) {
