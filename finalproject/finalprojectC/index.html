@@ -66,7 +66,7 @@ var map = L.map('map').setView([7.863,-1.121], 7);
     accessToken: 'pk.eyJ1IjoibWtnYWRyaSIsImEiOiJjazZzMG80ZngwOWJuM2Vxczc3Y3l5dWI1In0.Jgyb7Q-hriDlmi858EjIMg'
     }).addTo(map);
     //load geojson from my github
-$.getJSON("https://mkgadri.github.io/CRP558/finalprojectgeojson/Mines.geojson", function(data) {
+$.getJSON("https://mkgadri.github.io/CRP558/finalproject/finalprojectgeojson/Mines.geojson", function(data) {
     coords = data.features.map(feat => feat.geometry.coordinates.slice().reverse())
 var heatMap = L.heatLayer(coords, {
     minOpacity: 0.9, //the minimum opacity the heat will start at
