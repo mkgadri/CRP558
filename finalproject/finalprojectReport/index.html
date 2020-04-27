@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="description" content="Assignment 2">
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width>meta charset="UTF-8"
+  <link href="https://fonts.googleapis.com/css?family=Ropa+Sans:400,400i&display=swap"  rel="stylesheet"> 
+	<link rel="shortcut icon" type="image/x-icon" href="docs/images/favicon.ico" />
+<style>
+    body {
+      padding: 0;
+      margin: 0;
+      font-family: 'Ropa Sans', sans-serif;
+      color: blue;
+    }
+
+
+    .container {
+      max-width: 950px;
+      margin: auto;
+    }
+
+    .nav-item {
+      width: 100%;
+      padding: 0;
+      margin: 0;
+      background: #636363;
+    }
+
+    .nav-item .nav-list {
+      list-style-type: none;
+      display: inline-block;
+    }
+
+    /* Styles for the anchor tags */
+    .nav-item .nav-list>a {
+      text-decoration: none;
+      display: inline-block;
+      color: #fff;
+      padding: 1.5pc;
+      font-size: 18px;
+      text-transform: uppercase;
+      border: 3px solid #636363;
+    }
+
+    /* This is to style the anchor tag when is is hovered on */
+    .nav-item .nav-list>a:hover {
+      background: #fff;
+      border-radius: 5px;
+      color: #607D8B;
+    }
+
+    .assignments {
+      position: relative;
+    }
+
+    .nav-item .nav-list.assignments>a:hover {
+      background: transparent;
+      color: #fff;
+    }
+
+    .assignments:hover .assignment-list {
+      display: block;
+    }
+
+    .assignment-list {
+      position: absolute;
+      top: 73px;
+      background: #9e9e9e;
+      padding: 0;
+      border-radius: 1.5px;
+      display: none;
+    }
+
+    .assignment-list li {
+      list-style-type: none;
+    }
+
+    .assignment-list li a {
+      padding: 10px 40px;
+      display: block;
+      text-decoration: none;
+      color: #fff;
+    }
+
+    .assignment-list li a:hover {
+      background: #3b9aff;
+    }
+
+    /* For your custom text space */
+    .header-bar {
+      width: 100%;
+      padding: 30px;
+      background: #bdbdbd;
+    }
+
+    h1,
+    h2,
+    h3 {
+      margin: 0;
+    }
+
+    h1 {
+      font-size: 30px;
+      padding: 10px 0;
+    }
+
+    h3 {
+      padding: 7px;
+}
+		#map {
+		width: 800px;
+		height: 400px;
+		}
+
+    img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+   .info { padding: 6px 8px; font: 14px/16px Arial, Helvetica, sans-serif;background: white; background: rgba(255,255,255,0.8); box-shadow: 0 0 15px rgba(0,0,0,0.2); border-radius: 5px; } .info h4 { margin: 0 0      5px; color: #777; }.legend { text-align: left; line-height: 18px; color: #555; } .legend i { width: 18px; height: 18px; float: left; margin-right: 8px; opacity: 0.7; }
+
+</style>
+</head>
+<body>
+  <div class="header-bar">
+    <div class="container">
+      <h1 style="text-align:center;"> FINAL PROJECT PROPOSAL</h1>
+      <h3 style="text-align:center;">SUBMITTED BY GADRI MANDELA KWAME</h3>
+    </div>
+  </div>
+  <div class="navbar">
+    <div class="nav-item"><ul class="container">
+      <li class="nav-list">
+        <a href="https://data.gov.gh/">Homepage</a>
+      </li>
+      <li class="nav-list">
+        <a href="https://data.gov.gh/dataset/shapefiles-mineral-resource-ghana-2010"> Minerals SHP</a>
+      </li>
+      <li class="nav-list">
+        <a href="https://data.gov.gh/dataset/shapefiles-forest-and-game-reserves-ghana-2010">Nature Reserves SHP</a>
+      </li>
+     
+      <li class="nav-list assignments">
+        <a class="">Assignments <i class="fa fa-caret-down"></i></a>
+
+        <ul class="assignment-list">
+          <li><a href="https://mkgadri.github.io/CRP558/Assignment1/">Assignment 1</a></li>
+           <li><a href="https://mkgadri.github.io/CRP558/Assignment2/">Assignment 2</a></li>
+          <li><a href="https://mkgadri.github.io/CRP558/exercise1/">Exercise 1</a></li>
+          <li><a href="https://mkgadri.github.io/CRP558/exercise2/">Exercise 2</a></li>
+          <li><a href="https://github.com/mkgadri/CRP558/blob/master/Exercise3/Iowa_Airports.geojson">Exercise 3</a></li>
+           <li><a href="https://mkgadri.github.io/CRP558/Exercise4/">Exercise 4</a></li>
+          <li><a href="https://mkgadri.github.io/CRP558/exercise5/">Exercise 5 </a></li>
+           <li><a href="https://mkgadri.github.io/CRP558/exercise6/">Exercise 6</a></li>
+           <li><a href="https://mkgadri.github.io/CRP558/exercise7/">Exercise 7</a></li>
+           <li><a href="https://mkgadri.github.io/CRP558/exercise8/">Exercise 8</a></li>
+           <li><a href="https://mkgadri.github.io/CRP558/exercise9/">Exercise 9</a></li>
+           <li><a href="https://mkgadri.github.io/CRP558/exercise10/">Exercise 10</a></li>
+           <li><a href="https://mkgadri.github.io/CRP558/exercise11/">Exercise 11</a></li>
+           <li><a href="https://mkgadri.github.io/CRP558/TechnologyReport/">Technology Report</a></li>
+           <li><a href="https://mkgadri.github.io/CRP558/projectproposal/">Final Project Proposal</a></li>
+        </ul>
+      </li>
+    </ul>
+    </div>
+  </div>
+<p><iframe src="Proposal.pdf" width="100%" height="500px">class="center" <div class="text"><a href="https://mkgadri.github.io/CRP558/projectproposal/"</iframe></p>
+</body>
+</html>
