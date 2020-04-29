@@ -36,7 +36,7 @@
         <div id="map"></div>
 	  <!-- adding maps of QGIS-->
 	<!-- Creates interactive buttons -->
-	<p style=text-align:center><button  id="forest">Zoom to view major forest areas</button>&nbsp;<button id="world"> World view</button></p>
+	<p style=text-align:center><button  id="forest">Zoom to view major forest areas</button>&nbsp;<button id="zoom"> Zoom out</button>&nbsp;<button id="world"> World view</button></p>
         <script src="js/qgis2web_expressions.js"></script>
         <script src="js/leaflet.js"></script><script src="js/L.Control.Locate.min.js"></script>
         <script src="js/leaflet.rotatedMarker.js"></script>
@@ -325,8 +325,11 @@
 	//Setting an event when clicking the buttons
 	document.getElementById("world").addEventListener("click",world);
         function world() {
-        map.setView(new L.LatLng(5.5914,-2.1945), 3
-       );
+        map.setView(new L.LatLng(5.5914,-2.1945), 3);
+       };
+        document.getElementById("zoom").addEventListener("click",zoom);
+        function zoom() {
+        map.setView(new L.LatLng(5.5914,-2.1945), 3);
        };
        document.getElementById("forest").addEventListener("click",forest);
        function forest() {
