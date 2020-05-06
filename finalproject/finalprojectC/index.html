@@ -42,7 +42,7 @@
 <body>
 <div id='map'></div>
 <!-- Creates interactive buttons -->
-<p style=text-align:center><button  id="sites">Zoom view major mining sites</button>&nbsp;<button id="world"> World view</button></p>
+<p style=text-align:center><button  id="sites">Zoom view major mining sites</button>&nbsp;<button id="zoom"> Zoom out</button>&nbsp;<button id="world"> World view</button></p>
 <script>
 //basemaps
 var Stamen_Toner = L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/toner/{z}/{x}/{y}{r}.{ext}', {
@@ -102,8 +102,11 @@ var baseMaps  = {
     //Setting an event when clicking the buttons
     document.getElementById("world").addEventListener("click",world);
     function world() {
-    map.setView(new L.LatLng(5.5914,-2.1945), 3
-    );
+    map.setView(new L.LatLng(5.5914,-2.1945), 3);
+    };
+    document.getElementById("zoom").addEventListener("click",zoom);
+    function zoom() {
+    map.setView(new L.LatLng(7.863,-1.121), 7);
     };
     document.getElementById("sites").addEventListener("click",sites);
     function sites() {
